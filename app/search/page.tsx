@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -9,10 +9,11 @@ import { searchArticles } from '../lib/cms';
 import { formatDate } from '../lib/utils';
 import { Article } from '../types';
 
-export default function SearchPage() {
+// Search component that uses useSearchParams
+function SearchResults() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
-  
+
   const [results, setResults] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -28,7 +29,7 @@ export default function SearchPage() {
       try {
         setIsLoading(true);
         setError('');
-        
+
         const searchResults = await searchArticles(query);
         setResults(searchResults);
       } catch (err) {
@@ -44,8 +45,7 @@ export default function SearchPage() {
   }, [query]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
+    <>
       <div className="bg-teal-700 text-white">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl">
@@ -72,7 +72,7 @@ export default function SearchPage() {
             <div className="text-center py-8 bg-yellow-50 rounded-lg p-6">
               <h3 className="text-xl font-bold mb-4 text-yellow-800">No Results Found</h3>
               <p className="text-yellow-700 mb-4">
-                {query 
+                {query
                   ? `We couldn't find any articles matching "${query}". Try using different keywords or browse our categories.`
                   : 'Please enter a search term to find articles.'}
               </p>
@@ -83,7 +83,7 @@ export default function SearchPage() {
           ) : (
             <>
               <p className="mb-8 text-gray-600">Found {results.length} result{results.length !== 1 ? 's' : ''}</p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {results.map((article, index) => (
                   <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
@@ -125,6 +125,41 @@ export default function SearchPage() {
           )}
         </div>
       </section>
+    </>
+  );
+}
+
+// Loading fallback component
+function SearchLoading() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="bg-teal-700 text-white">
+        <div className="container mx-auto px-4 py-16">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl font-bold mb-4">Search Results</h1>
+            <p className="text-xl text-teal-100">Loading search results...</p>
+          </div>
+        </div>
+      </div>
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// Main page component with Suspense boundary
+export default function SearchPage() {
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Suspense fallback={<SearchLoading />}>
+        <SearchResults />
+      </Suspense>
     </div>
   );
 }
