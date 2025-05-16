@@ -1,0 +1,51 @@
+{
+  "title": "Smart Biological Age Calculator",
+  "description": "Calculate your biological age based on lifestyle factors and biomarkers",
+  "form": {
+    "personalInfo": {
+      "title": "Personal Information",
+      "age": "Chronological Age",
+      "gender": "Gender",
+      "height": "Height (cm)",
+      "weight": "Weight (kg)"
+    },
+    "lifestyle": {
+      "title": "Lifestyle Factors",
+      "sleep": "Average Sleep Duration (hours)",
+      "exercise": "Weekly Exercise (hours)",
+      "diet": "Diet Quality",
+      "stress": "Stress Level",
+      "smoking": "Smoking Status"
+    },
+    "biomarkers": {
+      "title": "Biomarkers (if available)",
+      "bloodPressure": "Blood Pressure (mmHg)",
+      "glucose": "Fasting Glucose (mg/dL)",
+      "cholesterol": "Total Cholesterol (mg/dL)",
+      "hdl": "HDL Cholesterol (mg/dL)",
+      "crp": "C-Reactive Protein (mg/L)"
+    },
+    "submit": "Calculate Biological Age"
+  },
+  "results": {
+    "title": "Your Results",
+    "bioAge": "Your Estimated Biological Age",
+    "chronologicalAge": "Your Chronological Age",
+    "difference": "Difference",
+    "interpretation": {
+      "younger": "Your biological age is lower than your chronological age, suggesting your body is aging slower than average.",
+      "same": "Your biological age matches your chronological age, suggesting your body is aging at an average rate.",
+      "older": "Your biological age is higher than your chronological age, suggesting your body is aging faster than average."
+    },
+    "recommendations": {
+      "title": "Recommendations to Improve Your Biological Age",
+      "sleep": "Optimize your sleep duration and quality",
+      "exercise": "Increase your physical activity level",
+      "diet": "Improve your diet quality with more whole foods",
+      "stress": "Implement stress management techniques",
+      "smoking": "Consider smoking cessation resources"
+    },
+    "saveResults": "Save Results to Your Profile",
+    "disclaimer": "This calculator provides an estimate based on available information. For a more accurate assessment, consult with a healthcare professional."
+  }
+}

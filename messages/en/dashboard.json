@@ -1,0 +1,11 @@
+{
+  "title": "Dashboard",
+  "description": "Your personal health and longevity dashboard",
+  "sections": {
+    "profile": "Profile",
+    "bioageHistory": "Bioage History",
+    "caloricNeeds": "Caloric Needs",
+    "workoutPlans": "Workout Plans"
+  },
+  "welcome": "Welcome back, {name}!"
+}

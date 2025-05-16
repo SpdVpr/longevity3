@@ -1,0 +1,8 @@
+{
+  "title": "Biomarkers & Tracking",
+  "description": "Measure and monitor your biological age and health metrics with precision",
+  "latestArticles": "Latest Articles",
+  "noArticles": "No Articles Found",
+  "checkStrapi": "Please check your Strapi CMS setup and try again",
+  "popularArticles": "Popular Articles"
+}

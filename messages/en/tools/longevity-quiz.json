@@ -1,0 +1,53 @@
+{
+  "title": "Longevity Quiz",
+  "description": "Test your knowledge about longevity science and healthy aging",
+  "start": "Start Quiz",
+  "next": "Next Question",
+  "previous": "Previous Question",
+  "submit": "Submit Answers",
+  "restart": "Restart Quiz",
+  "questionCount": "Question {current} of {total}",
+  "results": {
+    "title": "Your Results",
+    "score": "You scored {score} out of {total}",
+    "levels": {
+      "beginner": {
+        "title": "Longevity Beginner",
+        "description": "You're just starting your longevity journey. Explore our articles to learn more about the science of healthy aging."
+      },
+      "intermediate": {
+        "title": "Longevity Enthusiast",
+        "description": "You have a good understanding of longevity principles. Keep learning to deepen your knowledge."
+      },
+      "advanced": {
+        "title": "Longevity Expert",
+        "description": "Impressive! You have an excellent grasp of longevity science. Consider exploring our advanced research section."
+      }
+    },
+    "recommendedArticles": "Recommended Articles Based on Your Results"
+  },
+  "questions": {
+    "q1": {
+      "text": "Which of the following is NOT considered one of the hallmarks of aging?",
+      "options": {
+        "a": "Genomic instability",
+        "b": "Telomere attrition",
+        "c": "Mitochondrial dysfunction",
+        "d": "Increased protein synthesis"
+      },
+      "correctAnswer": "d",
+      "explanation": "Increased protein synthesis is not a hallmark of aging. In fact, carefully regulated protein synthesis and autophagy (cellular cleanup) are associated with longevity."
+    },
+    "q2": {
+      "text": "Which dietary pattern has the strongest evidence for promoting longevity?",
+      "options": {
+        "a": "Ketogenic diet",
+        "b": "Mediterranean diet",
+        "c": "Carnivore diet",
+        "d": "Standard American diet"
+      },
+      "correctAnswer": "b",
+      "explanation": "The Mediterranean diet has the strongest evidence base for promoting longevity, with multiple long-term studies showing reduced mortality and age-related diseases."
+    }
+  }
+}

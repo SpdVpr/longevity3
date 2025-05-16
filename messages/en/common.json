@@ -1,0 +1,26 @@
+{
+  "ui": {
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "readMore": "Read More →",
+      "viewAll": "View All"
+    },
+    "filters": {
+      "category": "Category:",
+      "sortBy": "Sort by:",
+      "all": "All"
+    },
+    "errors": {
+      "notFound": "Not found",
+      "loadingError": "Failed to load data",
+      "tryAgain": "Please try again later"
+    },
+    "pagination": {
+      "showing": "Showing {start}-{end} of {total}",
+      "page": "Page"
+    }
+  }
+}

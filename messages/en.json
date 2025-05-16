@@ -1,0 +1,57 @@
+{
+  "app": {
+    "title": "Longevity Hub",
+    "description": "Science-backed strategies for longevity"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "articles": "Articles",
+    "categories": "Categories",
+    "tools": "Tools",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "common": {
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "search": "Search",
+    "notFound": "Not Found",
+    "back": "Back"
+  },
+  "home": {
+    "featured": {
+      "title": "Featured Articles",
+      "viewAll": "View All Articles"
+    },
+    "categories": {
+      "title": "Explore Categories",
+      "nutrition": {
+        "title": "Nutrition",
+        "description": "Discover dietary approaches that promote longevity and overall health."
+      },
+      "fitness": {
+        "title": "Fitness",
+        "description": "Learn about exercise strategies that enhance lifespan and healthspan."
+      },
+      "mental_health": {
+        "title": "Mental Health",
+        "description": "Explore practices for cognitive health and emotional wellbeing."
+      },
+      "biomarkers": {
+        "title": "Biomarkers & Tracking",
+        "description": "Understand key health metrics and how to monitor your biological age."
+      },
+      "supplements": {
+        "title": "Supplements",
+        "description": "Research-backed supplements that may support longevity pathways."
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "title": "All Articles",
+  "description": "Explore our collection of evidence-based articles on longevity and healthy aging",
+  "noArticles": "No articles found",
+  "noMatchingArticles": "We couldn't find any articles matching your criteria",
+  "showingArticles": "Showing {start}-{end} of {total} articles",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  }
+}

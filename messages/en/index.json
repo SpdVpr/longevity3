@@ -1,0 +1,229 @@
+{
+  "navigation": {
+    "home": "Home",
+    "nutrition": "Nutrition",
+    "fitness": "Fitness",
+    "mental_health": "Mental Health",
+    "biomarkers": "Biomarkers",
+    "supplements": "Supplements",
+    "tools": "Tools",
+    "about": "About",
+    "contact": "Contact",
+    "search": "Search articles..."
+  },
+  "home": {
+    "hero": {
+      "title": "Live Longer, Live Better",
+      "subtitle": "Science-backed strategies for longevity and healthspan",
+      "cta": "Explore Our Resources"
+    },
+    "tools": {
+      "title": "Longevity Tools",
+      "viewAll": "View All Tools",
+      "useTool": "Use Tool"
+    },
+    "featured": {
+      "title": "Featured Articles",
+      "viewAll": "View All Articles"
+    },
+    "categories": {
+      "title": "Explore Topics",
+      "nutrition": {
+        "title": "Nutrition for Longevity",
+        "description": "Discover dietary patterns and foods that promote longevity"
+      },
+      "fitness": {
+        "title": "Physical Activity & Fitness",
+        "description": "Exercise strategies to extend healthspan and lifespan"
+      },
+      "mental_health": {
+        "title": "Mental & Cognitive Health",
+        "description": "Optimize brain health and cognitive function"
+      },
+      "biomarkers": {
+        "title": "Biomarkers & Tracking",
+        "description": "Measure and monitor your biological age"
+      },
+      "supplements": {
+        "title": "Supplements & Interventions",
+        "description": "Evidence-based supplements and therapies"
+      }
+    },
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Get the latest longevity research and practical tips delivered to your inbox",
+      "placeholder": "Your email address",
+      "button": "Subscribe",
+      "privacy": "We respect your privacy. Unsubscribe at any time."
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Longevity Hub. All rights reserved.",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact Us"
+    }
+  },
+  "search": {
+    "title": "Search Results",
+    "placeholder": "Search articles...",
+    "button": "Search",
+    "noResults": "No results found",
+    "noResultsDescription": "We couldn't find any articles matching your search criteria.",
+    "tryAgain": "Try using different keywords or browse our categories.",
+    "resultsFound": "Found {count} {count, plural, one {result} other {results}}",
+    "categories": "Categories",
+    "all": "All"
+  },
+  "article": {
+    "readMore": "Read More",
+    "relatedArticles": "Related Articles",
+    "tags": "Tags",
+    "author": "Author",
+    "publishedOn": "Published on",
+    "newsletter": "Newsletter",
+    "newsletterDescription": "Stay updated with the latest research and articles on longevity.",
+    "subscribe": "Subscribe"
+  },
+  "longevityPyramid": {
+    "title": "The Longevity Pyramid",
+    "subtitle": "Key pillars that form the foundation of a long and healthy life",
+    "close": "Close",
+    "levels": {
+      "nutrition": {
+        "title": "Nutrition",
+        "description": "The foundation of longevity starts with proper nutrition. Focus on whole foods, plant-based diet, moderate protein intake, and periodic fasting. What you eat directly impacts your cellular health and aging processes."
+      },
+      "exercise": {
+        "title": "Physical Activity",
+        "description": "Regular exercise is crucial for longevity. Include a mix of cardio, strength training, and flexibility exercises. Exercise improves cardiovascular health, maintains muscle mass, and enhances cellular repair mechanisms."
+      },
+      "sleep": {
+        "title": "Quality Sleep",
+        "description": "Sleep is when your body repairs and regenerates. Aim for 7-8 hours of quality sleep each night. Poor sleep accelerates aging and increases risk for chronic diseases."
+      },
+      "stress": {
+        "title": "Stress Management",
+        "description": "Chronic stress accelerates aging at the cellular level. Incorporate stress reduction techniques like meditation, deep breathing, or yoga into your daily routine."
+      },
+      "social": {
+        "title": "Social Connection",
+        "description": "Strong social relationships are linked to longer lifespans. Maintain meaningful connections with family, friends, and community to support emotional wellbeing and resilience."
+      },
+      "purpose": {
+        "title": "Purpose & Meaning",
+        "description": "Having a sense of purpose and meaning in life is associated with longevity. Engage in activities that give you a sense of fulfillment and contribution to something greater than yourself."
+      }
+    }
+  },
+  "research": {
+    "hero": {
+      "title": "Community Research Platform",
+      "subtitle": "Join thousands of people contributing to longevity research. Track your biomarkers, participate in studies, and help advance our understanding of healthy aging.",
+      "joinButton": "Join the Community",
+      "learnButton": "Learn More"
+    },
+    "dashboard": {
+      "title": "Research Dashboard",
+      "subtitle": "Track your biomarkers, join research projects, and see the impact of our community research.",
+      "join": "Join Our Research Community",
+      "joinDescription": "Track your biomarkers, participate in research projects, and contribute to advancing longevity science. Your data is always anonymous and secure.",
+      "signIn": "Sign In",
+      "register": "Register"
+    },
+    "biomarkers": {
+      "title": "Your Biomarkers",
+      "viewAll": "View All",
+      "addNew": "Add New Biomarker",
+      "addNewBiomarker": "Add New Biomarker",
+      "name": "Biomarker Name",
+      "category": "Category",
+      "value": "Value",
+      "unit": "Unit",
+      "date": "Date",
+      "save": "Save",
+      "cancel": "Cancel",
+      "noBiomarkers": "No biomarkers added yet. Add your first biomarker to start tracking.",
+      "allCategories": "All Categories",
+      "referenceRange": "Reference Range",
+      "categories": {
+        "blood": "Blood",
+        "vitamins": "Vitamins",
+        "lipids": "Lipids",
+        "hormones": "Hormones",
+        "inflammation": "Inflammation"
+      }
+    },
+    "projects": {
+      "title": "Research Projects",
+      "viewDetails": "View Details",
+      "joinProject": "Join Project",
+      "viewAllProjects": "View All Projects",
+      "noProjects": "No active research projects at the moment.",
+      "participants": "Participants",
+      "status": {
+        "active": "Active",
+        "completed": "Completed",
+        "recruiting": "Recruiting"
+      }
+    },
+    "community": {
+      "title": "Community Stats",
+      "topContributors": "Top Contributors",
+      "anonymousUser": "Anonymous User",
+      "contributions": "contributions",
+      "recentFindings": "Recent Findings",
+      "findings": {
+        "sleep": "Sleep Quality & Cognitive Performance",
+        "sleepDescription": "Our community data shows a strong correlation between sleep quality and next-day cognitive performance.",
+        "vitamin": "Vitamin D & Immune Function",
+        "vitaminDescription": "Users with optimal vitamin D levels report fewer sick days and better immune response."
+      },
+      "stats": {
+        "users": "Community Members",
+        "dataPoints": "Data Points",
+        "projects": "Active Projects",
+        "publications": "Publications"
+      }
+    },
+    "impact": {
+      "title": "Research Impact",
+      "description": "See how our community research is advancing longevity science and helping people live healthier, longer lives.",
+      "learnMore": "Learn More"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Our community research platform makes it easy to contribute to longevity science while tracking your own health data.",
+      "step1": {
+        "title": "Track Your Biomarkers",
+        "description": "Enter your health data securely and anonymously. Track changes over time and see how you compare to reference ranges."
+      },
+      "step2": {
+        "title": "Join Research Projects",
+        "description": "Participate in community research projects that interest you. Your data is always anonymized and aggregated."
+      },
+      "step3": {
+        "title": "See the Impact",
+        "description": "Access insights from community research and see how your contributions are advancing longevity science."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Common questions about our community research platform.",
+      "q1": "Is my data secure and private?",
+      "a1": "Yes, all data is anonymized and encrypted. We never share individual data with third parties, and you can delete your data at any time.",
+      "q2": "What kind of biomarkers can I track?",
+      "a2": "You can track a wide range of biomarkers including blood markers, vitamins, lipids, hormones, and inflammation markers. We're constantly adding new categories based on community feedback.",
+      "q3": "How are research projects created?",
+      "a3": "Research projects are created by our scientific team in collaboration with academic researchers. Community members can also propose research questions that may become future projects.",
+      "q4": "Can I see my personal trends over time?",
+      "a4": "Yes, you can view charts and trends of your biomarkers over time, and compare them to community averages while maintaining anonymity."
+    },
+    "cta": {
+      "title": "Join Our Research Community Today",
+      "subtitle": "Be part of something bigger. Help advance longevity science while tracking your own health journey.",
+      "button": "Get Started"
+    }
+  }
+}

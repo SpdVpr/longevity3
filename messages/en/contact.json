@@ -1,0 +1,19 @@
+{
+  "title": "Contact Us",
+  "description": "Get in touch with the Longevity Hub team",
+  "form": {
+    "name": "Your Name",
+    "email": "Your Email",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send Message"
+  },
+  "success": "Your message has been sent successfully. We'll get back to you soon.",
+  "error": "There was an error sending your message. Please try again.",
+  "contactInfo": {
+    "title": "Contact Information",
+    "email": "info@longevityhub.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Health Street, Wellness City, 10001"
+  }
+}

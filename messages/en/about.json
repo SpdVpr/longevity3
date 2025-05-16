@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "title": "About Longevity Hub",
+    "subtitle": "Our mission is to provide evidence-based information on longevity and healthy aging"
+  },
+  "story": {
+    "title": "Our Story",
+    "paragraph1": "Longevity Hub was founded in 2025 with a simple mission: to make the science of longevity accessible to everyone. We believe that the latest research on extending healthspan and lifespan should not be confined to academic journals or exclusive conferences.",
+    "paragraph2": "Our team of scientists, health professionals, and science communicators work together to translate complex research into practical, actionable information that anyone can use to optimize their health and potentially extend their lifespan.",
+    "paragraph3": "We are committed to scientific accuracy, transparency, and a balanced approach that acknowledges both the promise and limitations of longevity science."
+  },
+  "values": {
+    "title": "Our Values",
+    "evidenceBased": {
+      "title": "Evidence-Based",
+      "description": "We prioritize scientific evidence and rigorous research. All our content is backed by peer-reviewed studies and expert consensus."
+    },
+    "practical": {
+      "title": "Practical Application",
+      "description": "We translate complex science into actionable strategies that can be implemented in everyday life."
+    },
+    "personalization": {
+      "title": "Personalization",
+      "description": "We recognize that there is no one-size-fits-all approach to longevity and provide tools for personalized optimization."
+    }
+  },
+  "team": {
+    "title": "Our Team",
+    "members": {
+      "jane": {
+        "name": "Dr. Jane Smith",
+        "role": "Founder & Chief Science Officer",
+        "bio": "PhD in Molecular Biology with 15+ years of research experience in aging mechanisms."
+      },
+      "michael": {
+        "name": "Dr. Michael Johnson",
+        "role": "Medical Director",
+        "bio": "Board-certified physician specializing in preventive medicine and longevity."
+      },
+      "sarah": {
+        "name": "Sarah Williams",
+        "role": "Head of Content",
+        "bio": "Science journalist with expertise in translating complex research for general audiences."
+      },
+      "david": {
+        "name": "David Chen",
+        "role": "Technology Director",
+        "bio": "Software engineer focused on creating interactive tools for health optimization."
+      }
+    }
+  }
+}

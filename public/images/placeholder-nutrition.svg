@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#e9f5e9"/>
+  
+  <!-- Diagonal pattern -->
+  <pattern id="diagonalPattern" patternUnits="userSpaceOnUse" width="20" height="20" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="20" stroke="#d7ebd7" stroke-width="2"/>
+  </pattern>
+  <rect width="800" height="500" fill="url(#diagonalPattern)"/>
+  
+  <!-- Border -->
+  <rect width="798" height="498" x="1" y="1" stroke="#c6e6c6" stroke-width="2" fill="none"/>
+  
+  <!-- Icon -->
+  <g transform="translate(350, 180)">
+    <circle cx="50" cy="50" r="40" fill="#4ade80" opacity="0.8"/>
+    <path d="M50,20 C65,20 80,35 80,50 C80,65 65,80 50,80 C35,80 20,65 20,50 C20,35 35,20 50,20 M50,30 L50,70 M30,50 L70,50" stroke="#fff" stroke-width="4" fill="none"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2f855a" text-anchor="middle">Nutrition</text>
+  <text x="400" y="330" font-family="Arial, sans-serif" font-size="16" fill="#2f855a" text-anchor="middle">Healthy eating for longevity</text>
+</svg>

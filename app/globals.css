@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primární barvy */
+  --teal: #0ABAB5;
+  --teal-dark: #05807C;
+  --teal-light: #8AE0DC;
+
+  /* Sekundární barvy */
+  --indigo: #3E5C76;
+  --indigo-dark: #293F54;
+  --indigo-light: #CDD6E0;
+
+  /* Akcentní barvy */
+  --amber: #FFA62B;
+  --peach: #FFCAB1;
+  --peach-light: #FFE8DF;
+  --mint: #C5E1A5;
+  --mint-dark: #7CB342;
+
+  /* Neutrální barvy */
+  --gray-lightest: #F7F9FA;
+  --gray-light: #E1E5E9;
+  --gray: #454E57;
+  --gray-dark: #1D242B;
+
+  /* Základní barvy */
+  --background: #ffffff;
+  --foreground: var(--gray);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Utility třídy pro barvy */
+.text-teal { color: var(--teal); }
+.text-teal-dark { color: var(--teal-dark); }
+.text-teal-light { color: var(--teal-light); }
+.text-indigo { color: var(--indigo); }
+.text-indigo-dark { color: var(--indigo-dark); }
+.text-indigo-light { color: var(--indigo-light); }
+.text-amber { color: var(--amber); }
+.text-peach { color: var(--peach); }
+.text-mint { color: var(--mint); }
+.text-mint-dark { color: var(--mint-dark); }
+.text-gray-lightest { color: var(--gray-lightest); }
+.text-gray-light { color: var(--gray-light); }
+.text-gray { color: var(--gray); }
+.text-gray-dark { color: var(--gray-dark); }
+
+.bg-teal { background-color: var(--teal); }
+.bg-teal-dark { background-color: var(--teal-dark); }
+.bg-teal-light { background-color: var(--teal-light); }
+.bg-indigo { background-color: var(--indigo); }
+.bg-indigo-dark { background-color: var(--indigo-dark); }
+.bg-indigo-light { background-color: var(--indigo-light); }
+.bg-amber { background-color: var(--amber); }
+.bg-peach { background-color: var(--peach); }
+.bg-mint { background-color: var(--mint); }
+.bg-mint-dark { background-color: var(--mint-dark); }
+.bg-gray-lightest { background-color: var(--gray-lightest); }
+.bg-gray-light { background-color: var(--gray-light); }
+.bg-gray { background-color: var(--gray); }
+.bg-gray-dark { background-color: var(--gray-dark); }
+
+.border-teal { border-color: var(--teal); }
+.border-indigo { border-color: var(--indigo); }
+.border-gray-light { border-color: var(--gray-light); }
+
+/* Gradienty */
+.bg-gradient-teal-indigo {
+  background: linear-gradient(to right, var(--teal), var(--indigo));
+}
+
+/* Custom utility classes */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effects */
+.hover-teal:hover {
+  color: #0ABAB5 !important;
+}
+
+/* Article content styles */
+.article-content {
+  max-width: 1000px !important;
+  margin: 0 auto;
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Tools",
+  "description": "Interactive tools for longevity and health optimization",
+  "healthyHabits": {
+    "title": "Healthy Habits Checklist",
+    "description": "Track your daily healthy habits"
+  },
+  "bioAgeCalculator": {
+    "title": "Biological Age Calculator",
+    "description": "Calculate your biological age"
+  },
+  "workoutPlanner": {
+    "title": "Workout Planner", 
+    "description": "Create personalized workout plans"
+  }
+}
