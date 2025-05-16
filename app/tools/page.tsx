@@ -102,14 +102,18 @@ export default function ToolsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="p-6">
-                <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
+              <Link href="/tools/smart-bio-age-calculator">
+                <div className="p-6">
+                  <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">Smart Biological Age Calculator</h3>
+                  <p className="text-gray-600 mb-4">Calculate your biological age using data from your smart watch or fitness tracker</p>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Smart Biological Age Calculator</h3>
-                <p className="text-gray-600 mb-4">Calculate your biological age using data from your smart watch or fitness tracker</p>
+              </Link>
+              <div className="px-6 pb-6">
                 <Link href="/tools/smart-bio-age-calculator" className="inline-block px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition-colors">
                   Try Now
                 </Link>
@@ -117,14 +121,18 @@ export default function ToolsPage() {
             </div>
 
             <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="p-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+              <Link href="/tools/caloric-needs">
+                <div className="p-6">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">Caloric Needs Calculator</h3>
+                  <p className="text-gray-600 mb-4">Calculate your daily caloric needs based on your activity level and goals</p>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Caloric Needs Calculator</h3>
-                <p className="text-gray-600 mb-4">Calculate your daily caloric needs based on your activity level and goals</p>
+              </Link>
+              <div className="px-6 pb-6">
                 <Link href="/tools/caloric-needs" className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
                   Try Now
                 </Link>
@@ -132,14 +140,18 @@ export default function ToolsPage() {
             </div>
 
             <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="p-6">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
+              <Link href="/tools/workout-nutrition-planner">
+                <div className="p-6">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">Workout & Nutrition Planner</h3>
+                  <p className="text-gray-600 mb-4">Create personalized workout and nutrition plans based on your goals</p>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Workout & Nutrition Planner</h3>
-                <p className="text-gray-600 mb-4">Create personalized workout and nutrition plans based on your goals</p>
+              </Link>
+              <div className="px-6 pb-6">
                 <Link href="/tools/workout-nutrition-planner" className="inline-block px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors">
                   Try Now
                 </Link>
