@@ -2,31 +2,49 @@
 
 const nextConfig = {
   images: {
-    domains: ['localhost', '127.0.0.1', 'longevity3.vercel.app', 'strapi-production-a1c9.up.railway.app'],
+    domains: [
+      'localhost',
+      '127.0.0.1',
+      'longevity3.vercel.app',
+      'strapi-production-a1c9.up.railway.app',
+      'vercel.app',
+      'railway.app'
+    ],
     remotePatterns: [
       {
         protocol: 'http',
         hostname: 'localhost',
         port: '1337',
-        pathname: '/uploads/**',
+        pathname: '/**',
       },
       {
         protocol: 'http',
         hostname: '127.0.0.1',
         port: '1337',
-        pathname: '/uploads/**',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'strapi-production-a1c9.up.railway.app',
-        pathname: '/uploads/**',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'longevity3.vercel.app',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**.vercel.app',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.railway.app',
+        pathname: '/**',
+      },
     ],
+    unoptimized: true,
   },
   // Vypnout kontrolu ESLint při buildu
   eslint: {

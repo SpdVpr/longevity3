@@ -130,7 +130,16 @@ export default function ArticlePage() {
                   fill
                   className="object-cover"
                   priority
+                  onError={(e) => {
+                    // If image fails to load, replace with placeholder
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/images/placeholder-article.svg';
+                  }}
                 />
+              </div>
+              {/* Debug info - remove in production */}
+              <div className="mt-2 text-xs text-gray-400">
+                Image URL: {article.image}
               </div>
             </div>
           </div>
@@ -208,6 +217,11 @@ export default function ArticlePage() {
                         alt={relatedArticle.title}
                         fill
                         className="object-cover"
+                        onError={(e) => {
+                          // If image fails to load, replace with placeholder
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/images/placeholder-article.svg';
+                        }}
                       />
                     </div>
                   </Link>

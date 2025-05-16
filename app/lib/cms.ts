@@ -4,21 +4,34 @@ import { Article, Pagination } from '../types';
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
+// Define a fallback Strapi URL for production
+const FALLBACK_STRAPI_URL = 'https://strapi-production-a1c9.up.railway.app';
+
 // Function to get the correct image URL
 const getImageUrl = (url: string) => {
-  if (!url) return null;
+  if (!url) return '/images/placeholder-article.svg';
 
   // If the URL is already absolute (starts with http or https), return it as is
   if (url.startsWith('http://') || url.startsWith('https://')) {
     return url;
   }
 
-  // Otherwise, prepend the API_URL
-  return `${API_URL}${url}`;
+  // Check if we're in production (Vercel)
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  // In production, use the fallback URL if API_URL is localhost
+  const baseUrl = isProduction && API_URL.includes('localhost')
+    ? FALLBACK_STRAPI_URL
+    : API_URL;
+
+  // Otherwise, prepend the appropriate base URL
+  return `${baseUrl}${url}`;
 };
 
 // Debug information
+console.log('Environment:', process.env.NODE_ENV);
 console.log('API_URL:', API_URL);
+console.log('Using Fallback URL:', process.env.NODE_ENV === 'production' && API_URL.includes('localhost'));
 console.log('API_TOKEN exists:', !!API_TOKEN);
 
 // Define fetch headers - for now, don't use API token as it might not be set up
