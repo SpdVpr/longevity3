@@ -4,6 +4,19 @@ import { Article, Pagination } from '../types';
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
+// Function to get the correct image URL
+const getImageUrl = (url: string) => {
+  if (!url) return null;
+
+  // If the URL is already absolute (starts with http or https), return it as is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+
+  // Otherwise, prepend the API_URL
+  return `${API_URL}${url}`;
+};
+
 // Debug information
 console.log('API_URL:', API_URL);
 console.log('API_TOKEN exists:', !!API_TOKEN);
@@ -118,9 +131,9 @@ export async function getArticles(page: number = 1, pageSize: number = 10, local
       // Get the image URL from the appropriate location
       let imageUrl = null;
       if (hasAttributes && item.attributes.image?.data?.attributes?.url) {
-        imageUrl = `${API_URL}${item.attributes.image.data.attributes.url}`;
+        imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
       } else if (item.image?.url) {
-        imageUrl = `${API_URL}${item.image.url}`;
+        imageUrl = getImageUrl(item.image.url);
       }
 
       // Get the category from the appropriate location
@@ -218,9 +231,9 @@ export async function getArticleBySlug(slug: string, locale: string = 'en'): Pro
     // Get the image URL from the appropriate location
     let imageUrl = null;
     if (hasAttributes && item.attributes.image?.data?.attributes?.url) {
-      imageUrl = `${API_URL}${item.attributes.image.data.attributes.url}`;
+      imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
     } else if (item.image?.url) {
-      imageUrl = `${API_URL}${item.image.url}`;
+      imageUrl = getImageUrl(item.image.url);
     }
 
     // Get the category from the appropriate location
@@ -311,9 +324,9 @@ export async function getArticlesByCategory(categorySlug: string, page: number =
       // Get the image URL from the appropriate location
       let imageUrl = null;
       if (hasAttributes && item.attributes.image?.data?.attributes?.url) {
-        imageUrl = `${API_URL}${item.attributes.image.data.attributes.url}`;
+        imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
       } else if (item.image?.url) {
-        imageUrl = `${API_URL}${item.image.url}`;
+        imageUrl = getImageUrl(item.image.url);
       }
 
       // Get the category from the appropriate location
@@ -436,9 +449,9 @@ export async function getRelated(articleId: number, categoryId: number, limit: n
       // Get the image URL from the appropriate location
       let imageUrl = null;
       if (hasAttributes && item.attributes.image?.data?.attributes?.url) {
-        imageUrl = `${API_URL}${item.attributes.image.data.attributes.url}`;
+        imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
       } else if (item.image?.url) {
-        imageUrl = `${API_URL}${item.image.url}`;
+        imageUrl = getImageUrl(item.image.url);
       }
 
       // Get the category from the appropriate location
@@ -540,9 +553,9 @@ export async function search(query: string, page: number = 1, pageSize: number =
       // Get the image URL from the appropriate location
       let imageUrl = null;
       if (hasAttributes && item.attributes.image?.data?.attributes?.url) {
-        imageUrl = `${API_URL}${item.attributes.image.data.attributes.url}`;
+        imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
       } else if (item.image?.url) {
-        imageUrl = `${API_URL}${item.image.url}`;
+        imageUrl = getImageUrl(item.image.url);
       }
 
       // Get the category from the appropriate location

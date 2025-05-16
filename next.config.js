@@ -2,7 +2,7 @@
 
 const nextConfig = {
   images: {
-    domains: ['localhost', '127.0.0.1'],
+    domains: ['localhost', '127.0.0.1', 'longevity3.vercel.app', 'strapi-production-a1c9.up.railway.app'],
     remotePatterns: [
       {
         protocol: 'http',
@@ -15,6 +15,16 @@ const nextConfig = {
         hostname: '127.0.0.1',
         port: '1337',
         pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'strapi-production-a1c9.up.railway.app',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'longevity3.vercel.app',
+        pathname: '/**',
       },
     ],
   },
