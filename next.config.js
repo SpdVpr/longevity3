@@ -8,7 +8,9 @@ const nextConfig = {
       'longevity3.vercel.app',
       'strapi-production-a1c9.up.railway.app',
       'vercel.app',
-      'railway.app'
+      'railway.app',
+      'wise-growth-11e60bdab7.strapiapp.com',
+      'strapiapp.com'
     ],
     remotePatterns: [
       {
@@ -41,6 +43,16 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.railway.app',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wise-growth-11e60bdab7.strapiapp.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.strapiapp.com',
         pathname: '/**',
       },
     ],

@@ -6,8 +6,9 @@
   "framework": "nextjs",
   "outputDirectory": ".next",
   "env": {
-    "NEXT_PUBLIC_STRAPI_API_URL": "http://localhost:1337",
+    "NEXT_PUBLIC_STRAPI_API_URL": "https://wise-growth-11e60bdab7.strapiapp.com",
+    "STRAPI_API_TOKEN": "259ea5c9cca226780e30384a2c3258a3ff5695e15e298fe2573af9b3f32d83a53bc60ef87f5e6f213dc4ff32c6d8a3cab4221556b4d90645ca90b6cb4253f382ef0a7345954b59e276eaff942b1cd90d120df58bb33a6fea2fde4eaedf7dd45732085cbde24c305d15c905db551a8a9a1dc1ed6b48b2e0ef338462c1c05fa691",
     "NEXT_IGNORE_TYPESCRIPT_ERRORS": "1",
-    "NEXT_PUBLIC_SITE_URL": "https://longevity2.vercel.app"
+    "NEXT_PUBLIC_SITE_URL": "https://www.longevitygrow.com"
   }
 }

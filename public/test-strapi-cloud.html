@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strapi Cloud Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #0ABAB5;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        button {
+            background-color: #0ABAB5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #089b96;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Strapi Cloud Connection Test</h1>
+    <p>This page tests the connection to your Strapi Cloud instance.</p>
+    
+    <button id="testButton">Test Connection</button>
+    
+    <div class="result" id="result"></div>
+    
+    <script>
+        document.getElementById('testButton').addEventListener('click', async function() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing connection to Strapi Cloud...</p>';
+            
+            try {
+                // Define the Strapi Cloud URL
+                const STRAPI_URL = 'https://wise-growth-11e60bdab7.strapiapp.com';
+                const API_TOKEN = '259ea5c9cca226780e30384a2c3258a3ff5695e15e298fe2573af9b3f32d83a53bc60ef87f5e6f213dc4ff32c6d8a3cab4221556b4d90645ca90b6cb4253f382ef0a7345954b59e276eaff942b1cd90d120df58bb33a6fea2fde4eaedf7dd45732085cbde24c305d15c905db551a8a9a1dc1ed6b48b2e0ef338462c1c05fa691';
+                
+                // Prepare headers with the API token
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_TOKEN}`
+                };
+                
+                // Test fetching articles
+                resultDiv.innerHTML += '<p>Fetching articles from Strapi Cloud...</p>';
+                const articlesResponse = await fetch(`${STRAPI_URL}/api/articles?populate=*`, {
+                    headers
+                });
+                
+                if (!articlesResponse.ok) {
+                    throw new Error(`Failed to fetch articles: ${articlesResponse.status} ${articlesResponse.statusText}`);
+                }
+                
+                const articlesData = await articlesResponse.json();
+                
+                resultDiv.innerHTML += `<p>API Response Status: ${articlesResponse.status}</p>`;
+                resultDiv.innerHTML += '<p>Data structure check:</p>';
+                resultDiv.innerHTML += `<p>- Has data property: ${!!articlesData.data}</p>`;
+                resultDiv.innerHTML += `<p>- Data is array: ${Array.isArray(articlesData.data)}</p>`;
+                resultDiv.innerHTML += `<p>- Data length: ${articlesData.data ? articlesData.data.length : 0}</p>`;
+                
+                if (articlesData.data && articlesData.data.length > 0) {
+                    resultDiv.innerHTML += `<p>First article title: ${articlesData.data[0].attributes.title}</p>`;
+                } else {
+                    resultDiv.innerHTML += '<p>No articles found. This is normal for a new Strapi installation.</p>';
+                }
+                
+                // Test fetching categories
+                resultDiv.innerHTML += '<p>Fetching categories from Strapi Cloud...</p>';
+                const categoriesResponse = await fetch(`${STRAPI_URL}/api/categories?populate=*`, {
+                    headers
+                });
+                
+                if (!categoriesResponse.ok) {
+                    throw new Error(`Failed to fetch categories: ${categoriesResponse.status} ${categoriesResponse.statusText}`);
+                }
+                
+                const categoriesData = await categoriesResponse.json();
+                
+                resultDiv.innerHTML += `<p>API Response Status: ${categoriesResponse.status}</p>`;
+                resultDiv.innerHTML += '<p>Data structure check:</p>';
+                resultDiv.innerHTML += `<p>- Has data property: ${!!categoriesData.data}</p>`;
+                resultDiv.innerHTML += `<p>- Data is array: ${Array.isArray(categoriesData.data)}</p>`;
+                resultDiv.innerHTML += `<p>- Data length: ${categoriesData.data ? categoriesData.data.length : 0}</p>`;
+                
+                if (categoriesData.data && categoriesData.data.length > 0) {
+                    resultDiv.innerHTML += `<p>First category name: ${categoriesData.data[0].attributes.name}</p>`;
+                } else {
+                    resultDiv.innerHTML += '<p>No categories found. This is normal for a new Strapi installation.</p>';
+                }
+                
+                resultDiv.innerHTML += '<p class="success">Strapi Cloud API test completed successfully!</p>';
+                
+                // Display the raw data
+                resultDiv.innerHTML += '<h3>Raw Articles Data:</h3>';
+                resultDiv.innerHTML += `<pre>${JSON.stringify(articlesData, null, 2)}</pre>`;
+                
+                resultDiv.innerHTML += '<h3>Raw Categories Data:</h3>';
+                resultDiv.innerHTML += `<pre>${JSON.stringify(categoriesData, null, 2)}</pre>`;
+                
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Error testing Strapi Cloud API: ${error.message}</p>`;
+                console.error('Error testing Strapi Cloud API:', error);
+            }
+        });
+    </script>
+</body>
+</html>

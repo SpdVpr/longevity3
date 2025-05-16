@@ -7,6 +7,10 @@ const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337
 // API token for authentication
 const API_TOKEN = process.env.STRAPI_API_TOKEN;
 
+// Log the API URL and token status for debugging
+console.log('Strapi API URL:', API_URL);
+console.log('Strapi API Token exists:', !!API_TOKEN);
+
 /**
  * Helper to make GET requests to Strapi API endpoints
  * @param {string} path - Path of the API route
