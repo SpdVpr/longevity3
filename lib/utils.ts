@@ -403,10 +403,41 @@ export function transformArticleData(article: any): Article {
  * @param {StrapiData<CategoryAttributes>} category - Strapi category data
  * @returns {Category} - Transformed category
  */
-export function transformCategoryData(category: StrapiData<CategoryAttributes>): Category {
+export function transformCategoryData(category: any): Category {
   try {
-    if (!category || !category.attributes) {
-      console.error('Invalid category data:', category);
+    console.log('Transforming category data:', JSON.stringify(category, null, 2));
+
+    // Handle different possible structures
+    let id, attributes;
+
+    if (typeof category === 'object') {
+      if (category.hasOwnProperty('id') && category.hasOwnProperty('attributes')) {
+        // Standard Strapi v4 structure
+        id = category.id;
+        attributes = category.attributes;
+        console.log('Standard Strapi v4 category structure detected');
+      } else if (category.hasOwnProperty('id') && category.hasOwnProperty('name') && category.hasOwnProperty('slug')) {
+        // New Strapi Cloud structure where data is directly in the category object
+        id = category.id;
+        attributes = category;
+        console.log('New Strapi Cloud category structure detected, using category directly as attributes');
+      } else if (category.hasOwnProperty('documentId') && category.hasOwnProperty('name') && category.hasOwnProperty('slug')) {
+        // New Strapi Cloud structure with documentId
+        id = category.id || category.documentId;
+        attributes = category;
+        console.log('New Strapi Cloud category structure with documentId detected, using category directly as attributes');
+      } else {
+        console.error('Invalid category data:', category);
+        return {
+          id: 0,
+          name: 'Uncategorized',
+          slug: 'uncategorized',
+          description: '',
+          image: ''
+        };
+      }
+    } else {
+      console.error('Category is not an object:', typeof category);
       return {
         id: 0,
         name: 'Uncategorized',
@@ -416,14 +447,30 @@ export function transformCategoryData(category: StrapiData<CategoryAttributes>):
       };
     }
 
-    const { id, attributes } = category;
+    // Extract image URL
+    let imageUrl = '';
+    if (attributes.image) {
+      if (attributes.image.data && attributes.image.data.attributes) {
+        // Standard Strapi v4 relation
+        imageUrl = getStrapiMedia(attributes.image.data.attributes.url || '');
+      } else if (typeof attributes.image === 'string') {
+        // Direct image URL
+        imageUrl = getStrapiMedia(attributes.image);
+      } else if (attributes.image.url) {
+        // Object with URL
+        imageUrl = getStrapiMedia(attributes.image.url);
+      } else if (attributes.image.formats && attributes.image.formats.large) {
+        // New Strapi Cloud structure with formats
+        imageUrl = attributes.image.formats.large.url || attributes.image.url;
+      }
+    }
 
     return {
       id: id || 0,
       name: attributes.name || 'Uncategorized',
       slug: attributes.slug || 'uncategorized',
       description: attributes.description || '',
-      image: getStrapiMedia(attributes.image?.data?.attributes?.url || '')
+      image: imageUrl
     };
   } catch (error) {
     console.error('Error transforming category data:', error);
@@ -627,15 +674,64 @@ export function transformArticlesResponse(response: any): {
  * @param {StrapiCollectionResponse<CategoryAttributes>} response - Strapi response
  * @returns {Category[]} - Transformed categories
  */
-export function transformCategoriesResponse(response: StrapiCollectionResponse<CategoryAttributes>): Category[] {
+export function transformCategoriesResponse(response: any): Category[] {
   try {
-    if (!response || !response.data) {
-      console.error('Invalid categories response:', response);
+    console.log('Transforming categories response:', JSON.stringify(response, null, 2));
+
+    if (!response) {
+      console.error('Response is null or undefined');
       return [];
     }
 
-    return response.data.map(category => {
+    // Handle different possible response structures
+    let data;
+
+    if (response.data !== undefined) {
+      // Standard Strapi v4 response
+      data = response.data;
+      console.log('Standard Strapi v4 categories response structure detected');
+    } else if (Array.isArray(response)) {
+      // Direct array of items
+      data = response;
+      console.log('Direct array categories response structure detected');
+    } else if (response.items || response.results || response.categories) {
+      // Alternative response structure
+      data = response.items || response.results || response.categories;
+      console.log('Alternative categories response structure detected');
+    } else if (response.data && Array.isArray(response.data) && response.data.length > 0 && response.data[0].documentId) {
+      // New Strapi Cloud structure with documentId
+      data = response.data;
+      console.log('New Strapi Cloud categories structure with documentId detected');
+    } else {
+      // Unknown structure
+      console.error('Unknown categories response structure:', response);
+      return [];
+    }
+
+    // Check if data is an array
+    if (!Array.isArray(data)) {
+      console.error('Response data is not an array:', data);
+      return [];
+    }
+
+    // Log data array info
+    console.log('Categories response data array length:', data.length);
+
+    return data.map((category, index) => {
       try {
+        console.log(`Processing category ${index}:`, category ? JSON.stringify(category).substring(0, 100) + '...' : 'undefined');
+
+        if (!category) {
+          console.error(`Category ${index} is null or undefined`);
+          return {
+            id: 0,
+            name: 'Error',
+            slug: 'error',
+            description: '',
+            image: ''
+          };
+        }
+
         return transformCategoryData(category);
       } catch (error) {
         console.error('Error transforming category:', error);

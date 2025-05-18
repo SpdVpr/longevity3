@@ -536,7 +536,11 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
         ...(API_TOKEN ? { 'Authorization': `Bearer ${API_TOKEN}` } : {})
       };
 
+      console.log('Fetching with headers:', JSON.stringify(headers, null, 2));
       const response = await fetch(directUrl, { headers });
+
+      console.log('Response status:', response.status);
+      console.log('Response headers:', JSON.stringify(Object.fromEntries([...response.headers.entries()]), null, 2));
 
       if (!response.ok) {
         console.error(`Direct fetch failed: ${response.status} ${response.statusText}`);
@@ -544,7 +548,13 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
       }
 
       const data = await response.json();
-      console.log('Direct fetch successful, returning data');
+      console.log('Direct fetch successful, data structure:', JSON.stringify({
+        hasData: !!data.data,
+        dataIsArray: Array.isArray(data.data),
+        dataLength: data.data ? data.data.length : 0,
+        hasMeta: !!data.meta,
+        firstItem: data.data && data.data.length > 0 ? JSON.stringify(data.data[0]).substring(0, 200) + '...' : 'No items'
+      }, null, 2));
       return data;
     } catch (directFetchError) {
       console.error('Direct fetch failed, falling back to fetchAPI:', directFetchError);

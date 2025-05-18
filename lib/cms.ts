@@ -508,10 +508,11 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
 
   console.log(`Getting articles for category: ${categorySlug} with key: ${cacheKey}`);
 
-  // Enable cache to prevent excessive API calls
-  return cacheService.getOrSet(
-    cacheKey,
-    async () => {
+  // Temporarily disable cache for debugging
+  console.log('Temporarily disabling cache for debugging');
+  // return cacheService.getOrSet(
+  //   cacheKey,
+  //   async () => {
   try {
     console.log(`Fetching articles for category: ${categorySlug} from API`);
 
@@ -621,7 +622,4 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
       }
     };
   }
-    },
-    CACHE_TTL.ARTICLES
-  );
 }

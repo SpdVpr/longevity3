@@ -30,17 +30,34 @@ export default function BiomarkersPage() {
         setIsLoading(true);
         setError('');
 
+        console.log('Biomarkers page: Fetching articles for category biomarkers');
+
         // Use the category slug 'biomarkers'
         const result = await getArticlesByCategory('biomarkers', 1, 10, locale);
 
-        if (result.articles.length > 0) {
+        console.log('Biomarkers page: Received result:', JSON.stringify({
+          hasArticles: !!result.articles,
+          articlesIsArray: Array.isArray(result.articles),
+          articlesLength: result.articles ? result.articles.length : 0,
+          hasPagination: !!result.pagination,
+          firstArticle: result.articles && result.articles.length > 0 ?
+            {
+              id: result.articles[0].id,
+              title: result.articles[0].title,
+              slug: result.articles[0].slug
+            } : 'No articles'
+        }, null, 2));
+
+        if (result.articles && result.articles.length > 0) {
+          console.log('Biomarkers page: Setting articles and pagination');
           setArticles(result.articles);
           setPagination(result.pagination);
         } else {
+          console.log('Biomarkers page: No articles found');
           setError('No articles found in this category. Please create and publish articles in Strapi CMS.');
         }
       } catch (err) {
-        console.error('Error fetching articles:', err);
+        console.error('Biomarkers page: Error fetching articles:', err);
         setError('Failed to load articles. Please try again later.');
       } finally {
         setIsLoading(false);
