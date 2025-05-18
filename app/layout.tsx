@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PreviewBanner from './components/PreviewBanner';
 import { Providers } from './providers';
+// Import environment variables
+import './env';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
