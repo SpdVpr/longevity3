@@ -508,6 +508,13 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
 
   console.log(`Getting articles for category: ${categorySlug} with key: ${cacheKey}`);
 
+  // Import configuration
+  const config = require('../config').default;
+  console.log('Using config in getArticlesByCategory:', {
+    strapiApiUrl: config.strapiApiUrl,
+    strapiApiTokenExists: !!config.strapiApiToken
+  });
+
   // Temporarily disable cache for debugging
   console.log('Temporarily disabling cache for debugging');
   // return cacheService.getOrSet(
@@ -519,8 +526,20 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
     // First check if Strapi is accessible
     try {
       console.log('Checking if Strapi API is accessible...');
-      const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
-      const response = await fetch(`${strapiUrl}/api/articles?pagination[pageSize]=1`);
+      // Import configuration
+      const config = require('../config').default;
+      const strapiUrl = config.strapiApiUrl;
+      const strapiToken = config.strapiApiToken;
+      console.log('Using Strapi URL from config:', strapiUrl);
+      console.log('Strapi token exists:', !!strapiToken);
+
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${strapiToken}`
+      };
+
+      console.log('Using headers:', JSON.stringify(headers));
+      const response = await fetch(`${strapiUrl}/api/articles?pagination[pageSize]=1`, { headers });
 
       if (!response.ok) {
         console.error(`Strapi API check failed: ${response.status} ${response.statusText}`);
@@ -545,6 +564,10 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
     // Try to fetch from API
     let response;
     try {
+      // Import API functions directly to ensure we're using the latest version
+      const { getArticlesByCategory: apiGetArticlesByCategory } = require('../api');
+      console.log('Imported API function directly');
+
       response = await apiGetArticlesByCategory(categorySlug, page, pageSize, locale);
       console.log('Category articles response received');
     } catch (apiError) {

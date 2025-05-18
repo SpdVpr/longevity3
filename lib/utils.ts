@@ -64,7 +64,17 @@ export function getStrapiMedia(url: string): string {
  */
 export function transformArticleData(article: any): Article {
   try {
-    console.log('Raw article data to transform:', JSON.stringify(article, null, 2));
+    console.log('Transforming article data:', article ? 'Article exists' : 'Article is null or undefined');
+
+    // Log the article structure for debugging
+    if (article) {
+      console.log('Article structure:', {
+        hasId: !!article.id,
+        hasAttributes: !!article.attributes,
+        attributesType: article.attributes ? typeof article.attributes : 'undefined',
+        hasDocumentId: !!article.documentId
+      });
+    }
 
     // Check if article is valid
     if (!article) {
@@ -571,7 +581,19 @@ export function transformArticlesResponse(response: any): {
   articles: Article[];
   pagination: Pagination;
 } {
-  console.log('Transforming articles response:', JSON.stringify(response, null, 2));
+  console.log('Transforming articles response:', response ? 'Response exists' : 'Response is null or undefined');
+
+  // Log the response structure for debugging
+  if (response) {
+    console.log('Response structure:', {
+      hasData: !!response.data,
+      dataIsArray: Array.isArray(response.data),
+      dataLength: response.data ? response.data.length : 0,
+      hasMeta: !!response.meta,
+      firstItem: response.data && response.data.length > 0 ?
+        JSON.stringify(response.data[0]).substring(0, 200) + '...' : 'No items'
+    });
+  }
 
   // Default pagination
   const defaultPagination = {
