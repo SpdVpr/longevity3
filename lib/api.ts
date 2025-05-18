@@ -83,7 +83,24 @@ export async function fetchAPI(path: string, urlParamsObject = {}, options = {})
 export async function getAllArticles(page = 1, pageSize = 10, locale = 'en') {
   const path = '/articles';
   const urlParamsObject = {
-    populate: '*',
+    // Use deep populate to ensure we get all the fields including Content and cover
+    populate: {
+      category: {
+        populate: '*'
+      },
+      author: {
+        populate: '*'
+      },
+      cover: {
+        populate: '*'
+      },
+      image: {
+        populate: '*'
+      },
+      tags: {
+        populate: '*'
+      }
+    },
     locale,
     'pagination[page]': String(page),
     'pagination[pageSize]': String(pageSize),
@@ -109,7 +126,12 @@ export async function getArticleBySlug(slug: string, locale = 'en') {
       console.log('Trying direct fetch for article by slug...');
       const queryParams = new URLSearchParams({
         'filters[slug][$eq]': slug,
-        'populate': '*',
+        'populate[0]': 'category',
+        'populate[1]': 'author',
+        'populate[2]': 'cover',
+        'populate[3]': 'image',
+        'populate[4]': 'tags',
+        'populate[5]': 'Content',
         'locale': locale
       }).toString();
 
@@ -154,7 +176,24 @@ export async function getArticleBySlug(slug: string, locale = 'en') {
           $eq: slug,
         },
       },
-      populate: '*',
+      populate: {
+        category: {
+          populate: '*'
+        },
+        author: {
+          populate: '*'
+        },
+        cover: {
+          populate: '*'
+        },
+        image: {
+          populate: '*'
+        },
+        tags: {
+          populate: '*'
+        },
+        Content: true
+      },
       locale,
     };
 
@@ -319,7 +358,24 @@ export async function getFeaturedArticles(limit = 6, locale = 'en') {
       //     $eq: true,
       //   },
       // },
-      populate: '*',
+      populate: {
+        category: {
+          populate: '*'
+        },
+        author: {
+          populate: '*'
+        },
+        cover: {
+          populate: '*'
+        },
+        image: {
+          populate: '*'
+        },
+        tags: {
+          populate: '*'
+        },
+        Content: true
+      },
       locale,
       'pagination[pageSize]': String(limit),
       sort: 'publishedAt:desc',
@@ -331,7 +387,12 @@ export async function getFeaturedArticles(limit = 6, locale = 'en') {
     try {
       console.log('Trying direct fetch for articles...');
       const queryParams = new URLSearchParams({
-        'populate': '*',
+        'populate[0]': 'category',
+        'populate[1]': 'author',
+        'populate[2]': 'cover',
+        'populate[3]': 'image',
+        'populate[4]': 'tags',
+        'populate[5]': 'Content',
         'pagination[pageSize]': String(limit),
         'sort': 'publishedAt:desc'
       }).toString();
@@ -422,7 +483,24 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
           },
         },
       },
-      populate: '*',
+      populate: {
+        category: {
+          populate: '*'
+        },
+        author: {
+          populate: '*'
+        },
+        cover: {
+          populate: '*'
+        },
+        image: {
+          populate: '*'
+        },
+        tags: {
+          populate: '*'
+        },
+        Content: true
+      },
       locale,
       'pagination[page]': String(page),
       'pagination[pageSize]': String(pageSize),
@@ -438,7 +516,12 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
       // Convert nested filters to URL params
       const queryParams = new URLSearchParams({
         'filters[category][slug][$eq]': categorySlug,
-        'populate': '*',
+        'populate[0]': 'category',
+        'populate[1]': 'author',
+        'populate[2]': 'cover',
+        'populate[3]': 'image',
+        'populate[4]': 'tags',
+        'populate[5]': 'Content',
         'pagination[page]': String(page),
         'pagination[pageSize]': String(pageSize),
         'sort': 'publishedAt:desc',

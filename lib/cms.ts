@@ -451,9 +451,14 @@ export async function createArticle(articleData: any): Promise<Article> {
     const requestBody = {
       data: {
         title: articleData.title,
-        Content: articleData.Content || `<div class="article-content">${articleData.content}</div>`, // Wrap content in article-content div
+        // Use Content field (uppercase C) as shown in the Strapi CMS image
+        Content: articleData.Content || articleData.content,
         slug: articleData.slug,
         publishedAt: articleData.publishedAt,
+        // Add cover field if available
+        ...(articleData.cover && { cover: articleData.cover }),
+        // Add image field if available
+        ...(articleData.image && { image: articleData.image }),
         category: categoryData,
         // author: articleData.author, // Author is handled differently in Strapi
         locale: articleData.locale

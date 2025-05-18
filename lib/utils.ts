@@ -177,13 +177,33 @@ export function transformArticleData(article: any): Article {
       console.error('Error transforming tags:', tagsError);
     }
 
-    // Extract image URL
+    // Extract image URL - check both image and cover fields
     let imageUrl = '';
 
     try {
-      console.log('Processing image data:', JSON.stringify(attributes.image, null, 2));
+      // First try to get image from cover field (as shown in the Strapi CMS image)
+      if (attributes.cover) {
+        console.log('Processing cover data:', JSON.stringify(attributes.cover, null, 2));
 
-      if (attributes.image) {
+        if (attributes.cover.data && attributes.cover.data.attributes) {
+          // Standard Strapi v4 relation
+          console.log('Found standard Strapi v4 cover relation');
+          imageUrl = getStrapiMedia(attributes.cover.data.attributes.url || '');
+        } else if (typeof attributes.cover === 'string') {
+          // Direct cover URL
+          console.log('Found direct cover URL string');
+          imageUrl = getStrapiMedia(attributes.cover);
+        } else if (attributes.cover.url) {
+          // Object with URL
+          console.log('Found cover object with URL property');
+          imageUrl = getStrapiMedia(attributes.cover.url);
+        }
+      }
+
+      // If no cover image found, fall back to image field
+      if (!imageUrl && attributes.image) {
+        console.log('No cover image found, processing image data:', JSON.stringify(attributes.image, null, 2));
+
         if (attributes.image.data && attributes.image.data.attributes) {
           // Standard Strapi v4 relation
           console.log('Found standard Strapi v4 image relation');
@@ -225,12 +245,8 @@ export function transformArticleData(article: any): Article {
     let blocksContent = '';
 
     try {
-      if (attributes.content) {
-        // Standard content field
-        content = attributes.content;
-        console.log('Using standard content field');
-      } else if (attributes.Content) {
-        // Content field with uppercase C (as seen in the API response)
+      // First priority: Check for Content field (uppercase C) as shown in the Strapi CMS image
+      if (attributes.Content) {
         console.log('Found Content field with uppercase C');
 
         if (Array.isArray(attributes.Content)) {
@@ -252,29 +268,34 @@ export function transformArticleData(article: any): Article {
             console.log('Content is not wrapped in article-content div, wrapping it');
             content = `<div class="article-content">${content}</div>`;
           }
+        } else if (attributes.Content.document && Array.isArray(attributes.Content.document)) {
+          // Handle Strapi blocks format
+          console.log('Found Content.document array, processing blocks');
+          content = convertContentBlocksToHtml(attributes.Content.document);
         } else {
           console.error('Unknown Content format:', attributes.Content);
         }
-      } else if (attributes.Description) {
-        // Fallback to Description field if available
-        content = attributes.Description || '';
-        console.log('Using Description field as fallback');
       }
-
-      // Process blocks dynamic zone if present
-      if (attributes.blocks && Array.isArray(attributes.blocks)) {
+      // Second priority: Check for lowercase content field
+      else if (attributes.content) {
+        // Standard content field
+        content = attributes.content;
+        console.log('Using standard content field');
+      }
+      // Third priority: Check for blocks field
+      else if (attributes.blocks && Array.isArray(attributes.blocks)) {
         console.log('Processing blocks dynamic zone with', attributes.blocks.length, 'blocks');
-        blocksContent = attributes.blocks.map(block => {
+        blocksContent = attributes.blocks.map((block: any) => {
           try {
-            if (block.__component === 'rich-text') {
+            if (block.__component === 'shared.rich-text') {
               return convertContentBlocksToHtml(block.content || []);
-            } else if (block.__component === 'quote') {
+            } else if (block.__component === 'shared.quote') {
               return `<blockquote>${block.quote || ''}</blockquote>`;
-            } else if (block.__component === 'media') {
+            } else if (block.__component === 'shared.media') {
               const url = block.media?.data?.attributes?.url || '';
               const alt = block.media?.data?.attributes?.alternativeText || '';
-              return `<img src="${url}" alt="${alt}" class="w-full rounded-lg" />`;
-            } else if (block.__component === 'slider') {
+              return `<img src="${getStrapiMedia(url)}" alt="${alt}" class="w-full rounded-lg" />`;
+            } else if (block.__component === 'shared.slider') {
               // Implement slider rendering if needed
               return '';
             } else {
@@ -286,15 +307,26 @@ export function transformArticleData(article: any): Article {
             return '';
           }
         }).join('');
-      }
 
-      // Combine content and blocksContent
-      content = content + blocksContent;
+        // Set the blocks content as the main content
+        content = blocksContent;
+      }
+      // Last priority: Check for Description field
+      else if (attributes.Description) {
+        // Fallback to Description field if available
+        content = attributes.Description || '';
+        console.log('Using Description field as fallback');
+      }
 
       // If content is still empty, create a default content
       if (!content && attributes.title) {
         console.log('Creating default content for article:', attributes.title);
         content = `<div class="article-content"><p>Content for this article is currently being prepared. Please check back later.</p></div>`;
+      }
+
+      // Ensure content is wrapped in article-content div for consistent styling
+      if (content && !content.includes('class="article-content"')) {
+        content = `<div class="article-content">${content}</div>`;
       }
     } catch (contentError) {
       console.error('Error processing content:', contentError);

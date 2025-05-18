@@ -92,18 +92,21 @@ export interface CategoryAttributes {
 export interface ArticleAttributes {
   title: string;
   slug: string;
-  content: string;
-  excerpt: string;
+  excerpt?: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   locale: string;
-  featured: boolean;
-  image: StrapiMedia;
-  category: StrapiSingleResponse<CategoryAttributes>;
-  author: StrapiSingleResponse<AuthorAttributes>;
-  tags: StrapiCollectionResponse<TagAttributes>;
-  localizations: {
+  featured?: boolean;
+  // New fields based on Strapi CMS structure
+  cover?: StrapiMedia;
+  image?: StrapiMedia;
+  Content?: any; // Blocks content type
+  blocks?: any[]; // Dynamic zone
+  category?: StrapiSingleResponse<CategoryAttributes>;
+  author?: StrapiSingleResponse<AuthorAttributes>;
+  tags?: StrapiCollectionResponse<TagAttributes>;
+  localizations?: {
     data: StrapiData<ArticleAttributes>[];
   };
 }

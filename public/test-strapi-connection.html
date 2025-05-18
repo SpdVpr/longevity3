@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Strapi Cloud Connection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Strapi Cloud Connection</h1>
+    <p>This page tests the connection to the Strapi Cloud API.</p>
+    
+    <button id="testButton">Test Connection</button>
+    
+    <h2>Results:</h2>
+    <div id="results">Click the button to test the connection.</div>
+    
+    <script>
+        document.getElementById('testButton').addEventListener('click', testStrapiConnection);
+        
+        async function testStrapiConnection() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Testing connection to Strapi Cloud...</p>';
+            
+            try {
+                // Define the Strapi Cloud URL and API token
+                const STRAPI_URL = 'https://wise-growth-11e60bdab7.strapiapp.com';
+                const API_TOKEN = '9eb7050f256139edff7084e18e3cbaee2f75905110d1d6ca0389ce91880f73710a21efa0e3a52e6a5a8dcbd5447f72a201aa111c02a9eeb76b8fb6b5291ec6bf3336b520e96a8024f9247ed8a48ce4c84bfbf2583e2fb369631740562e27ef1bb2279fbc30b85c223d5741850c7ce0e27afb5bac1fe1c481bb62681ef463dc61';
+                
+                // Prepare headers with the API token
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_TOKEN}`
+                };
+                
+                // Test fetching articles
+                resultsDiv.innerHTML += '<p>Fetching articles from Strapi Cloud...</p>';
+                const articlesResponse = await fetch(`${STRAPI_URL}/api/articles?populate=*`, {
+                    headers
+                });
+                
+                if (!articlesResponse.ok) {
+                    throw new Error(`Failed to fetch articles: ${articlesResponse.status} ${articlesResponse.statusText}`);
+                }
+                
+                const articlesData = await articlesResponse.json();
+                
+                resultsDiv.innerHTML += `
+                    <p class="success">✅ Successfully connected to Strapi Cloud!</p>
+                    <p>Articles found: ${articlesData.data ? articlesData.data.length : 0}</p>
+                `;
+                
+                if (articlesData.data && articlesData.data.length > 0) {
+                    const firstArticle = articlesData.data[0];
+                    resultsDiv.innerHTML += `
+                        <h3>First Article Details:</h3>
+                        <ul>
+                            <li>ID: ${firstArticle.id}</li>
+                            <li>Title: ${firstArticle.attributes.title || 'N/A'}</li>
+                            <li>Slug: ${firstArticle.attributes.slug || 'N/A'}</li>
+                            <li>Has Content field: ${!!firstArticle.attributes.Content}</li>
+                            <li>Has cover field: ${!!firstArticle.attributes.cover}</li>
+                        </ul>
+                    `;
+                    
+                    resultsDiv.innerHTML += `
+                        <h3>Response Data:</h3>
+                        <pre>${JSON.stringify(articlesData, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML += `
+                    <p class="error">❌ Error connecting to Strapi Cloud:</p>
+                    <pre>${error.message}</pre>
+                `;
+                console.error('Error testing Strapi Cloud connection:', error);
+            }
+        }
+    </script>
+</body>
+</html>
