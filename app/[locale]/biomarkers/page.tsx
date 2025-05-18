@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import { getArticlesByCategory } from '@/lib/cms';
 import { formatDate } from '@/lib/utils';
 import { Article, Pagination } from '@/types';
+import config from '@/config';
 
 export default function BiomarkersPage() {
   const params = useParams();
@@ -29,6 +30,11 @@ export default function BiomarkersPage() {
       try {
         setIsLoading(true);
         setError('');
+
+        console.log('Biomarkers page: Config loaded:', {
+          strapiApiUrl: config.strapiApiUrl,
+          strapiApiTokenExists: !!config.strapiApiToken
+        });
 
         console.log('Biomarkers page: Fetching articles for category biomarkers');
 

@@ -2,18 +2,18 @@
  * API service for fetching data from Strapi CMS
  */
 
-// Import environment variables from env.js
-import { strapiApiUrl, strapiApiToken } from '../app/env';
+// Import configuration
+import config from '../config';
 
 // Base URL for Strapi API
-const API_URL = strapiApiUrl || process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+const API_URL = config.strapiApiUrl;
 // API token for authentication
-const API_TOKEN = strapiApiToken || process.env.STRAPI_API_TOKEN;
+const API_TOKEN = config.strapiApiToken;
 
 // Log the API URL and token status for debugging
 console.log('API service - Strapi API URL:', API_URL);
 console.log('API service - Strapi API Token exists:', !!API_TOKEN);
-console.log('API service - Using Fallback URL:', API_URL === 'http://localhost:1337');
+console.log('API service - Environment:', process.env.NODE_ENV);
 console.log('API service - API_TOKEN exists:', !!API_TOKEN);
 
 /**

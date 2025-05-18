@@ -17,11 +17,11 @@ import {
   Pagination
 } from '../types';
 
-// Import environment variables from env.js
-import { strapiApiUrl } from '../app/env';
+// Import configuration
+import config from '../config';
 
 // Base URL for Strapi media
-const STRAPI_URL = strapiApiUrl || process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+const STRAPI_URL = config.strapiApiUrl;
 
 // Log the Strapi URL for debugging
 console.log('Utils service - Strapi URL:', STRAPI_URL);
