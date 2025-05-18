@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma generate && next build",
+    "build": "npx prisma generate && node scripts/replace-localhost.js && next build",
     "start": "next start",
     "lint": "next lint",
     "generate-article": "node scripts/generate-article.js",
     "postinstall": "npx prisma generate",
-    "generate-prisma": "node scripts/generate-prisma.js"
+    "generate-prisma": "node scripts/generate-prisma.js",
+    "replace-localhost": "node scripts/replace-localhost.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.9.1",

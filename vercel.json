@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npx prisma generate && next build",
+  "buildCommand": "npx prisma generate && node scripts/replace-localhost.js && next build",
   "devCommand": "next dev",
   "installCommand": "npm install",
   "framework": "nextjs",

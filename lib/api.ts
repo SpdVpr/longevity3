@@ -2,19 +2,16 @@
  * API service for fetching data from Strapi CMS
  */
 
-// Import configuration
-import config from '../config';
-
-// Base URL for Strapi API
-const API_URL = config.strapiApiUrl;
-// API token for authentication
-const API_TOKEN = config.strapiApiToken;
+// Base URL for Strapi API - HARDCODED to ensure it's always correct
+const API_URL = 'https://special-acoustics-b9adb26838.strapiapp.com';
+// API token for authentication - HARDCODED to ensure it's always correct
+const API_TOKEN = '20096e270ae3b90065ca95970e34cda9ef7f3de056a0d9adb2edae62f158651bc218a1234832b338b1251291099daf1049d60d759f1935c2e2371f20f2cee68a6909567ade4b3f1c7be51f8effb548e7511570359ec3c6cbd33e83c6bac8e8c9f2eda66441986eb27f15897ccda1564dcd335552da089dff40317b9950c23477';
 
 // Log the API URL and token status for debugging
-console.log('API service - Strapi API URL:', API_URL);
-console.log('API service - Strapi API Token exists:', !!API_TOKEN);
-console.log('API service - Environment:', process.env.NODE_ENV);
-console.log('API service - API_TOKEN exists:', !!API_TOKEN);
+console.log('Environment:', process.env.NODE_ENV);
+console.log('API_URL:', API_URL);
+console.log('Using Fallback URL:', API_URL === 'http://localhost:1337');
+console.log('API_TOKEN exists:', !!API_TOKEN);
 
 /**
  * Helper to make GET requests to Strapi API endpoints

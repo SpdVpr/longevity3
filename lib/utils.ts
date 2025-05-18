@@ -17,11 +17,8 @@ import {
   Pagination
 } from '../types';
 
-// Import configuration
-import config from '../config';
-
-// Base URL for Strapi media
-const STRAPI_URL = config.strapiApiUrl;
+// Base URL for Strapi media - HARDCODED to ensure it's always correct
+const STRAPI_URL = 'https://special-acoustics-b9adb26838.strapiapp.com';
 
 // Log the Strapi URL for debugging
 console.log('Utils service - Strapi URL:', STRAPI_URL);
