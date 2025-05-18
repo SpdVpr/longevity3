@@ -5,10 +5,11 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import { getArticlesByCategory } from '@/lib/cms';
-import { formatDate } from '@/lib/utils';
+// Import the direct API client instead of the CMS service
+import { getArticlesByCategory } from './direct-api';
+// Import the local formatDate function
+import { formatDate } from './utils';
 import { Article, Pagination } from '@/types';
-import config from '@/config';
 
 export default function BiomarkersPage() {
   const params = useParams();
@@ -31,12 +32,7 @@ export default function BiomarkersPage() {
         setIsLoading(true);
         setError('');
 
-        console.log('Biomarkers page: Config loaded:', {
-          strapiApiUrl: config.strapiApiUrl,
-          strapiApiTokenExists: !!config.strapiApiToken
-        });
-
-        console.log('Biomarkers page: Fetching articles for category biomarkers');
+        console.log('Biomarkers page: Fetching articles for category biomarkers using direct API');
 
         // Use the category slug 'biomarkers'
         const result = await getArticlesByCategory('biomarkers', 1, 10, locale);
