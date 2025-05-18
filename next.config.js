@@ -11,10 +11,10 @@ const nextConfig = {
   },
 
   // Add webpack configuration to replace localhost:1337 with the Strapi API URL
-  webpack: (config, { isServer }) => {
+  webpack: (config, { webpack }) => {
     // Add a plugin to replace all occurrences of localhost:1337 with the Strapi API URL
     config.plugins.push(
-      new config.webpack.DefinePlugin({
+      new webpack.DefinePlugin({
         'process.env.STRAPI_API_URL': JSON.stringify(STRAPI_API_URL),
       })
     );
