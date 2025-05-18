@@ -585,7 +585,19 @@ export function transformArticlesResponse(response: any): {
       }
 
       try {
-        return transformArticleData(item);
+        // Check if the item has attributes property
+        if (item.attributes) {
+          // Standard Strapi v4 structure
+          return transformArticleData(item);
+        } else {
+          // New Strapi Cloud structure where data is directly in the item
+          // Create a wrapper object to match the expected structure
+          const wrappedItem = {
+            id: item.id,
+            attributes: item
+          };
+          return transformArticleData(wrappedItem);
+        }
       } catch (itemError) {
         console.error(`Error transforming item ${index}:`, itemError);
         return null;

@@ -1,0 +1,118 @@
+{
+  "data": [
+    {
+      "id": 7,
+      "documentId": "bgab1l9agy341dhpam7oz7pw",
+      "title": "Aging Clocks: Measuring Biological Age for Longevity and Healthspan",
+      "description": "Aging clocks estimate biological age and aid longevity and personalized health.",
+      "slug": "aging-clocks-measuring-biological-age-for-longevity-and-healthspan",
+      "createdAt": "2025-05-18T07:40:03.601Z",
+      "updatedAt": "2025-05-18T07:40:05.720Z",
+      "publishedAt": "2025-05-18T07:40:05.803Z",
+      "cover": {
+        "id": 12,
+        "documentId": "xmd302jqvvfvqv6bul5slltp",
+        "name": "aging-clocks-measuring-biological-age-for-longevity-and-healthspan.png",
+        "alternativeText": null,
+        "caption": null,
+        "width": 1536,
+        "height": 1024,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "https://special-acoustics-b9adb26838.media.strapiapp.com/large_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996.png",
+            "hash": "large_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996",
+            "mime": "image/png",
+            "name": "large_aging-clocks-measuring-biological-age-for-longevity-and-healthspan.png",
+            "path": null,
+            "size": 850.4,
+            "width": 1000,
+            "height": 667,
+            "sizeInBytes": 850395
+          },
+          "small": {
+            "ext": ".png",
+            "url": "https://special-acoustics-b9adb26838.media.strapiapp.com/small_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996.png",
+            "hash": "small_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996",
+            "mime": "image/png",
+            "name": "small_aging-clocks-measuring-biological-age-for-longevity-and-healthspan.png",
+            "path": null,
+            "size": 204.55,
+            "width": 500,
+            "height": 333,
+            "sizeInBytes": 204545
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "https://special-acoustics-b9adb26838.media.strapiapp.com/medium_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996.png",
+            "hash": "medium_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996",
+            "mime": "image/png",
+            "name": "medium_aging-clocks-measuring-biological-age-for-longevity-and-healthspan.png",
+            "path": null,
+            "size": 463.81,
+            "width": 750,
+            "height": 500,
+            "sizeInBytes": 463805
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "https://special-acoustics-b9adb26838.media.strapiapp.com/thumbnail_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996.png",
+            "hash": "thumbnail_aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996",
+            "mime": "image/png",
+            "name": "thumbnail_aging-clocks-measuring-biological-age-for-longevity-and-healthspan.png",
+            "path": null,
+            "size": 54.02,
+            "width": 234,
+            "height": 156,
+            "sizeInBytes": 54023
+          }
+        },
+        "hash": "aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 748.92,
+        "url": "https://special-acoustics-b9adb26838.media.strapiapp.com/aging_clocks_measuring_biological_age_for_longevity_and_healthspan_4a16794996.png",
+        "previewUrl": null,
+        "provider": "strapi-provider-upload-strapi-cloud",
+        "provider_metadata": null,
+        "createdAt": "2025-05-18T07:39:19.920Z",
+        "updatedAt": "2025-05-18T07:39:19.920Z",
+        "publishedAt": "2025-05-18T07:39:19.924Z"
+      },
+      "author": {
+        "id": 3,
+        "documentId": "p2b7tel20axtm3r2yu4rcy82",
+        "name": "Longevity",
+        "email": null,
+        "createdAt": "2025-05-18T07:35:23.673Z",
+        "updatedAt": "2025-05-18T07:35:23.673Z",
+        "publishedAt": "2025-05-18T07:35:23.639Z"
+      },
+      "category": {
+        "id": 6,
+        "documentId": "g3o4uctrgkday89f74pg29y0",
+        "name": "biomarkers",
+        "slug": "biomarkers",
+        "description": null,
+        "createdAt": "2025-05-18T07:23:42.676Z",
+        "updatedAt": "2025-05-18T07:23:42.676Z",
+        "publishedAt": "2025-05-18T07:23:42.664Z"
+      },
+      "blocks": [
+        {
+          "__component": "shared.rich-text",
+          "id": 13,
+          "body": "<h2>Aging Clocks: Measuring Biological Age for Longevity and Healthspan</h2>\n\n\nDrag\n\n\n\n\nDrag\n<p>\n\n\nDrag\nAging clocks are advanced computational models designed to estimate an individual’s biological age-how old their body truly is-by analyzing molecular, cellular, and physiological markers that change with aging. Unlike chronological age, which simply counts the years since birth, biological age reflects the cumulative effects of genetics, lifestyle, and environment on the aging process. The development of aging clocks has revolutionized aging research and is increasingly used in longevity medicine to assess health risks, guide interventions, and track the effectiveness of anti-aging strategies.\n\n\nDrag\n</p>\n\n\nDrag\n\n\n\n\nDrag\n<br>\n\n\nDrag\n\n\n\n\nDrag\n<strong>Types of Aging Clocks</strong><br>\n\n\nDrag\n<ul>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Epigenetic Clocks:</strong> The most widely studied aging clocks are based on DNA methylation patterns-chemical modifications to DNA that regulate gene expression and change predictably with age. The Horvath and Hannum clocks were among the first, using hundreds of methylation sites to estimate biological age across tissues. Second-generation clocks, such as PhenoAge and GrimAge, incorporate additional factors like smoking history and mortality risk, improving their predictive power for disease and lifespan. Recent innovations include clocks based on histone modifications and even pan-mammalian clocks applicable across species.<br>\n\n\nDrag\n  </li>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Proteomic and Multi-Omics Clocks:</strong> Newer models use large-scale measurements of blood proteins (proteomics), metabolites, and other “omics” data. These clocks can capture age-related changes in inflammation, immune function, and metabolism. For example, recent proteomic clocks analyzing thousands of plasma proteins have shown strong associations with mortality, heart failure, and cancer risk.<br>\n\n\nDrag\n  </li>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Microbiome and Other Clocks:</strong> Some aging clocks are based on changes in the gut microbiome, neuroimaging, or composite panels of clinical biomarkers. These multi-omics approaches provide a more holistic view of aging by integrating diverse biological systems.<br>\n\n\nDrag\n  </li>\n\n\nDrag\n</ul>\n\n\nDrag\n\n\n\n\nDrag\n<br>\n\n\nDrag\n\n\n\n\nDrag\n<strong>How Do Aging Clocks Work?</strong><br>\n\n\nDrag\n<p>\n\n\nDrag\nAging clocks use machine learning algorithms to analyze patterns in biological data (such as DNA methylation, protein levels, or microbiome composition) and predict biological age. The difference between predicted biological age and actual chronological age-known as “age acceleration”-can indicate whether someone is aging faster or slower than average. A positive difference suggests accelerated aging and higher disease risk, while a negative difference suggests decelerated aging and potentially greater healthspan.<br>\n\n\nDrag\n</p>\n\n\nDrag\n\n\n\n\nDrag\n<br>\n\n\nDrag\n\n\n\n\nDrag\n<strong>Clinical and Research Applications</strong><br>\n\n\nDrag\n<ul>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Risk Prediction:</strong> Biological age estimated by aging clocks is strongly correlated with morbidity, mortality, and functional decline-often more so than chronological age. This makes them valuable tools for identifying individuals at risk for age-related diseases or early intervention.\n\n\nDrag\n  </li>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Evaluating Interventions:</strong> Aging clocks are increasingly used in clinical trials and personal health monitoring to assess the impact of lifestyle changes, medications, or anti-aging therapies on the aging process.\n\n\nDrag\n  </li>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Personalized Medicine:</strong> By revealing how lifestyle, environment, and genetics interact to influence aging, aging clocks help guide tailored strategies for healthy longevity.\n\n\nDrag\n  </li>\n\n\nDrag\n</ul>\n\n\nDrag\n\n\n\n\nDrag\n<br>\n\n\nDrag\n\n\n\n\nDrag\n<strong>Limitations and Future Directions</strong><br>\n\n\nDrag\n<ul>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Accuracy and Specificity:</strong> While aging clocks are powerful, they are not infallible. Some models may underestimate age in older individuals or be influenced by disease states unrelated to aging.\n\n\nDrag\n  </li>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Multi-Omics Integration:</strong> The future of aging clocks lies in combining epigenetic, proteomic, metabolomic, and microbiome data for a more comprehensive and precise measurement of biological age.\n\n\nDrag\n  </li>\n\n\nDrag\n  <li>\n\n\nDrag\n    <strong>Clinical Validation:</strong> Ongoing research is needed to refine these models, validate them across populations, and determine how best to use them in preventive and therapeutic settings.\n\n\nDrag\n  </li>\n\n\nDrag\n</ul>\n\n\nDrag\n\n\n\n\nDrag\n<br>\n\n\nDrag\n\n\n\n\nDrag\n<strong>Conclusion</strong><br>\n\n\nDrag\n<p>\n\n\nDrag\nAging clocks mark a paradigm shift in how we understand and measure aging. By providing a window into the true pace of biological aging, they offer new opportunities for early detection of health risks, personalized intervention, and ultimately, the extension of healthy lifespan. As technology advances, aging clocks will play an increasingly central role in longevity science and precision medicine.\n\n\nDrag\n</p>\n\n\nDrag\n\n\n\n\nDrag\n<br><hr><br>\n\n\nDrag\n\n\n\n\nDrag\n<strong>References</strong><br>\n\n\nDrag\n<ul>\n\n\nDrag\n  <li><a href=\"https://deeplongevity.com/aging-clocks/\" target=\"_blank\">Deep Longevity: Aging Clocks</a></li>\n\n\nDrag\n  <li><a href=\"https://en.wikipedia.org/wiki/Epigenetic_clock\" target=\"_blank\">Wikipedia: Epigenetic clock</a></li>\n\n\nDrag\n  <li><a href=\"https://pubmed.ncbi.nlm.nih.gov/36206857/\" target=\"_blank\">PubMed: Epigenetic clock: A promising biomarker and practical tool in aging</a></li>\n\n\nDrag\n  <li><a href=\"https://www.cecad.uni-koeln.de/outreach/news/article/how-aging-clocks-tick/\" target=\"_blank\">CECAD: How aging clocks tick</a></li>\n\n\nDrag\n  <li><a href=\"https://pmc.ncbi.nlm.nih.gov/articles/PMC9245174/\" target=\"_blank\">PMC: Aging clocks & mortality timers, methylation, glycomic, telomeric and more</a></li>\n\n\nDrag\n  <li><a href=\"https://www.frontiersin.org/research-topics/20362/aging-clocks-in-longevity-medicine-from-functional-to-multi-omicsundefined\" target=\"_blank\">Frontiers in Aging: Aging clocks in longevity medicine</a></li>\n\n\nDrag\n  <li><a href=\"https://www.frontiersin.org/journals/aging/articles/10.3389/fragi.2024.1487260/full\" target=\"_blank\">Frontiers in Aging: Critical review of aging clocks and factors that may influence the accuracy</a></li>\n\n\nDrag\n</ul>\n\n\nDrag\n\n\n\n"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 1
+    }
+  }
+}
