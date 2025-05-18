@@ -75,6 +75,16 @@ export function transformArticleData(article: any): Article {
         id = article.id;
         attributes = article.attributes;
         console.log('Standard Strapi v4 structure detected');
+      } else if (article.hasOwnProperty('id') && article.hasOwnProperty('title') && article.hasOwnProperty('slug')) {
+        // New Strapi Cloud structure where data is directly in the article object
+        id = article.id;
+        attributes = article;
+        console.log('New Strapi Cloud structure detected, using article directly as attributes');
+      } else if (article.hasOwnProperty('documentId') && article.hasOwnProperty('title') && article.hasOwnProperty('slug')) {
+        // New Strapi Cloud structure with documentId
+        id = article.id || article.documentId;
+        attributes = article;
+        console.log('New Strapi Cloud structure with documentId detected, using article directly as attributes');
       } else if (article.hasOwnProperty('_id') || article.hasOwnProperty('id')) {
         // Possible alternative structure
         id = article._id || article.id;
@@ -197,6 +207,10 @@ export function transformArticleData(article: any): Article {
           // Object with URL
           console.log('Found cover object with URL property');
           imageUrl = getStrapiMedia(attributes.cover.url);
+        } else if (attributes.cover.formats && attributes.cover.formats.large) {
+          // New Strapi Cloud structure with formats
+          console.log('Found cover with formats property');
+          imageUrl = attributes.cover.formats.large.url || attributes.cover.url;
         }
       }
 
@@ -216,6 +230,10 @@ export function transformArticleData(article: any): Article {
           // Object with URL
           console.log('Found image object with URL property');
           imageUrl = getStrapiMedia(attributes.image.url);
+        } else if (attributes.image.formats && attributes.image.formats.large) {
+          // New Strapi Cloud structure with formats
+          console.log('Found image with formats property');
+          imageUrl = attributes.image.formats.large.url || attributes.image.url;
         } else if (attributes.image.data && typeof attributes.image.data === 'object' && !attributes.image.data.attributes) {
           // Handle case where data exists but doesn't have attributes
           console.log('Found image.data without attributes property');
@@ -287,15 +305,22 @@ export function transformArticleData(article: any): Article {
         console.log('Processing blocks dynamic zone with', attributes.blocks.length, 'blocks');
         blocksContent = attributes.blocks.map((block: any) => {
           try {
-            if (block.__component === 'shared.rich-text') {
-              return convertContentBlocksToHtml(block.content || []);
-            } else if (block.__component === 'shared.quote') {
+            if (block.__component === 'shared.rich-text' || block.__component === 'rich-text') {
+              // Handle both shared.rich-text and rich-text components
+              if (block.content) {
+                return convertContentBlocksToHtml(block.content || []);
+              } else if (block.body) {
+                // New Strapi Cloud structure with body property
+                return block.body || '';
+              }
+              return '';
+            } else if (block.__component === 'shared.quote' || block.__component === 'quote') {
               return `<blockquote>${block.quote || ''}</blockquote>`;
-            } else if (block.__component === 'shared.media') {
-              const url = block.media?.data?.attributes?.url || '';
-              const alt = block.media?.data?.attributes?.alternativeText || '';
+            } else if (block.__component === 'shared.media' || block.__component === 'media') {
+              const url = block.media?.data?.attributes?.url || block.media?.url || '';
+              const alt = block.media?.data?.attributes?.alternativeText || block.media?.alternativeText || '';
               return `<img src="${getStrapiMedia(url)}" alt="${alt}" class="w-full rounded-lg" />`;
-            } else if (block.__component === 'shared.slider') {
+            } else if (block.__component === 'shared.slider' || block.__component === 'slider') {
               // Implement slider rendering if needed
               return '';
             } else {
@@ -530,6 +555,11 @@ export function transformArticlesResponse(response: any): {
         pagination: response.pagination || response.meta?.pagination || defaultPagination
       };
       console.log('Alternative response structure detected');
+    } else if (response.data && Array.isArray(response.data) && response.data.length > 0 && response.data[0].documentId) {
+      // New Strapi Cloud structure with documentId
+      data = response.data;
+      meta = response.meta || { pagination: defaultPagination };
+      console.log('New Strapi Cloud structure with documentId detected');
     } else {
       // Unknown structure
       console.error('Unknown response structure:', response);

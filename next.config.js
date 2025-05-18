@@ -10,6 +10,8 @@ const nextConfig = {
       'vercel.app',
       'railway.app',
       'wise-growth-11e60bdab7.strapiapp.com',
+      'special-acoustics-b9adb26838.strapiapp.com',
+      'special-acoustics-b9adb26838.media.strapiapp.com',
       'strapiapp.com'
     ],
     remotePatterns: [
@@ -48,6 +50,16 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'wise-growth-11e60bdab7.strapiapp.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'special-acoustics-b9adb26838.strapiapp.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'special-acoustics-b9adb26838.media.strapiapp.com',
         pathname: '/**',
       },
       {
