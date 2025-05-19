@@ -17,6 +17,9 @@ import { getArticle, getRelated } from '../../../../lib/cms';
 import { formatDate } from '../../../../lib/utils';
 import { Article } from '../../../../types';
 
+// Import direct API implementation
+import { getArticleDirect, getRelatedDirect } from './api-config';
+
 // Temporary mock data until CMS is fully set up
 const articles = {
   'science-of-intermittent-fasting': {
@@ -104,38 +107,80 @@ export default function ArticlePage() {
     const fetchArticle = async () => {
       try {
         setIsLoading(true);
+        console.log('Article page: Fetching article with slug', slug);
 
-        // Try to fetch from CMS first
+        // Try to fetch using direct API first
         try {
-          // Fetch article data
+          console.log('Article page: Using direct API to fetch article');
+          const articleData = await getArticleDirect(slug, locale);
+
+          if (articleData) {
+            console.log('Article page: Direct API returned article data');
+            setArticle(articleData);
+
+            // Fetch related articles using direct API
+            if (articleData.id && articleData.category?.id) {
+              console.log('Article page: Fetching related articles with direct API');
+              const related = await getRelatedDirect(
+                articleData.id,
+                articleData.category.id,
+                3,
+                locale
+              );
+              setRelatedArticles(related);
+            }
+
+            setIsLoading(false);
+            return;
+          } else {
+            console.log('Article page: No article from direct API, falling back to CMS service');
+          }
+        } catch (directApiError) {
+          console.error('Article page: Direct API failed:', directApiError);
+          console.log('Article page: Falling back to CMS service');
+        }
+
+        // Try to fetch from CMS as fallback
+        try {
+          console.log('Article page: Using CMS service to fetch article');
           const articleData = await getArticle(slug, locale);
 
           if (articleData) {
+            console.log('Article page: CMS service returned article data');
             setArticle(articleData);
 
             // Fetch related articles
-            const related = await getRelated(
-              String(articleData.id),
-              articleData.category.slug,
-              3,
-              locale
-            );
-            setRelatedArticles(related);
+            if (articleData.id && articleData.category?.id) {
+              console.log('Article page: Fetching related articles with CMS service');
+              const related = await getRelated(
+                String(articleData.id),
+                articleData.category.slug,
+                3,
+                locale
+              );
+              setRelatedArticles(related);
+            }
+
             setIsLoading(false);
             return;
+          } else {
+            console.log('Article page: No article from CMS service, falling back to mock data');
           }
         } catch (cmsError) {
-          console.log('CMS not available yet, falling back to mock data');
+          console.log('Article page: CMS service failed, falling back to mock data', cmsError);
         }
 
-        // Fallback to mock data if CMS fetch fails
+        // Fallback to mock data if both API and CMS fetch fail
+        console.log('Article page: Checking mock data for slug', slug);
         if (articles[slug as keyof typeof articles]) {
+          console.log('Article page: Found mock data for slug', slug);
           setArticle(articles[slug as keyof typeof articles] as any);
         } else {
+          console.log('Article page: No mock data found for slug', slug);
           setError('Article not found');
         }
       } catch (err) {
-        console.error('Error fetching article:', err);
+        console.error('Article page: Error fetching article:', err);
         setError('Failed to load article');
       } finally {
         setIsLoading(false);
@@ -238,6 +283,42 @@ export default function ArticlePage() {
             <article className="prose prose-lg max-w-none article-content" style={{ maxWidth: '1000px', margin: '0 auto' }}>
               {article.content ? (
                 <div dangerouslySetInnerHTML={{ __html: article.content }} />
+              ) : article.blocks && Array.isArray(article.blocks) ? (
+                // Handle blocks directly if content is not available
+                <div>
+                  {article.blocks.map((block, index) => {
+                    if (block.__component === 'shared.rich-text' && block.body) {
+                      return <div key={index} dangerouslySetInnerHTML={{ __html: block.body }} />;
+                    } else if (block.__component === 'shared.media' && block.media) {
+                      let imageUrl = '';
+                      if (block.media.data && block.media.data.attributes) {
+                        imageUrl = block.media.data.attributes.url;
+                        if (imageUrl.startsWith('/')) {
+                          imageUrl = `https://special-acoustics-b9adb26838.strapiapp.com${imageUrl}`;
+                        }
+                      } else if (block.media.url) {
+                        imageUrl = block.media.url;
+                      }
+
+                      return (
+                        <div key={index} className="my-8">
+                          <img
+                            src={imageUrl}
+                            alt={block.media.data?.attributes?.alternativeText || 'Article image'}
+                            className="w-full rounded-lg"
+                          />
+                        </div>
+                      );
+                    } else if (block.__component === 'shared.quote') {
+                      return (
+                        <blockquote key={index} className="border-l-4 border-gray-300 pl-4 italic my-8">
+                          {block.quote}
+                        </blockquote>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
               ) : (
                 <div className="bg-yellow-50 p-6 rounded-lg mb-6">
                   <h3 className="text-yellow-800 font-bold mb-2">Content Not Available</h3>
@@ -255,9 +336,9 @@ export default function ArticlePage() {
                   <div className="mt-4 p-4 bg-gray-100 rounded">
                     <p className="font-mono text-sm text-gray-700">
                       Debug info: Content field type: {typeof article.content},
-                      Length: {article.content ? article.content.length : 0}
+                      Has blocks: {article.blocks ? 'Yes' : 'No'},
+                      Article structure: {JSON.stringify(Object.keys(article))}
                     </p>
-                    {/* Debug info for content field */}
                   </div>
                 </div>
               )}
