@@ -25,6 +25,7 @@ import { getRawArticleData, extractContentFromBlocks } from './debug';
 
 // Import direct rendering functions
 import { getArticleWithBlocks, RenderBlocks } from './direct-render';
+import { getArticleContent, ArticleContent } from './direct-content';
 
 // Temporary mock data until CMS is fully set up
 const articles = {
@@ -114,6 +115,40 @@ export default function ArticlePage() {
       try {
         setIsLoading(true);
         console.log('Article page: Fetching article with slug', slug);
+
+        // Try to fetch article content directly first
+        try {
+          console.log('Article page: Using direct content approach');
+          const directContent = await getArticleContent(slug, locale);
+
+          if (directContent && directContent.content && directContent.content.length > 0) {
+            console.log('Article page: Article content found with direct content approach');
+
+            // Create an article object with the direct content
+            const articleWithContent = {
+              id: 0,
+              title: directContent.title,
+              excerpt: '',
+              slug: slug,
+              publishedAt: new Date().toISOString(),
+              content: directContent.content,
+              image: directContent.image,
+              category: {
+                id: 0,
+                name: '',
+                slug: ''
+              }
+            };
+
+            setArticle(articleWithContent);
+            setIsLoading(false);
+            return;
+          } else {
+            console.log('Article page: No article content found with direct content approach');
+          }
+        } catch (directContentError) {
+          console.error('Article page: Direct content approach failed:', directContentError);
+        }
 
         // Try to fetch article with blocks for direct rendering
         try {
@@ -323,12 +358,12 @@ export default function ArticlePage() {
           <div className="lg:col-span-8 lg:col-start-3">
             {/* Article content with direct rendering */}
             <article className="prose prose-lg max-w-none article-content" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-              {article.blocks && Array.isArray(article.blocks) && article.blocks.length > 0 ? (
+              {article.content ? (
+                // Use the content field directly if available
+                <div dangerouslySetInnerHTML={{ __html: article.content }} />
+              ) : article.blocks && Array.isArray(article.blocks) && article.blocks.length > 0 ? (
                 // Use the RenderBlocks component for direct rendering
                 <RenderBlocks blocks={article.blocks} />
-              ) : article.content ? (
-                // Fallback to content field if available
-                <div dangerouslySetInnerHTML={{ __html: article.content }} />
               ) : article.rawData && article.rawData.blocks && Array.isArray(article.rawData.blocks) ? (
                 // Try to use blocks from rawData
                 <RenderBlocks blocks={article.rawData.blocks} />
