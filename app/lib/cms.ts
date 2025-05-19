@@ -1,8 +1,15 @@
 import { Article, Pagination } from '../types';
 
 // Define the Strapi API URL and API token - HARDCODED to ensure it's always correct
-const API_URL = 'https://special-acoustics-b9adb26838.strapiapp.com';
-const API_TOKEN = '20096e270ae3b90065ca95970e34cda9ef7f3de056a0d9adb2edae62f158651bc218a1234832b338b1251291099daf1049d60d759f1935c2e2371f20f2cee68a6909567ade4b3f1c7be51f8effb548e7511570359ec3c6cbd33e83c6bac8e8c9f2eda66441986eb27f15897ccda1564dcd335552da089dff40317b9950c23477';
+// Try to use the window.STRAPI_API_URL if available (client-side)
+const API_URL = typeof window !== 'undefined' && window.STRAPI_API_URL
+  ? window.STRAPI_API_URL
+  : 'https://special-acoustics-b9adb26838.strapiapp.com';
+
+// Try to use the window.STRAPI_API_TOKEN if available (client-side)
+const API_TOKEN = typeof window !== 'undefined' && window.STRAPI_API_TOKEN
+  ? window.STRAPI_API_TOKEN
+  : '20096e270ae3b90065ca95970e34cda9ef7f3de056a0d9adb2edae62f158651bc218a1234832b338b1251291099daf1049d60d759f1935c2e2371f20f2cee68a6909567ade4b3f1c7be51f8effb548e7511570359ec3c6cbd33e83c6bac8e8c9f2eda66441986eb27f15897ccda1564dcd335552da089dff40317b9950c23477';
 
 // Define a fallback Strapi URL for production (not needed anymore since we hardcoded the URL)
 const FALLBACK_STRAPI_URL = API_URL;

@@ -9,6 +9,8 @@ import { useState, useEffect } from 'react';
 import { getArticles, getCategories } from '../../../lib/cms';
 import { formatDate } from '../../../lib/utils';
 import { Article, Category } from '../../../types';
+// Import direct API function
+import { getArticlesDirect } from './api-config';
 
 export default function ArticlesPage() {
   const params = useParams();
@@ -33,17 +35,41 @@ export default function ArticlesPage() {
         setIsLoading(true);
         setError('');
 
-        // Fetch all articles
-        const articlesData = await getArticles(1, 100, locale);
+        console.log('Articles page: Using direct API to fetch articles');
+
+        // Try the direct API first
+        try {
+          // Fetch all articles using direct API
+          const articlesData = await getArticlesDirect(1, 100, locale);
+          console.log('Articles page: Direct API returned', articlesData.articles.length, 'articles');
+
+          if (articlesData.articles.length > 0) {
+            setArticles(articlesData.articles);
+          } else {
+            console.log('Articles page: No articles from direct API, falling back to CMS service');
+            // Fall back to the CMS service
+            const fallbackData = await getArticles(1, 100, locale);
+            if (fallbackData.articles.length > 0) {
+              setArticles(fallbackData.articles);
+            } else {
+              setError('No articles found. Please create and publish articles in Strapi CMS.');
+            }
+          }
+        } catch (directApiError) {
+          console.error('Articles page: Direct API failed:', directApiError);
+          console.log('Articles page: Falling back to CMS service');
+
+          // Fall back to the CMS service
+          const fallbackData = await getArticles(1, 100, locale);
+          if (fallbackData.articles.length > 0) {
+            setArticles(fallbackData.articles);
+          } else {
+            setError('No articles found. Please create and publish articles in Strapi CMS.');
+          }
+        }
 
         // Fetch all categories
         const categoriesData = await getCategories(locale);
-
-        if (articlesData.articles.length > 0) {
-          setArticles(articlesData.articles);
-        } else {
-          setError('No articles found. Please create and publish articles in Strapi CMS.');
-        }
 
         if (categoriesData.length > 0) {
           setAllCategories(categoriesData);
