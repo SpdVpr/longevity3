@@ -1,11 +1,11 @@
 import { Article, Pagination } from '../types';
 
-// Define the Strapi API URL and API token
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
-const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+// Define the Strapi API URL and API token - HARDCODED to ensure it's always correct
+const API_URL = 'https://special-acoustics-b9adb26838.strapiapp.com';
+const API_TOKEN = '20096e270ae3b90065ca95970e34cda9ef7f3de056a0d9adb2edae62f158651bc218a1234832b338b1251291099daf1049d60d759f1935c2e2371f20f2cee68a6909567ade4b3f1c7be51f8effb548e7511570359ec3c6cbd33e83c6bac8e8c9f2eda66441986eb27f15897ccda1564dcd335552da089dff40317b9950c23477';
 
-// Define a fallback Strapi URL for production
-const FALLBACK_STRAPI_URL = 'https://strapi-production-a1c9.up.railway.app';
+// Define a fallback Strapi URL for production (not needed anymore since we hardcoded the URL)
+const FALLBACK_STRAPI_URL = API_URL;
 
 // Function to get the correct image URL
 const getImageUrl = (url: string) => {
@@ -16,26 +16,23 @@ const getImageUrl = (url: string) => {
     return url;
   }
 
-  // Check if we're in production (Vercel)
-  const isProduction = process.env.NODE_ENV === 'production';
-
-  // In production, use the fallback URL if API_URL is localhost
-  const baseUrl = isProduction && API_URL.includes('localhost')
-    ? FALLBACK_STRAPI_URL
-    : API_URL;
-
-  // Otherwise, prepend the appropriate base URL
-  return `${baseUrl}${url}`;
+  // Always use the hardcoded API_URL
+  return `${API_URL}${url}`;
 };
 
 // Debug information
 console.log('Environment:', process.env.NODE_ENV);
-console.log('API_URL:', API_URL);
-console.log('Using Fallback URL:', process.env.NODE_ENV === 'production' && API_URL.includes('localhost'));
+console.log('API_URL (hardcoded):', API_URL);
+console.log('Using Fallback URL:', false);
 console.log('API_TOKEN exists:', !!API_TOKEN);
 
-// Define fetch headers - for now, don't use API token as it might not be set up
-const fetchOptions = {};
+// Define fetch headers with API token
+const fetchOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${API_TOKEN}`
+  }
+};
 
 /**
  * Fetches a single article by slug (alias for getArticleBySlug)
