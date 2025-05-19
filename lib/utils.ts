@@ -23,6 +23,9 @@ const STRAPI_URL = 'https://special-acoustics-b9adb26838.strapiapp.com';
 // Log the Strapi URL for debugging
 console.log('Utils service - Strapi URL:', STRAPI_URL);
 
+// Debug flag to enable verbose logging
+const DEBUG = true;
+
 /**
  * Get full URL for Strapi media
  * @param {string} url - Relative URL

@@ -32,7 +32,10 @@ const nextConfig = {
       'wise-growth-11e60bdab7.strapiapp.com',
       'special-acoustics-b9adb26838.strapiapp.com',
       'special-acoustics-b9adb26838.media.strapiapp.com',
-      'strapiapp.com'
+      'media.strapiapp.com',
+      'strapiapp.com',
+      'cloudinary.com',
+      'res.cloudinary.com'
     ],
     remotePatterns: [
       {
@@ -84,7 +87,22 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: '**.media.strapiapp.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: '**.strapiapp.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cloudinary.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
         pathname: '/**',
       },
     ],

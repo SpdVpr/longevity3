@@ -52,7 +52,21 @@ export default function BiomarkersPage() {
 
         if (result.articles && result.articles.length > 0) {
           console.log('Biomarkers page: Setting articles and pagination');
-          setArticles(result.articles);
+
+          // Ensure all articles have an excerpt
+          const articlesWithExcerpt = result.articles.map(article => {
+            if (!article.excerpt && article.description) {
+              return { ...article, excerpt: article.description };
+            } else if (!article.excerpt && article.content) {
+              // Create a simple excerpt from content by removing HTML tags and limiting length
+              const plainText = article.content.replace(/<\/?[^>]+(>|$)/g, '');
+              const excerpt = plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
+              return { ...article, excerpt };
+            }
+            return article;
+          });
+
+          setArticles(articlesWithExcerpt);
           setPagination(result.pagination);
         } else {
           console.log('Biomarkers page: No articles found');
