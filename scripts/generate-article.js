@@ -14,7 +14,7 @@ const { program } = require('commander');
 require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') });
 
 // Konfigurace
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.longevitygrow.com';
 const API_SECRET_KEY = process.env.API_SECRET_KEY || 'your-secret-key';
 const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 

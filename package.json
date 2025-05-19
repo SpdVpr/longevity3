@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma generate && node scripts/replace-localhost.js && next build && node scripts/post-build-replace.js",
+    "build": "npx prisma generate && node scripts/force-api-url.js && node scripts/replace-localhost.js && next build && node scripts/post-build-replace.js",
     "start": "next start",
     "lint": "next lint",
     "generate-article": "node scripts/generate-article.js",
     "postinstall": "npx prisma generate",
     "generate-prisma": "node scripts/generate-prisma.js",
     "replace-localhost": "node scripts/replace-localhost.js",
-    "post-build-replace": "node scripts/post-build-replace.js"
+    "post-build-replace": "node scripts/post-build-replace.js",
+    "force-api-url": "node scripts/force-api-url.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.9.1",

@@ -54,7 +54,7 @@ const options = yargs(hideBin(process.argv))
   .argv;
 
 // Konfigurace API
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
 const API_SECRET_KEY = process.env.STRAPI_API_TOKEN || '7112095489283cc66938cab74538ba69d7eee7b0bc001d6fa67a0fb0fde2d844207ea294ea462ab0bfeabf93b7c5a489a7fcbd0bdeecc6fe268bdaebc16ef8e74e9a26e5ccb036e33a5b20086b4648249b3568f47c10c07fbe14a2d95fe0f90597bdf3d3c7cb9344baa64419e9ad4813e52cff2527e3c1ddf09eb618ba114aba';
 
 /**

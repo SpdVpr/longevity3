@@ -166,7 +166,7 @@ cat > app/app/lib/utils.ts << 'EOL'
 export function getStrapiMedia(url: string): string {
   if (!url) return '';
   if (url.startsWith('http') || url.startsWith('//')) return url;
-  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${url.startsWith('/') ? '' : '/'}${url}`;
+  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com'}${url.startsWith('/') ? '' : '/'}${url}`;
 }
 
 /**

@@ -6,19 +6,17 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost', '127.0.0.1'],
+    domains: ['special-acoustics-b9adb26838.strapiapp.com', 'special-acoustics-b9adb26838.media.strapiapp.com'],
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '1337',
-        pathname: '/uploads/**',
+        protocol: 'https',
+        hostname: 'special-acoustics-b9adb26838.strapiapp.com',
+        pathname: '/**',
       },
       {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '1337',
-        pathname: '/uploads/**',
+        protocol: 'https',
+        hostname: 'special-acoustics-b9adb26838.media.strapiapp.com',
+        pathname: '/**',
       },
     ],
   },

@@ -23,8 +23,6 @@ const nextConfig = {
   },
   images: {
     domains: [
-      'localhost',
-      '127.0.0.1',
       'longevity3.vercel.app',
       'strapi-production-a1c9.up.railway.app',
       'vercel.app',
@@ -38,18 +36,6 @@ const nextConfig = {
       'res.cloudinary.com'
     ],
     remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '1337',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '1337',
-        pathname: '/**',
-      },
       {
         protocol: 'https',
         hostname: 'strapi-production-a1c9.up.railway.app',
