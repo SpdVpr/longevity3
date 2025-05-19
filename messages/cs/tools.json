@@ -1,0 +1,20 @@
+{
+  "title": "Nástroje pro dlouhověkost",
+  "subtitle": "Praktické nástroje pro podporu vaší cesty k dlouhověkosti",
+  "bioAgeCalculator": {
+    "title": "Kalkulačka biologického věku",
+    "description": "Vypočítejte svůj biologický věk na základě různých zdravotních ukazatelů"
+  },
+  "smartBioAgeCalculator": {
+    "title": "Chytrá kalkulačka biologického věku",
+    "description": "Pokročilý výpočet biologického věku pomocí AI a strojového učení"
+  },
+  "caloricNeeds": {
+    "title": "Kalkulačka kalorických potřeb",
+    "description": "Vypočítejte své denní kalorické potřeby na základě úrovně aktivity a cílů"
+  },
+  "workoutPlanner": {
+    "title": "Plánovač cvičení a výživy",
+    "description": "Vytvořte si personalizované plány cvičení a výživy"
+  }
+}

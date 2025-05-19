@@ -1,0 +1,46 @@
+{
+  "app": {
+    "title": "Longevity Hub",
+    "description": "Science-backed strategies for longevity"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "articles": "Articles",
+    "categories": "Categories",
+    "tools": "Tools",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "common": {
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "search": "Search",
+    "notFound": "Not Found",
+    "back": "Back"
+  },
+  "home": {
+    "hero": {
+      "title": "Science-backed strategies for longevity",
+      "subtitle": "Discover evidence-based approaches to extend your healthspan and lifespan"
+    },
+    "categories": {
+      "title": "Explore Categories",
+      "subtitle": "Discover our comprehensive resources"
+    },
+    "tools": {
+      "title": "Longevity Tools",
+      "subtitle": "Practical tools to support your longevity journey"
+    },
+    "articles": {
+      "title": "Latest Articles",
+      "subtitle": "Stay updated with the latest research and insights"
+    }
+  }
+}

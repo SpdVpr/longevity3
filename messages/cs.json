@@ -1,0 +1,46 @@
+{
+  "app": {
+    "title": "Longevity Hub",
+    "description": "Vědecky podložené strategie pro dlouhověkost"
+  },
+  "navigation": {
+    "home": "Domů",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "articles": "Články",
+    "categories": "Kategorie",
+    "tools": "Nástroje",
+    "dashboard": "Nástěnka",
+    "profile": "Profil",
+    "signIn": "Přihlásit se",
+    "signUp": "Registrovat se",
+    "signOut": "Odhlásit se"
+  },
+  "common": {
+    "readMore": "Číst více",
+    "viewAll": "Zobrazit vše",
+    "loading": "Načítání...",
+    "error": "Došlo k chybě",
+    "search": "Hledat",
+    "notFound": "Nenalezeno",
+    "back": "Zpět"
+  },
+  "home": {
+    "hero": {
+      "title": "Vědecky podložené strategie pro dlouhověkost",
+      "subtitle": "Objevte přístupy založené na důkazech pro prodloužení vašeho zdraví a života"
+    },
+    "categories": {
+      "title": "Prozkoumat kategorie",
+      "subtitle": "Objevte naše komplexní zdroje"
+    },
+    "tools": {
+      "title": "Nástroje pro dlouhověkost",
+      "subtitle": "Praktické nástroje pro podporu vaší cesty k dlouhověkosti"
+    },
+    "articles": {
+      "title": "Nejnovější články",
+      "subtitle": "Zůstaňte informováni o nejnovějším výzkumu a poznatcích"
+    }
+  }
+}

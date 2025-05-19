@@ -1,0 +1,20 @@
+{
+  "title": "Longevity Tools",
+  "subtitle": "Practical tools to support your longevity journey",
+  "bioAgeCalculator": {
+    "title": "Biological Age Calculator",
+    "description": "Calculate your biological age based on various health markers"
+  },
+  "smartBioAgeCalculator": {
+    "title": "Smart Biological Age Calculator",
+    "description": "Advanced biological age calculation using AI and machine learning"
+  },
+  "caloricNeeds": {
+    "title": "Caloric Needs Calculator",
+    "description": "Calculate your daily caloric needs based on your activity level and goals"
+  },
+  "workoutPlanner": {
+    "title": "Workout & Nutrition Planner",
+    "description": "Create personalized workout and nutrition plans"
+  }
+}

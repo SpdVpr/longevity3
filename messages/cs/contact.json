@@ -1,0 +1,10 @@
+{
+  "title": "Kontaktujte nás",
+  "subtitle": "Spojte se s naším týmem",
+  "form": {
+    "name": "Jméno",
+    "email": "Email",
+    "message": "Zpráva",
+    "submit": "Odeslat zprávu"
+  }
+}

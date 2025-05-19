@@ -1,0 +1,20 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome to your dashboard",
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit Profile"
+  },
+  "bioAgeHistory": {
+    "title": "Biological Age History",
+    "noData": "No biological age data available"
+  },
+  "caloricNeedsHistory": {
+    "title": "Caloric Needs History",
+    "noData": "No caloric needs data available"
+  },
+  "workoutPlans": {
+    "title": "Workout Plans",
+    "noData": "No workout plans available"
+  }
+}

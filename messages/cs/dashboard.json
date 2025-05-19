@@ -1,0 +1,20 @@
+{
+  "title": "Nástěnka",
+  "welcome": "Vítejte na vaší nástěnce",
+  "profile": {
+    "title": "Profil",
+    "edit": "Upravit profil"
+  },
+  "bioAgeHistory": {
+    "title": "Historie biologického věku",
+    "noData": "Nejsou k dispozici žádné údaje o biologickém věku"
+  },
+  "caloricNeedsHistory": {
+    "title": "Historie kalorických potřeb",
+    "noData": "Nejsou k dispozici žádné údaje o kalorických potřebách"
+  },
+  "workoutPlans": {
+    "title": "Plány cvičení",
+    "noData": "Nejsou k dispozici žádné plány cvičení"
+  }
+}

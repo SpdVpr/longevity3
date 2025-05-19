@@ -1,0 +1,109 @@
+{
+  "hero": {
+    "title": "Komunitní výzkumná platforma",
+    "subtitle": "Připojte se k tisícům lidí, kteří přispívají k výzkumu dlouhověkosti. Sledujte své biomarkery, účastněte se studií a pomozte posunout naše chápání zdravého stárnutí.",
+    "joinButton": "Připojit se ke komunitě",
+    "learnButton": "Zjistit více"
+  },
+  "dashboard": {
+    "title": "Výzkumný dashboard",
+    "subtitle": "Sledujte své biomarkery, zapojte se do výzkumných projektů a sledujte dopad našeho komunitního výzkumu.",
+    "join": "Připojte se k naší výzkumné komunitě",
+    "joinDescription": "Sledujte své biomarkery, účastněte se výzkumných projektů a přispějte k pokroku vědy o dlouhověkosti. Vaše data jsou vždy anonymní a bezpečná.",
+    "signIn": "Přihlásit se",
+    "register": "Registrovat se"
+  },
+  "biomarkers": {
+    "title": "Vaše biomarkery",
+    "viewAll": "Zobrazit vše",
+    "addNew": "Přidat nový biomarker",
+    "addNewBiomarker": "Přidat nový biomarker",
+    "name": "Název biomarkeru",
+    "category": "Kategorie",
+    "value": "Hodnota",
+    "unit": "Jednotka",
+    "date": "Datum",
+    "save": "Uložit",
+    "cancel": "Zrušit",
+    "noBiomarkers": "Zatím nebyly přidány žádné biomarkery. Přidejte svůj první biomarker a začněte sledovat.",
+    "allCategories": "Všechny kategorie",
+    "referenceRange": "Referenční rozsah",
+    "categories": {
+      "blood": "Krev",
+      "vitamins": "Vitamíny",
+      "lipids": "Lipidy",
+      "hormones": "Hormony",
+      "inflammation": "Zánět"
+    }
+  },
+  "projects": {
+    "title": "Výzkumné projekty",
+    "viewDetails": "Zobrazit detaily",
+    "joinProject": "Připojit se k projektu",
+    "viewAllProjects": "Zobrazit všechny projekty",
+    "noProjects": "Momentálně nejsou žádné aktivní výzkumné projekty.",
+    "participants": "Účastníků",
+    "status": {
+      "active": "Aktivní",
+      "completed": "Dokončeno",
+      "recruiting": "Nábor"
+    }
+  },
+  "community": {
+    "title": "Statistiky komunity",
+    "topContributors": "Nejlepší přispěvatelé",
+    "anonymousUser": "Anonymní uživatel",
+    "contributions": "příspěvků",
+    "recentFindings": "Nedávné objevy",
+    "findings": {
+      "sleep": "Kvalita spánku a kognitivní výkon",
+      "sleepDescription": "Naše komunitní data ukazují silnou korelaci mezi kvalitou spánku a kognitivním výkonem následující den.",
+      "vitamin": "Vitamin D a imunitní funkce",
+      "vitaminDescription": "Uživatelé s optimální hladinou vitaminu D hlásí méně dní nemoci a lepší imunitní odpověď."
+    },
+    "stats": {
+      "users": "Členů komunity",
+      "dataPoints": "Datových bodů",
+      "projects": "Aktivních projektů",
+      "publications": "Publikací"
+    }
+  },
+  "impact": {
+    "title": "Dopad výzkumu",
+    "description": "Podívejte se, jak náš komunitní výzkum posouvá vědu o dlouhověkosti a pomáhá lidem žít zdravěji a déle.",
+    "learnMore": "Zjistit více"
+  },
+  "howItWorks": {
+    "title": "Jak to funguje",
+    "subtitle": "Naše komunitní výzkumná platforma usnadňuje přispívání k vědě o dlouhověkosti a zároveň sledování vlastních zdravotních dat.",
+    "step1": {
+      "title": "Sledujte své biomarkery",
+      "description": "Zadávejte své zdravotní údaje bezpečně a anonymně. Sledujte změny v průběhu času a porovnávejte se s referenčními rozsahy."
+    },
+    "step2": {
+      "title": "Zapojte se do výzkumných projektů",
+      "description": "Účastněte se komunitních výzkumných projektů, které vás zajímají. Vaše data jsou vždy anonymizována a agregována."
+    },
+    "step3": {
+      "title": "Sledujte dopad",
+      "description": "Získejte přístup k poznatkům z komunitního výzkumu a sledujte, jak vaše příspěvky posouvají vědu o dlouhověkosti."
+    }
+  },
+  "faq": {
+    "title": "Často kladené otázky",
+    "subtitle": "Běžné otázky o naší komunitní výzkumné platformě.",
+    "q1": "Jsou moje data bezpečná a soukromá?",
+    "a1": "Ano, všechna data jsou anonymizována a šifrována. Nikdy nesdílíme individuální data s třetími stranami a svá data můžete kdykoli smazat.",
+    "q2": "Jaké druhy biomarkerů mohu sledovat?",
+    "a2": "Můžete sledovat širokou škálu biomarkerů včetně krevních markerů, vitamínů, lipidů, hormonů a markerů zánětu. Neustále přidáváme nové kategorie na základě zpětné vazby komunity.",
+    "q3": "Jak jsou vytvářeny výzkumné projekty?",
+    "a3": "Výzkumné projekty jsou vytvářeny naším vědeckým týmem ve spolupráci s akademickými výzkumníky. Členové komunity mohou také navrhovat výzkumné otázky, které se mohou stát budoucími projekty.",
+    "q4": "Mohu vidět své osobní trendy v průběhu času?",
+    "a4": "Ano, můžete zobrazit grafy a trendy svých biomarkerů v průběhu času a porovnat je s průměry komunity při zachování anonymity."
+  },
+  "cta": {
+    "title": "Připojte se k naší výzkumné komunitě ještě dnes",
+    "subtitle": "Buďte součástí něčeho většího. Pomozte posunout vědu o dlouhověkosti a zároveň sledujte svou vlastní zdravotní cestu.",
+    "button": "Začít"
+  }
+}
