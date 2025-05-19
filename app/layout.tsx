@@ -36,6 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Load the override script before any other JavaScript */}
+        <script src="/override-api-url.js" />
+
         <Script id="strapi-config" strategy="beforeInteractive">
           {`
             // HARDCODED Strapi API URL and token to ensure they're always correct
