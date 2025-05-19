@@ -20,6 +20,9 @@ import { Article } from '../../../../types';
 // Import direct API implementation
 import { getArticleDirect, getRelatedDirect } from './api-config';
 
+// Import debugging functions
+import { getRawArticleData, extractContentFromBlocks } from './debug';
+
 // Temporary mock data until CMS is fully set up
 const articles = {
   'science-of-intermittent-fasting': {
@@ -109,7 +112,131 @@ export default function ArticlePage() {
         setIsLoading(true);
         console.log('Article page: Fetching article with slug', slug);
 
-        // Try to fetch using direct API first
+        // Try to fetch raw article data for debugging first
+        try {
+          console.log('Article page: Using debug function to fetch raw article data');
+          const rawArticleData = await getRawArticleData(slug, locale);
+
+          if (rawArticleData) {
+            console.log('Article page: Raw article data received');
+
+            // Create a processed article object
+            const processedArticle = {
+              id: rawArticleData.id,
+              title: '',
+              excerpt: '',
+              content: '',
+              slug: slug,
+              publishedAt: null,
+              image: null,
+              category: null
+            };
+
+            // Extract data based on structure
+            if (rawArticleData.attributes) {
+              // Standard Strapi v4 structure
+              const attrs = rawArticleData.attributes;
+              processedArticle.title = attrs.title || '';
+              processedArticle.excerpt = attrs.description || '';
+              processedArticle.slug = attrs.slug || slug;
+              processedArticle.publishedAt = attrs.publishedAt || null;
+
+              // Extract content from blocks
+              if (attrs.blocks && Array.isArray(attrs.blocks)) {
+                processedArticle.content = extractContentFromBlocks(attrs.blocks);
+                processedArticle.blocks = attrs.blocks;
+              }
+
+              // Get image
+              if (attrs.cover && attrs.cover.data && attrs.cover.data.attributes) {
+                let imageUrl = attrs.cover.data.attributes.url || '';
+                if (imageUrl.startsWith('/')) {
+                  imageUrl = `https://special-acoustics-b9adb26838.strapiapp.com${imageUrl}`;
+                }
+                processedArticle.image = imageUrl;
+              }
+
+              // Get category
+              if (attrs.category && attrs.category.data && attrs.category.data.attributes) {
+                processedArticle.category = {
+                  id: attrs.category.data.id,
+                  name: attrs.category.data.attributes.name,
+                  slug: attrs.category.data.attributes.slug
+                };
+              }
+            } else {
+              // Direct properties structure (new Strapi Cloud)
+              processedArticle.title = rawArticleData.title || '';
+              processedArticle.excerpt = rawArticleData.description || '';
+              processedArticle.slug = rawArticleData.slug || slug;
+              processedArticle.publishedAt = rawArticleData.publishedAt || null;
+
+              // Extract content from blocks
+              if (rawArticleData.blocks && Array.isArray(rawArticleData.blocks)) {
+                processedArticle.content = extractContentFromBlocks(rawArticleData.blocks);
+                processedArticle.blocks = rawArticleData.blocks;
+              }
+
+              // Get image
+              if (rawArticleData.cover) {
+                let imageUrl = '';
+                if (typeof rawArticleData.cover === 'string') {
+                  imageUrl = rawArticleData.cover;
+                } else if (rawArticleData.cover.url) {
+                  imageUrl = rawArticleData.cover.url;
+                }
+
+                if (imageUrl.startsWith('/')) {
+                  imageUrl = `https://special-acoustics-b9adb26838.strapiapp.com${imageUrl}`;
+                }
+
+                processedArticle.image = imageUrl;
+              }
+
+              // Get category
+              if (rawArticleData.category) {
+                processedArticle.category = {
+                  id: rawArticleData.category.id || 0,
+                  name: rawArticleData.category.name || '',
+                  slug: rawArticleData.category.slug || ''
+                };
+              }
+            }
+
+            console.log('Article page: Processed article data:', {
+              id: processedArticle.id,
+              title: processedArticle.title,
+              contentLength: processedArticle.content?.length || 0,
+              hasBlocks: !!processedArticle.blocks,
+              blocksCount: processedArticle.blocks?.length || 0
+            });
+
+            setArticle(processedArticle);
+
+            // Fetch related articles
+            if (processedArticle.category?.id) {
+              console.log('Article page: Fetching related articles');
+              try {
+                const related = await getRelatedDirect(
+                  processedArticle.id,
+                  processedArticle.category.id,
+                  3,
+                  locale
+                );
+                setRelatedArticles(related);
+              } catch (relatedError) {
+                console.error('Article page: Error fetching related articles:', relatedError);
+              }
+            }
+
+            setIsLoading(false);
+            return;
+          }
+        } catch (debugError) {
+          console.error('Article page: Debug function failed:', debugError);
+        }
+
+        // Fall back to direct API if debug function fails
         try {
           console.log('Article page: Using direct API to fetch article');
           const articleData = await getArticleDirect(slug, locale);
@@ -287,24 +414,34 @@ export default function ArticlePage() {
                 // Handle blocks directly if content is not available
                 <div>
                   {article.blocks.map((block, index) => {
+                    console.log(`Rendering block ${index}:`, block.__component);
+
                     if (block.__component === 'shared.rich-text' && block.body) {
                       return <div key={index} dangerouslySetInnerHTML={{ __html: block.body }} />;
                     } else if (block.__component === 'shared.media' && block.media) {
                       let imageUrl = '';
+                      let altText = 'Article image';
+
                       if (block.media.data && block.media.data.attributes) {
                         imageUrl = block.media.data.attributes.url;
-                        if (imageUrl.startsWith('/')) {
-                          imageUrl = `https://special-acoustics-b9adb26838.strapiapp.com${imageUrl}`;
-                        }
+                        altText = block.media.data.attributes.alternativeText || 'Article image';
                       } else if (block.media.url) {
                         imageUrl = block.media.url;
+                      } else if (typeof block.media === 'string') {
+                        imageUrl = block.media;
                       }
+
+                      if (imageUrl.startsWith('/')) {
+                        imageUrl = `https://special-acoustics-b9adb26838.strapiapp.com${imageUrl}`;
+                      }
+
+                      console.log(`Block ${index} image URL:`, imageUrl);
 
                       return (
                         <div key={index} className="my-8">
                           <img
                             src={imageUrl}
-                            alt={block.media.data?.attributes?.alternativeText || 'Article image'}
+                            alt={altText}
                             className="w-full rounded-lg"
                           />
                         </div>
@@ -315,8 +452,14 @@ export default function ArticlePage() {
                           {block.quote}
                         </blockquote>
                       );
+                    } else {
+                      console.log(`Unknown block component: ${block.__component}`);
+                      return (
+                        <div key={index} className="my-4 p-4 bg-gray-100 rounded">
+                          <p className="text-sm text-gray-500">Unsupported content block: {block.__component}</p>
+                        </div>
+                      );
                     }
-                    return null;
                   })}
                 </div>
               ) : (
@@ -326,9 +469,8 @@ export default function ArticlePage() {
                     The content for this article could not be loaded. This might be due to:
                   </p>
                   <ul className="list-disc ml-6 mt-2 text-yellow-700">
-                    <li>The article content is not properly formatted in the CMS</li>
-                    <li>The content field is empty or missing in the CMS</li>
-                    <li>There was an error processing the content</li>
+                    <li>The article content is not available in the CMS</li>
+                    <li>There was an error processing the content format</li>
                   </ul>
                   <p className="mt-4 text-yellow-700">
                     Please check the article in the Strapi CMS and ensure it has content.
