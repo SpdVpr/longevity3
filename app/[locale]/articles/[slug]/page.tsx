@@ -323,12 +323,18 @@ export default function ArticlePage() {
           <div className="lg:col-span-8 lg:col-start-3">
             {/* Article content with direct rendering */}
             <article className="prose prose-lg max-w-none article-content" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-              {article.blocks && Array.isArray(article.blocks) ? (
+              {article.blocks && Array.isArray(article.blocks) && article.blocks.length > 0 ? (
                 // Use the RenderBlocks component for direct rendering
                 <RenderBlocks blocks={article.blocks} />
               ) : article.content ? (
                 // Fallback to content field if available
                 <div dangerouslySetInnerHTML={{ __html: article.content }} />
+              ) : article.rawData && article.rawData.blocks && Array.isArray(article.rawData.blocks) ? (
+                // Try to use blocks from rawData
+                <RenderBlocks blocks={article.rawData.blocks} />
+              ) : article.rawData && article.rawData.attributes && article.rawData.attributes.blocks ? (
+                // Try to use blocks from rawData.attributes
+                <RenderBlocks blocks={article.rawData.attributes.blocks} />
               ) : (
                 // Error message if no content is available
                 <div className="bg-yellow-50 p-6 rounded-lg mb-6">
