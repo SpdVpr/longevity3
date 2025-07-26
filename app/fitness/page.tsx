@@ -94,34 +94,34 @@ export default function FitnessPage() {
                 <h3 className="text-xl font-bold mb-4">Topics</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/fitness/zone-2-training" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Zone 2 Training
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/fitness/resistance-training" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Resistance Training
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/fitness/mobility" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Mobility & Flexibility
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/fitness/recovery" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Recovery Optimization
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/fitness/cardio" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Cardiovascular Health
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/fitness/exercise-for-seniors" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Exercise for Seniors
-                    </Link>
+                    </span>
                   </li>
                 </ul>
 

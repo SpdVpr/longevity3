@@ -94,34 +94,34 @@ export default function SupplementsPage() {
                 <h3 className="text-xl font-bold mb-4">Topics</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/supplements/nad" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       NAD+ Boosters
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/supplements/antioxidants" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Antioxidants
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/supplements/medications" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Prescription Medications
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/supplements/essential-nutrients" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Essential Nutrients
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/supplements/peptides" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Peptides
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/supplements/cost-effectiveness" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Cost-Effectiveness
-                    </Link>
+                    </span>
                   </li>
                 </ul>
 

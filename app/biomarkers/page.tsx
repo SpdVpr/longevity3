@@ -94,34 +94,34 @@ export default function BiomarkersPage() {
                 <h3 className="text-xl font-bold mb-4">Topics</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/biomarkers/blood-tests" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Blood Biomarkers
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/biomarkers/aging-clocks" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Aging Clocks
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/biomarkers/wearables" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Wearable Technology
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/biomarkers/self-experimentation" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Self-Experimentation
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/biomarkers/interpretation" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Test Interpretation
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link href="/biomarkers/inflammation" className="text-blue-600 hover:text-blue-800">
+                    <span className="text-gray-600">
                       Inflammation Markers
-                    </Link>
+                    </span>
                   </li>
                 </ul>
 
