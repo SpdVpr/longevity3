@@ -332,8 +332,8 @@ export default function LongevityQuiz() {
                   Take Quiz Again
                 </button>
                 
-                <Link 
-                  href="/articles/longevity-habits"
+                <Link
+                  href="/en/articles/longevity-habits"
                   className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
                 >
                   Learn More About Longevity Habits

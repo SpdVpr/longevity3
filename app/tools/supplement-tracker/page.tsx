@@ -67,8 +67,8 @@ export default function SupplementTrackerPage() {
               </p>
 
               <div className="mt-6">
-                <Link 
-                  href="/articles/evidence-based-supplements-for-longevity"
+                <Link
+                  href="/en/articles/evidence-based-supplements-for-longevity"
                   className="text-cyan-600 hover:text-cyan-800 font-medium"
                 >
                   Learn about evidence-based supplements for longevity →

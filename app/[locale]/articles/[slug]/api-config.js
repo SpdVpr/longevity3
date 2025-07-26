@@ -238,7 +238,12 @@ function processBlocks(blocks) {
     return blocks.map(block => {
       try {
         if (block.__component === 'shared.rich-text') {
-          return block.body || '';
+          let content = block.body || '';
+          // Clean up the content by removing "Drag" text that appears in the Strapi editor
+          content = content.replace(/\n\n\nDrag\n/g, '');
+          content = content.replace(/\nDrag\n/g, '');
+          content = content.replace(/Drag\n/g, '');
+          return content;
         } else if (block.__component === 'shared.quote') {
           return `<blockquote>${block.quote || ''}</blockquote>`;
         } else if (block.__component === 'shared.media') {

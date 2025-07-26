@@ -65,8 +65,8 @@ export default function LongevityQuizPage() {
               </p>
 
               <div className="mt-6">
-                <Link 
-                  href="/articles/blue-zones-lessons-from-the-worlds-longest-lived-people"
+                <Link
+                  href="/en/articles/blue-zones-lessons-from-the-worlds-longest-lived-people"
                   className="text-indigo-600 hover:text-indigo-800 font-medium"
                 >
                   Learn more about longevity research →
