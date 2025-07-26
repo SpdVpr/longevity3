@@ -14,6 +14,9 @@ import { getArticle, getRelated } from '../../lib/cms';
 import { formatDate } from '../../lib/utils';
 import { Article } from '../../types';
 
+// Import direct API functions
+import { getArticleDirect, getRelatedDirect } from '../../[locale]/articles/[slug]/api-config';
+
 export default function ArticlePage() {
   const params = useParams();
   const pathname = usePathname();
@@ -31,23 +34,52 @@ export default function ArticlePage() {
         setIsLoading(true);
         setError('');
 
-        // Fetch article from CMS
-        const articleData = await getArticle(slug);
+        console.log('Old article system: Fetching article with slug:', slug);
 
-        if (articleData) {
-          setArticle(articleData);
+        // Try direct API first
+        try {
+          const articleData = await getArticleDirect(slug, 'en');
+          console.log('Old article system: Direct API returned:', articleData);
 
-          // Fetch related articles
-          if (articleData.category?.id) {
-            const related = await getRelated(articleData.id, articleData.category.id, 3);
-            setRelatedArticles(related);
+          if (articleData && articleData.content) {
+            setArticle(articleData);
+
+            // Fetch related articles
+            if (articleData.category?.id) {
+              const related = await getRelatedDirect(articleData.id, articleData.category.id, 3, 'en');
+              setRelatedArticles(related);
+            }
+          } else {
+            console.log('Old article system: No content from direct API, trying CMS service');
+            // Fall back to CMS service
+            const fallbackData = await getArticle(slug);
+            if (fallbackData) {
+              setArticle(fallbackData);
+              if (fallbackData.category?.id) {
+                const related = await getRelated(fallbackData.id, fallbackData.category.id, 3);
+                setRelatedArticles(related);
+              }
+            } else {
+              setError('Article not found');
+            }
           }
-        } else {
-          setError('Article not found');
+        } catch (directApiError) {
+          console.error('Old article system: Direct API failed:', directApiError);
+          // Fall back to CMS service
+          const fallbackData = await getArticle(slug);
+          if (fallbackData) {
+            setArticle(fallbackData);
+            if (fallbackData.category?.id) {
+              const related = await getRelated(fallbackData.id, fallbackData.category.id, 3);
+              setRelatedArticles(related);
+            }
+          } else {
+            setError('Article not found');
+          }
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error('Error fetching article:', err);
-        setError(`Failed to load article: ${err.message}`);
+        setError(`Failed to load article: ${err.message || 'Unknown error'}`);
       } finally {
         setIsLoading(false);
       }
