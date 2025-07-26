@@ -72,7 +72,7 @@ export default function SupplementsPage() {
                         <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                         <p className="text-gray-600 mb-4">{article.excerpt}</p>
                         <Link
-                          href={`/articles/${article.slug}`}
+                          href={`/en/articles/${article.slug}`}
                           className="text-blue-600 font-semibold hover:text-blue-800"
                         >
                           Read More →
@@ -134,7 +134,7 @@ export default function SupplementsPage() {
                   ) : articles.length > 0 ? (
                     articles.slice(0, 3).map((article, index) => (
                       <li key={index}>
-                        <Link href={`/articles/${article.slug}`} className="group">
+                        <Link href={`/en/articles/${article.slug}`} className="group">
                           <h4 className="font-semibold group-hover:text-blue-600">{article.title}</h4>
                           <p className="text-sm text-gray-500">{formatDate(article.publishedAt)}</p>
                         </Link>

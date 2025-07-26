@@ -95,7 +95,7 @@ export default function ArticlesPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {articles.map((article, index) => (
                   <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
-                    <Link href={`/articles/${article.slug}`}>
+                    <Link href={`/en/articles/${article.slug}`}>
                       <div className="relative h-48 w-full">
                         <Image
                           src={article.image || '/images/placeholder-article.svg'}
@@ -114,7 +114,7 @@ export default function ArticlesPage() {
                           {formatDate(article.publishedAt)}
                         </span>
                       </div>
-                      <Link href={`/articles/${article.slug}`}>
+                      <Link href={`/en/articles/${article.slug}`}>
                         <h3 className="text-xl font-bold mb-2 text-gray-900 hover:text-teal-600 transition-colors">
                           {article.title}
                         </h3>
@@ -122,7 +122,7 @@ export default function ArticlesPage() {
                       <p className="text-gray-600 mb-4 line-clamp-3">
                         {article.excerpt}
                       </p>
-                      <Link href={`/articles/${article.slug}`} className="text-teal-600 hover:text-teal-800 font-medium">
+                      <Link href={`/en/articles/${article.slug}`} className="text-teal-600 hover:text-teal-800 font-medium">
                         Read More →
                       </Link>
                     </div>

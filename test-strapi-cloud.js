@@ -64,8 +64,16 @@ async function testStrapiCloudAPI() {
     console.log('- Data length:', categoriesData.data ? categoriesData.data.length : 0);
 
     if (categoriesData.data && categoriesData.data.length > 0) {
-      console.log('First category structure:', JSON.stringify(categoriesData.data[0], null, 2));
-      console.log('First category name:', categoriesData.data[0].name || categoriesData.data[0].attributes?.name);
+      console.log('\n=== ALL CATEGORIES ===');
+      categoriesData.data.forEach((category, index) => {
+        console.log(`Category ${index + 1}:`);
+        console.log(`  ID: ${category.id}`);
+        console.log(`  Name: ${category.name || category.attributes?.name}`);
+        console.log(`  Slug: ${category.slug || category.attributes?.slug}`);
+        console.log(`  Description: ${category.description || category.attributes?.description || 'No description'}`);
+        console.log(`  Articles count: ${category.articles ? category.articles.length : 'Unknown'}`);
+        console.log('---');
+      });
     } else {
       console.log('No categories found. This is normal for a new Strapi installation.');
     }
