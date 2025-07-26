@@ -66,7 +66,7 @@ export default function BodyCompositionPage() {
 
               <div className="mt-6">
                 <Link
-                  href="/en/articles/body-composition-and-longevity"
+                  href="/articles/body-composition-and-longevity"
                   className="text-green-600 hover:text-green-800 font-medium"
                 >
                   Learn more about body composition and longevity →

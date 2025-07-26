@@ -64,7 +64,7 @@ export default function WorkoutNutritionPlannerPage() {
 
               <div className="mt-6">
                 <Link
-                  href="/en/articles/progressive-overload-the-key-to-fitness-progress"
+                  href="/articles/progressive-overload-the-key-to-fitness-progress"
                   className="text-purple-600 hover:text-purple-800 font-medium"
                 >
                   Learn more about effective workout programming →
