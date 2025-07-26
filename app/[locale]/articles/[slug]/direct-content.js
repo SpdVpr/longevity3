@@ -8,8 +8,8 @@ export const API_TOKEN = '20096e270ae3b90065ca95970e34cda9ef7f3de056a0d9adb2edae
 // Function to get article content directly
 export async function getArticleContent(slug, locale = 'en') {
   try {
-    console.log(`DIRECT-CONTENT: Fetching article with slug ${slug}`);
-    
+    console.log(`DIRECT-CONTENT: *** STARTING DIRECT CONTENT FETCH *** Fetching article with slug ${slug}`);
+
     // Use a simple fetch with the slug filter
     const url = `${API_URL}/api/articles?filters[slug][$eq]=${slug}&populate=*&locale=${locale}`;
     console.log('DIRECT-CONTENT: URL:', url);
@@ -217,20 +217,9 @@ function extractContentFromBlocks(blocks) {
   return content;
 }
 
-// React component to render article content
+// React component to render article content (removed JSX for compatibility)
 export function ArticleContent({ content }) {
-  if (!content) {
-    return (
-      <div className="bg-yellow-50 p-6 rounded-lg mb-6">
-        <h3 className="text-yellow-800 font-bold mb-2">No Content</h3>
-        <p className="text-yellow-700">
-          This article does not have any content.
-        </p>
-      </div>
-    );
-  }
-  
-  return (
-    <div className="article-content" dangerouslySetInnerHTML={{ __html: content }} />
-  );
+  // This component is not used in the current implementation
+  // Content is rendered directly in the page component
+  return null;
 }

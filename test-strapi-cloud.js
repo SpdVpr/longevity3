@@ -7,8 +7,8 @@ async function testStrapiCloudAPI() {
     console.log('Testing Strapi Cloud API...');
 
     // Define the Strapi Cloud URL and API token
-    const STRAPI_URL = 'https://wise-growth-11e60bdab7.strapiapp.com';
-    const API_TOKEN = '259ea5c9cca226780e30384a2c3258a3ff5695e15e298fe2573af9b3f32d83a53bc60ef87f5e6f213dc4ff32c6d8a3cab4221556b4d90645ca90b6cb4253f382ef0a7345954b59e276eaff942b1cd90d120df58bb33a6fea2fde4eaedf7dd45732085cbde24c305d15c905db551a8a9a1dc1ed6b48b2e0ef338462c1c05fa691';
+    const STRAPI_URL = 'https://special-acoustics-b9adb26838.strapiapp.com';
+    const API_TOKEN = '20096e270ae3b90065ca95970e34cda9ef7f3de056a0d9adb2edae62f158651bc218a1234832b338b1251291099daf1049d60d759f1935c2e2371f20f2cee68a6909567ade4b3f1c7be51f8effb548e7511570359ec3c6cbd33e83c6bac8e8c9f2eda66441986eb27f15897ccda1564dcd335552da089dff40317b9950c23477';
 
     // Prepare headers with the API token
     const headers = {
@@ -42,7 +42,8 @@ async function testStrapiCloudAPI() {
     console.log('- Data length:', articlesData.data ? articlesData.data.length : 0);
 
     if (articlesData.data && articlesData.data.length > 0) {
-      console.log('First article title:', articlesData.data[0].attributes.title);
+      console.log('First article structure:', JSON.stringify(articlesData.data[0], null, 2));
+      console.log('First article title:', articlesData.data[0].title || articlesData.data[0].attributes?.title);
     } else {
       console.log('No articles found. This is normal for a new Strapi installation.');
     }
@@ -63,7 +64,8 @@ async function testStrapiCloudAPI() {
     console.log('- Data length:', categoriesData.data ? categoriesData.data.length : 0);
 
     if (categoriesData.data && categoriesData.data.length > 0) {
-      console.log('First category name:', categoriesData.data[0].attributes.name);
+      console.log('First category structure:', JSON.stringify(categoriesData.data[0], null, 2));
+      console.log('First category name:', categoriesData.data[0].name || categoriesData.data[0].attributes?.name);
     } else {
       console.log('No categories found. This is normal for a new Strapi installation.');
     }
