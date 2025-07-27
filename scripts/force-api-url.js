@@ -65,9 +65,9 @@ function replaceInFile(filePath) {
       modified = true;
     }
     
-    // Replace http://www.longevitygrow.com
-    if (content.includes('http://www.longevitygrow.com')) {
-      console.log(`Replacing http://www.longevitygrow.com in ${filePath}`);
+    // Replace https://www.longevitygrow.com
+    if (content.includes('https://www.longevitygrow.com')) {
+      console.log(`Replacing https://www.longevitygrow.com in ${filePath}`);
       content = content.replace(/http:\/\/www.longevitygrow.com/g, 'https://www.longevitygrow.com');
       modified = true;
     }
