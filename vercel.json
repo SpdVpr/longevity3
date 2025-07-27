@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "node build.js",
+  "buildCommand": "npm run vercel-build",
   "devCommand": "next dev",
   "installCommand": "npm install",
-  "framework": "nextjs",
   "outputDirectory": ".next",
   "env": {
     "NEXT_PUBLIC_STRAPI_API_URL": "https://special-acoustics-b9adb26838.strapiapp.com",

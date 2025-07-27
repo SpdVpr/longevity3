@@ -1,0 +1,19 @@
+# Ignore files that might cause build issues
+node_modules
+.git
+.env.local.backup
+*.log
+.DS_Store
+
+# Ignore development files
+*.md
+docs/
+MANUAL-UPLOAD-INSTRUCTIONS.md
+GITHUB-UPLOAD-README.md
+VERCEL-DEPLOYMENT-GUIDE.md
+SECURITY-GUIDE.md
+
+# Ignore test files
+test-*.js
+*-test.js
+*.test.js

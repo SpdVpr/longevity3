@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "node scripts/check-prisma.js && node scripts/force-api-url.js && node scripts/replace-localhost.js && next build && node scripts/post-build-replace.js",
+    "vercel-build": "node vercel-build.js",
     "start": "next start",
     "lint": "next lint",
     "generate-article": "node scripts/generate-article.js",
