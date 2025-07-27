@@ -18,10 +18,10 @@ Systém vyžaduje následující proměnné prostředí v `.env.local`:
 ```env
 # Strapi Cloud API
 NEXT_PUBLIC_STRAPI_API_URL=https://special-acoustics-b9adb26838.strapiapp.com
-STRAPI_API_TOKEN=776e17a82d723119f2caf0e3825ce663395fcf5ee748e43469f3eb5002fd24c5bb5d85142ad5c0ec8a2e4c2db70f37332e2dce04df2b64fb567e84174510c6637611b6405c0d171f23bbbc288f03e31509bfa6c4c46ccc1613ccd8999b8c0b32a3b945fb78678580051c4df58dc58d9b2fc292b45a19d5bcacbea2be5e1eedbd
+STRAPI_API_TOKEN=your_strapi_api_token_here
 
 # Perplexity AI API
-PERPLEXITY_API_KEY=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
+PERPLEXITY_API_KEY=your_perplexity_api_key_here
 ```
 
 ## Použití

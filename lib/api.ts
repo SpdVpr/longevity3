@@ -2,10 +2,10 @@
  * API service for fetching data from Strapi CMS
  */
 
-// Base URL for Strapi API - HARDCODED to ensure it's always correct
-const API_URL = 'https://special-acoustics-b9adb26838.strapiapp.com';
-// API token for authentication - HARDCODED to ensure it's always correct
-const API_TOKEN = '20096e270ae3b90065ca95970e34cda9ef7f3de056a0d9adb2edae62f158651bc218a1234832b338b1251291099daf1049d60d759f1935c2e2371f20f2cee68a6909567ade4b3f1c7be51f8effb548e7511570359ec3c6cbd33e83c6bac8e8c9f2eda66441986eb27f15897ccda1564dcd335552da089dff40317b9950c23477';
+// Base URL for Strapi API - from environment variables
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
+// API token for authentication - from environment variables
+const API_TOKEN = process.env.STRAPI_API_TOKEN;
 
 // Log the API URL and token status for debugging
 console.log('Environment:', process.env.NODE_ENV);
