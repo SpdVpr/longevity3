@@ -14,8 +14,8 @@ const { program } = require('commander');
 require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') });
 
 // Konfigurace
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.longevitygrow.com';
-const API_SECRET_KEY = process.env.API_SECRET_KEY || 'your-secret-key';
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
+const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 
 // Definice příkazů
@@ -37,9 +37,14 @@ if (!options.title || !options.category) {
   process.exit(1);
 }
 
-// Kontrola Perplexity API klíče
+// Kontrola API klíčů
 if (!PERPLEXITY_API_KEY) {
   console.error('Chyba: Proměnná prostředí PERPLEXITY_API_KEY není nastavena');
+  process.exit(1);
+}
+
+if (!STRAPI_API_TOKEN) {
+  console.error('Chyba: Proměnná prostředí STRAPI_API_TOKEN není nastavena');
   process.exit(1);
 }
 
@@ -156,69 +161,109 @@ async function generateArticleContent(title, category, tags) {
 }
 
 /**
- * Odešle článek do API
+ * Konvertuje HTML obsah do Strapi blocks formátu
  */
-async function sendArticleToAPI(articleData) {
-  console.log('Odesílám článek do API...');
+function convertHtmlToStrapiBlocks(htmlContent) {
+  const blocks = [];
+
+  // Split content by HTML tags
+  const sections = htmlContent.split(/(<h[1-6][^>]*>.*?<\/h[1-6]>|<p>.*?<\/p>|<ul>.*?<\/ul>|<ol>.*?<\/ol>)/g);
+
+  sections.forEach(section => {
+    if (!section.trim()) return;
+
+    if (section.match(/<h[1-6]/)) {
+      // Heading
+      const level = parseInt(section.match(/<h([1-6])/)[1]);
+      const text = section.replace(/<\/?h[1-6][^>]*>/g, '').trim();
+      blocks.push({
+        type: 'heading',
+        level: level,
+        children: [{ type: 'text', text: text }]
+      });
+    } else if (section.match(/<p>/)) {
+      // Paragraph
+      const text = section.replace(/<\/?p>/g, '').trim();
+      if (text) {
+        blocks.push({
+          type: 'paragraph',
+          children: [{ type: 'text', text: text }]
+        });
+      }
+    } else if (section.match(/<ul>|<ol>/)) {
+      // List
+      const listType = section.includes('<ul>') ? 'unordered' : 'ordered';
+      const items = section.match(/<li>(.*?)<\/li>/g) || [];
+      const listItems = items.map(item => ({
+        type: 'list-item',
+        children: [{ type: 'text', text: item.replace(/<\/?li>/g, '').trim() }]
+      }));
+      if (listItems.length > 0) {
+        blocks.push({
+          type: 'list',
+          format: listType,
+          children: listItems
+        });
+      }
+    }
+  });
+
+  return blocks;
+}
+
+/**
+ * Odešle článek přímo do Strapi CMS
+ */
+async function sendArticleToStrapi(articleData) {
+  console.log('Odesílám článek do Strapi CMS...');
 
   try {
-    // For Strapi, we need to convert the content to a simple string
-    // This is because the Content field in Strapi is a string, not a structured object
-    const contentString = articleData.content;
+    // Create slug from title
+    const slug = articleData.title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
 
-    // Prepare the request body
-    const requestBody = {
+    // Prepare data for Strapi using the blocks structure
+    const strapiData = {
       data: {
         title: articleData.title,
-        Content: `<div class="article-content">${contentString}</div>`, // Wrap content in article-content div
-        excerpt: articleData.excerpt,
-        slug: articleData.slug || articleData.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim(),
+        description: articleData.excerpt || articleData.title,
+        slug: slug,
+        blocks: [
+          {
+            __component: 'shared.rich-text',
+            body: `<div class="article-content">${articleData.content}</div>`
+          }
+        ],
         publishedAt: articleData.publishedAt,
-        category: articleData.category,
-        // tags: articleData.tags, // Tags are handled differently in Strapi
-        // author: articleData.author, // Author is handled differently in Strapi
-        image: articleData.image,
         locale: articleData.locale
       }
     };
 
-    // Prepare data for API
-    const apiData = {
-      data: {
-        title: articleData.title,
-        Content: `<div class="article-content">${contentString}</div>`, // Wrap content in article-content div
-        excerpt: articleData.excerpt,
-        slug: articleData.slug || articleData.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim(),
-        category: articleData.category,
-        // tags: articleData.tags, // Tags are handled differently in Strapi
-        // author: articleData.author, // Author is handled differently in Strapi
-        image: articleData.image,
-        locale: articleData.locale,
-        publishedAt: articleData.publishedAt
-      }
-    };
+    console.log('Odesílám data do Strapi:', JSON.stringify(strapiData, null, 2));
 
-    console.log('Odesílám data do API:', JSON.stringify(apiData, null, 2));
-
-    const response = await fetch(`${API_URL}/api/articles`, {
+    const response = await fetch(`${STRAPI_API_URL}/api/articles`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_SECRET_KEY}`
+        'Authorization': `Bearer ${STRAPI_API_TOKEN}`
       },
-      body: JSON.stringify(apiData)
+      body: JSON.stringify(strapiData)
     });
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(`API error: ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+      throw new Error(`Strapi API error: ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
     }
 
     const data = await response.json();
-    console.log('Článek byl úspěšně vytvořen:', data.data.id);
+    console.log('Článek byl úspěšně vytvořen v Strapi:', data.data.id);
     return data;
   } catch (error) {
-    console.error('Chyba při odesílání článku:', error);
+    console.error('Chyba při odesílání článku do Strapi:', error);
     throw error;
   }
 }
@@ -254,9 +299,9 @@ async function main() {
     );
     console.log(`Článek byl uložen do souboru: ${options.output}`);
 
-    // Odeslání článku do API
-    const result = await sendArticleToAPI(articleData);
-    console.log('Článek byl úspěšně přidán do CMS');
+    // Odeslání článku do Strapi CMS
+    const result = await sendArticleToStrapi(articleData);
+    console.log('Článek byl úspěšně přidán do Strapi CMS');
 
     return result;
   } catch (error) {

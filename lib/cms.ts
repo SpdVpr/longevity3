@@ -289,22 +289,22 @@ export async function search(query: string, page = 1, pageSize = 10, locale = 'e
 }
 
 /**
- * Get featured articles with caching
+ * Get featured articles with caching - ULTRA FAST VERSION
  * @param {number} limit - Number of articles to fetch
  * @param {string} locale - Locale code
- * @returns {Promise<Article[]>} - Featured articles
+ * @returns {Promise<Article[]>} - Featured articles (basic data only)
  */
 export async function getFeatured(limit = 6, locale = 'en'): Promise<Article[]> {
-  const cacheKey = `featured_${locale}_${limit}`;
+  const cacheKey = `featured_fast_${locale}_${limit}`;
 
-  console.log(`Getting featured articles with key: ${cacheKey}`);
+  console.log(`Getting featured articles (fast) with key: ${cacheKey}`);
 
-  // Temporarily disable cache for debugging
-  // return cacheService.getOrSet(
-  //   cacheKey,
-  //   async () => {
-  try {
-    console.log(`Fetching featured articles from API: limit=${limit}, locale=${locale}`);
+  // Enable cache for better performance
+  return cacheService.getOrSet(
+    cacheKey,
+    async () => {
+      try {
+        console.log(`Fetching featured articles (fast) from API: limit=${limit}, locale=${locale}`);
 
     // First check if Strapi is accessible
     try {
@@ -366,14 +366,59 @@ export async function getFeatured(limit = 6, locale = 'en'): Promise<Article[]> 
       console.error('Error transforming response:', transformError);
       return [];
     }
-  } catch (error) {
-    console.error('Error getting featured articles:', error);
-    // Return empty array instead of throwing error
-    return [];
-  }
-  //   },
-  //   CACHE_TTL.ARTICLES
-  // );
+      } catch (error) {
+        console.error('Error getting featured articles:', error);
+        // Return empty array instead of throwing error
+        return [];
+      }
+    },
+    CACHE_TTL.ARTICLES
+  );
+}
+
+/**
+ * Get featured articles with images - SLOWER but complete
+ * @param {number} limit - Number of articles to fetch
+ * @param {string} locale - Locale code
+ * @returns {Promise<Article[]>} - Featured articles with images
+ */
+export async function getFeaturedWithImages(limit = 6, locale = 'en'): Promise<Article[]> {
+  const cacheKey = `featured_images_${locale}_${limit}`;
+
+  console.log(`Getting featured articles with images with key: ${cacheKey}`);
+
+  return cacheService.getOrSet(
+    cacheKey,
+    async () => {
+      try {
+        console.log(`Fetching featured articles with images from API: limit=${limit}, locale=${locale}`);
+
+        // Import the function with images
+        const { getFeaturedArticlesWithImages } = await import('./api');
+        const response = await getFeaturedArticlesWithImages(limit, locale);
+
+        if (!response) {
+          console.error('Response from API is null or undefined');
+          return [];
+        }
+
+        const { articles } = transformArticlesResponse(response);
+
+        const validArticles = articles.filter(article =>
+          article &&
+          article.id !== 0 &&
+          !article.title.startsWith('Error:')
+        );
+
+        console.log('Valid articles with images count:', validArticles.length);
+        return validArticles;
+      } catch (error) {
+        console.error('Error getting featured articles with images:', error);
+        return [];
+      }
+    },
+    CACHE_TTL.ARTICLES
+  );
 }
 
 /**

@@ -91,4 +91,300 @@ body {
 .article-content {
   max-width: 1000px !important;
   margin: 0 auto;
+  line-height: 1.7;
+  color: #374151;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 18px;
+}
+
+/* Typography styles for article content - higher specificity to override Tailwind prose */
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  font-weight: 700 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  color: #1f2937 !important;
+  line-height: 1.3 !important;
+}
+
+.article-content h1 {
+  font-size: 2.25rem !important;
+  margin-top: 0 !important;
+}
+
+.article-content h2 {
+  font-size: 1.875rem !important;
+  border-bottom: 3px solid var(--teal) !important;
+  padding-bottom: 0.75rem !important;
+  margin-top: 3rem !important;
+  position: relative;
+  padding-left: 1rem !important;
+}
+
+.article-content h2::before {
+  content: "▶";
+  color: var(--teal);
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+}
+
+.article-content h3 {
+  font-size: 1.5rem !important;
+  color: var(--indigo) !important;
+  margin-top: 2.5rem !important;
+  position: relative;
+  padding-left: 1.5rem !important;
+}
+
+.article-content h3::before {
+  content: "●";
+  color: var(--teal);
+  font-size: 0.75rem;
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+}
+
+.article-content h4 {
+  font-size: 1.25rem !important;
+  color: var(--indigo) !important;
+}
+
+.article-content h5 {
+  font-size: 1.125rem !important;
+}
+
+.article-content h6 {
+  font-size: 1rem !important;
+}
+
+/* Paragraph styles */
+.article-content p {
+  margin-bottom: 1.5rem !important;
+  font-size: 1.125rem !important;
+  line-height: 1.8 !important;
+}
+
+.article-content p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* List styles */
+.article-content ul,
+.article-content ol {
+  margin-bottom: 1.5rem !important;
+  padding-left: 2rem !important;
+}
+
+.article-content ul {
+  list-style-type: disc !important;
+}
+
+.article-content ol {
+  list-style-type: decimal !important;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem !important;
+  font-size: 1.125rem !important;
+  line-height: 1.7 !important;
+}
+
+.article-content li::marker {
+  color: var(--teal) !important;
+}
+
+/* Nested lists */
+.article-content ul ul,
+.article-content ol ol,
+.article-content ul ol,
+.article-content ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Strong and emphasis */
+.article-content strong,
+.article-content b {
+  font-weight: 700 !important;
+  color: var(--indigo) !important;
+}
+
+.article-content em,
+.article-content i {
+  font-style: italic !important;
+}
+
+/* Links */
+.article-content a {
+  color: var(--teal);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.article-content a:hover {
+  color: var(--teal-dark);
+}
+
+/* Blockquotes */
+.article-content blockquote {
+  border-left: 4px solid var(--teal);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #6b7280;
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+/* Code styles */
+.article-content code {
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: var(--indigo);
+}
+
+.article-content pre {
+  background-color: #1f2937;
+  color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.article-content pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+/* Tables */
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 1rem;
+}
+
+.article-content .supplements-table {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.article-content .supplements-table th {
+  background-color: #0ABAB5;
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem;
+}
+
+.article-content .supplements-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.article-content .supplements-table tr:last-child td {
+  border-bottom: none;
+}
+
+.article-content .supplements-table tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.article-content th,
+.article-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.article-content th {
+  background-color: var(--teal);
+  color: white;
+  font-weight: 600;
+}
+
+.article-content tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Images */
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Horizontal rules */
+.article-content hr {
+  border: none;
+  border-top: 2px solid var(--gray-light);
+  margin: 3rem 0;
+}
+
+/* First paragraph special styling - intro text */
+.article-content > p:first-child {
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  color: var(--indigo) !important;
+  margin-bottom: 2rem !important;
+  padding: 1.5rem !important;
+  background-color: #f0f9ff !important;
+  border-left: 4px solid var(--teal) !important;
+  border-radius: 0.5rem !important;
+}
+
+/* Hide meta description if it's in the first paragraph */
+.article-content > p:first-child:contains("Meta description:") {
+  display: none !important;
+}
+
+/* Style for meta description text */
+.article-content p:first-child {
+  position: relative;
+}
+
+.article-content p:first-child::before {
+  content: "";
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .article-content {
+    padding: 0 1rem;
+  }
+
+  .article-content h1 {
+    font-size: 1.875rem;
+  }
+
+  .article-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .article-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .article-content p,
+  .article-content li {
+    font-size: 1rem;
+  }
 }

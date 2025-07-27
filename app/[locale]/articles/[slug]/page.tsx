@@ -357,10 +357,10 @@ export default function ArticlePage() {
           {/* Main Content - Wider for better readability */}
           <div className="lg:col-span-8 lg:col-start-3">
             {/* Article content with direct rendering */}
-            <article className="prose prose-lg max-w-none article-content" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+            <article className="prose prose-lg max-w-none" style={{ maxWidth: '1000px', margin: '0 auto' }}>
               {article.content ? (
                 // Use the content field directly if available
-                <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                <div className="article-content" dangerouslySetInnerHTML={{ __html: article.content }} />
               ) : article.blocks && Array.isArray(article.blocks) && article.blocks.length > 0 ? (
                 // Use the RenderBlocks component for direct rendering
                 <RenderBlocks blocks={article.blocks} />

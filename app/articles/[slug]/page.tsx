@@ -184,11 +184,11 @@ export default function ArticlePage() {
           {/* Main Content - Wider for better readability */}
           <div className="lg:col-span-8 lg:col-start-3">
             {/* Article content with improved readability */}
-            <article className="prose prose-lg max-w-none article-content" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+            <article className="prose prose-lg max-w-none" style={{ maxWidth: '1000px', margin: '0 auto' }}>
               {article.content ? (
                 Array.isArray(article.content) ? (
                   // Handle structured content (array of objects)
-                  <div>
+                  <div className="article-content">
                     {article.content.map((block: any, index: number) => {
                       // Check if it's a paragraph with children
                       if (block.type === 'paragraph' && block.children && block.children.length > 0) {
@@ -207,10 +207,10 @@ export default function ArticlePage() {
                   </div>
                 ) : typeof article.content === 'string' ? (
                   // Handle string content
-                  <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                  <div className="article-content" dangerouslySetInnerHTML={{ __html: article.content }} />
                 ) : (
                   // Handle object content
-                  <div dangerouslySetInnerHTML={{ __html: JSON.stringify(article.content) }} />
+                  <div className="article-content" dangerouslySetInnerHTML={{ __html: JSON.stringify(article.content) }} />
                 )
               ) : (
                 <div className="bg-yellow-50 p-6 rounded-lg mb-6">

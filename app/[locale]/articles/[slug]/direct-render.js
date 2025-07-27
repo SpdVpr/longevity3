@@ -151,7 +151,7 @@ export function RenderBlock({ block, index }) {
         <div
           key={`rich-text-${index}`}
           dangerouslySetInnerHTML={{ __html: cleanBody }}
-          className="mb-6"
+          className="mb-6 article-content"
         />
       );
     }
@@ -169,7 +169,7 @@ export function RenderBlock({ block, index }) {
         <div
           key={`rich-text-${index}`}
           dangerouslySetInnerHTML={{ __html: cleanContent }}
-          className="mb-6"
+          className="mb-6 article-content"
         />
       );
     }

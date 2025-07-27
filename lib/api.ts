@@ -343,7 +343,7 @@ export async function searchArticles(query: string, page = 1, pageSize = 10, loc
 }
 
 /**
- * Get featured articles
+ * Get featured articles - OPTIMIZED VERSION
  * @param {number} limit - Number of articles to fetch
  * @param {string} locale - Locale code
  * @returns {Object} - Featured articles
@@ -352,83 +352,91 @@ export async function getFeaturedArticles(limit = 6, locale = 'en') {
   try {
     console.log('Starting getFeaturedArticles with limit:', limit, 'locale:', locale);
 
-    const path = '/articles';
-    const urlParamsObject = {
-      // Temporarily get all articles for testing
-      // filters: {
-      //   featured: {
-      //     $eq: true,
-      //   },
-      // },
-      populate: {
-        category: {
-          populate: '*'
-        },
-        author: {
-          populate: '*'
-        },
-        cover: {
-          populate: '*'
-        },
-        image: {
-          populate: '*'
-        },
-        tags: {
-          populate: '*'
-        },
-        Content: true
-      },
-      locale,
+    // Ultra-fast query - no populate, just basic article data
+    const queryParams = new URLSearchParams({
       'pagination[pageSize]': String(limit),
-      sort: 'publishedAt:desc',
+      'sort': 'publishedAt:desc'
+    }).toString();
+
+    const directUrl = `${API_URL}/api/articles?${queryParams}`;
+    console.log('Optimized fetch URL:', directUrl);
+
+    const headers = {
+      'Content-Type': 'application/json',
+      ...(API_TOKEN ? { 'Authorization': `Bearer ${API_TOKEN}` } : {})
     };
 
-    console.log('Getting featured articles with params:', JSON.stringify(urlParamsObject, null, 2));
+    // Add timeout to prevent hanging
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-    // Try a direct fetch first to avoid any issues with the fetchAPI function
-    try {
-      console.log('Trying direct fetch for articles...');
-      const queryParams = new URLSearchParams({
-        'populate[0]': 'category',
-        'populate[1]': 'author',
-        'populate[2]': 'cover',
-        'populate[3]': 'image',
-        'populate[4]': 'tags',
-        'populate[5]': 'Content',
-        'pagination[pageSize]': String(limit),
-        'sort': 'publishedAt:desc'
-      }).toString();
+    const response = await fetch(directUrl, {
+      headers,
+      signal: controller.signal
+    });
 
-      const directUrl = `${API_URL}/api/articles?${queryParams}`;
-      console.log('Direct fetch URL:', directUrl);
+    clearTimeout(timeoutId);
 
-      const headers = {
-        'Content-Type': 'application/json',
-        ...(API_TOKEN ? { 'Authorization': `Bearer ${API_TOKEN}` } : {})
-      };
-      console.log('Using headers:', headers);
-
-      const response = await fetch(directUrl, { headers });
-
-      if (!response.ok) {
-        console.error(`Direct fetch failed: ${response.status} ${response.statusText}`);
-        throw new Error(`Direct fetch failed: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('Direct fetch successful, returning data');
-      return data;
-    } catch (directFetchError) {
-      console.error('Direct fetch failed, falling back to fetchAPI:', directFetchError);
+    if (!response.ok) {
+      console.error(`Featured articles fetch failed: ${response.status} ${response.statusText}`);
+      throw new Error(`Featured articles fetch failed: ${response.status}`);
     }
 
-    // Fall back to fetchAPI if direct fetch fails
-    console.log('Falling back to fetchAPI...');
-    const data = await fetchAPI(path, urlParamsObject);
-    console.log('Featured articles data received from fetchAPI');
+    const data = await response.json();
+    console.log('Featured articles fetched successfully');
     return data;
   } catch (error) {
     console.error('Error in getFeaturedArticles:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get featured articles with images - SLOWER but complete data
+ * @param {number} limit - Number of articles to fetch
+ * @param {string} locale - Locale code
+ * @returns {Object} - Featured articles with images
+ */
+export async function getFeaturedArticlesWithImages(limit = 6, locale = 'en') {
+  try {
+    console.log('Starting getFeaturedArticlesWithImages with limit:', limit, 'locale:', locale);
+
+    // Query with images and categories
+    const queryParams = new URLSearchParams({
+      'populate': 'category,cover,image',
+      'pagination[pageSize]': String(limit),
+      'sort': 'publishedAt:desc'
+    }).toString();
+
+    const directUrl = `${API_URL}/api/articles?${queryParams}`;
+    console.log('Featured articles with images URL:', directUrl);
+
+    const headers = {
+      'Content-Type': 'application/json',
+      ...(API_TOKEN ? { 'Authorization': `Bearer ${API_TOKEN}` } : {})
+    };
+
+    // Add timeout to prevent hanging
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
+    const response = await fetch(directUrl, {
+      headers,
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      console.error(`Featured articles with images fetch failed: ${response.status} ${response.statusText}`);
+      throw new Error(`Featured articles with images fetch failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Featured articles with images fetched successfully');
+    return data;
+  } catch (error) {
+    console.error('Error in getFeaturedArticlesWithImages:', error);
     throw error;
   }
 }
