@@ -10,9 +10,9 @@ const nextConfig = {
     // STRAPI_API_TOKEN should be set via environment variables, not hardcoded
   },
 
-  // Add webpack configuration to replace localhost:1337 with the Strapi API URL
+  // Add webpack configuration to replace special-acoustics-b9adb26838.strapiapp.com with the Strapi API URL
   webpack: (config, { webpack }) => {
-    // Add a plugin to replace all occurrences of localhost:1337 with the Strapi API URL
+    // Add a plugin to replace all occurrences of special-acoustics-b9adb26838.strapiapp.com with the Strapi API URL
     config.plugins.push(
       new webpack.DefinePlugin({
         'process.env.STRAPI_API_URL': JSON.stringify(STRAPI_API_URL),

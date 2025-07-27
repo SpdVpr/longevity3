@@ -5,7 +5,7 @@ async function testStrapiAPI() {
     console.log('Testing Strapi API...');
 
     // Fetch articles
-    const response = await fetch('http://localhost:1337/api/articles?populate=*');
+    const response = await fetch('https://special-acoustics-b9adb26838.strapiapp.com/api/articles?populate=*');
 
     if (!response.ok) {
       throw new Error(`Failed to fetch articles: ${response.status} ${response.statusText}`);

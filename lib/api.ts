@@ -10,7 +10,7 @@ const API_TOKEN = process.env.STRAPI_API_TOKEN;
 // Log the API URL and token status for debugging
 console.log('Environment:', process.env.NODE_ENV);
 console.log('API_URL:', API_URL);
-console.log('Using Fallback URL:', API_URL === 'http://localhost:1337');
+console.log('Using Fallback URL:', API_URL === 'https://special-acoustics-b9adb26838.strapiapp.com');
 console.log('API_TOKEN exists:', !!API_TOKEN);
 
 /**

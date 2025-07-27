@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 // Import components
 import Breadcrumbs from '../../components/Breadcrumbs';
 import ShareButtons from '../../components/ShareButtons';
+import StructuredData from '../../components/StructuredData';
 
 // Import CMS services
 import { getArticle, getRelated } from '../../lib/cms';
@@ -16,6 +17,8 @@ import { Article } from '../../types';
 
 // Import direct API functions
 import { getArticleDirect, getRelatedDirect } from '../../[locale]/articles/[slug]/api-config';
+
+
 
 export default function ArticlePage() {
   const params = useParams();
@@ -276,6 +279,9 @@ export default function ArticlePage() {
           </div>
         </section>
       )}
+
+      {/* Structured Data for SEO */}
+      {article && <StructuredData article={article} />}
     </div>
   );
 }

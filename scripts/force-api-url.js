@@ -44,31 +44,31 @@ function replaceInFile(filePath) {
     let content = fs.readFileSync(filePath, 'utf8');
     let modified = false;
     
-    // Replace localhost:3000
-    if (content.includes('localhost:3000')) {
-      console.log(`Replacing localhost:3000 in ${filePath}`);
-      content = content.replace(/localhost:3000/g, 'www.longevitygrow.com');
+    // Replace www.longevitygrow.com
+    if (content.includes('www.longevitygrow.com')) {
+      console.log(`Replacing www.longevitygrow.com in ${filePath}`);
+      content = content.replace(/www.longevitygrow.com/g, 'www.longevitygrow.com');
       modified = true;
     }
     
-    // Replace localhost:1337
-    if (content.includes('localhost:1337')) {
-      console.log(`Replacing localhost:1337 in ${filePath}`);
-      content = content.replace(/localhost:1337/g, STRAPI_API_URL.replace('https://', ''));
+    // Replace special-acoustics-b9adb26838.strapiapp.com
+    if (content.includes('special-acoustics-b9adb26838.strapiapp.com')) {
+      console.log(`Replacing special-acoustics-b9adb26838.strapiapp.com in ${filePath}`);
+      content = content.replace(/special-acoustics-b9adb26838.strapiapp.com/g, STRAPI_API_URL.replace('https://', ''));
       modified = true;
     }
     
-    // Replace http://localhost:1337
-    if (content.includes('http://localhost:1337')) {
-      console.log(`Replacing http://localhost:1337 in ${filePath}`);
-      content = content.replace(/http:\/\/localhost:1337/g, STRAPI_API_URL);
+    // Replace https://special-acoustics-b9adb26838.strapiapp.com
+    if (content.includes('https://special-acoustics-b9adb26838.strapiapp.com')) {
+      console.log(`Replacing https://special-acoustics-b9adb26838.strapiapp.com in ${filePath}`);
+      content = content.replace(/http:\/\/special-acoustics-b9adb26838.strapiapp.com/g, STRAPI_API_URL);
       modified = true;
     }
     
-    // Replace http://localhost:3000
-    if (content.includes('http://localhost:3000')) {
-      console.log(`Replacing http://localhost:3000 in ${filePath}`);
-      content = content.replace(/http:\/\/localhost:3000/g, 'https://www.longevitygrow.com');
+    // Replace http://www.longevitygrow.com
+    if (content.includes('http://www.longevitygrow.com')) {
+      console.log(`Replacing http://www.longevitygrow.com in ${filePath}`);
+      content = content.replace(/http:\/\/www.longevitygrow.com/g, 'https://www.longevitygrow.com');
       modified = true;
     }
     

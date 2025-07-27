@@ -79,7 +79,7 @@ export async function getArticle(slug: string, locale = 'en'): Promise<Article |
     // First check if Strapi is accessible
     try {
       console.log('Checking if Strapi API is accessible...');
-      const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+      const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
       const response = await fetch(`${strapiUrl}/api/articles?pagination[pageSize]=1`);
 
       if (!response.ok) {
@@ -309,7 +309,7 @@ export async function getFeatured(limit = 6, locale = 'en'): Promise<Article[]> 
     // First check if Strapi is accessible
     try {
       console.log('Checking if Strapi API is accessible...');
-      const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+      const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
       const response = await fetch(`${strapiUrl}/api/articles?pagination[pageSize]=1`);
 
       if (!response.ok) {
@@ -453,7 +453,7 @@ export async function createArticle(articleData: any): Promise<Article> {
     console.log('Creating article in Strapi CMS:', articleData.title);
 
     // Prepare the request URL
-    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
     const url = `${strapiUrl}/api/articles`;
 
     // Prepare the request headers
