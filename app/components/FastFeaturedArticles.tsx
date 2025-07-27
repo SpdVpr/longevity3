@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getFeatured, getFeaturedWithImages } from '../lib/cms';
+import { getFeatured, getFeaturedWithImages } from '../../lib/cms';
 import { Article } from '../types';
 
 interface FastFeaturedArticlesProps {
@@ -31,15 +31,25 @@ export default function FastFeaturedArticles({ locale = 'en' }: FastFeaturedArti
           setArticles(fastArticles);
           setLoading(false);
           
-          // Second: Load images in background
-          console.log('🖼️ Loading images in background...');
-          try {
-            const articlesWithImgs = await getFeaturedWithImages(3, locale);
-            console.log('✅ Articles with images loaded:', articlesWithImgs.length);
-            setArticlesWithImages(articlesWithImgs);
-          } catch (imageError) {
-            console.warn('⚠️ Failed to load images, using basic articles:', imageError);
-          } finally {
+          // Check if basic articles already have images
+          const hasImages = fastArticles.some(article => article.image || article.cover);
+
+          if (!hasImages) {
+            // Second: Load images in background with delay to prioritize basic loading
+            setTimeout(async () => {
+              console.log('🖼️ Loading images in background...');
+              try {
+                const articlesWithImgs = await getFeaturedWithImages(3, locale);
+                console.log('✅ Articles with images loaded:', articlesWithImgs.length);
+                setArticlesWithImages(articlesWithImgs);
+              } catch (imageError) {
+                console.warn('⚠️ Failed to load images, using basic articles:', imageError);
+              } finally {
+                setImagesLoading(false);
+              }
+            }, 100); // Small delay to ensure basic articles render first
+          } else {
+            console.log('✅ Basic articles already have images, skipping image loading');
             setImagesLoading(false);
           }
         } else {

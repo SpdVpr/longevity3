@@ -368,7 +368,7 @@ export async function getFeaturedArticles(limit = 6, locale = 'en') {
 
     // Add timeout to prevent hanging
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
     const response = await fetch(directUrl, {
       headers,
@@ -401,9 +401,9 @@ export async function getFeaturedArticlesWithImages(limit = 6, locale = 'en') {
   try {
     console.log('Starting getFeaturedArticlesWithImages with limit:', limit, 'locale:', locale);
 
-    // Query with images and categories
+    // Query with minimal populate for better performance
     const queryParams = new URLSearchParams({
-      'populate': 'category,cover,image',
+      'populate': 'category,cover',
       'pagination[pageSize]': String(limit),
       'sort': 'publishedAt:desc'
     }).toString();
@@ -418,7 +418,7 @@ export async function getFeaturedArticlesWithImages(limit = 6, locale = 'en') {
 
     // Add timeout to prevent hanging
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
 
     const response = await fetch(directUrl, {
       headers,

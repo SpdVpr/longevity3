@@ -610,7 +610,7 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
     let response;
     try {
       // Import API functions directly to ensure we're using the latest version
-      const { getArticlesByCategory: apiGetArticlesByCategory } = require('../api');
+      const { getArticlesByCategory: apiGetArticlesByCategory } = require('./api');
       console.log('Imported API function directly');
 
       response = await apiGetArticlesByCategory(categorySlug, page, pageSize, locale);
