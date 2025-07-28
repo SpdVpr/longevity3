@@ -35,7 +35,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/placeholder-image.jpg"
+                src="/images/placeholder-article.svg"
                 alt="Longevity Hub Team"
                 fill
                 style={{ objectFit: 'cover' }}

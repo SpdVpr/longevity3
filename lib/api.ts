@@ -352,8 +352,9 @@ export async function getFeaturedArticles(limit = 6, locale = 'en') {
   try {
     console.log('Starting getFeaturedArticles with limit:', limit, 'locale:', locale);
 
-    // Ultra-fast query - no populate, just basic article data
+    // Fast query with minimal populate for images
     const queryParams = new URLSearchParams({
+      'populate': 'cover,image',
       'pagination[pageSize]': String(limit),
       'sort': 'publishedAt:desc'
     }).toString();
@@ -401,9 +402,9 @@ export async function getFeaturedArticlesWithImages(limit = 6, locale = 'en') {
   try {
     console.log('Starting getFeaturedArticlesWithImages with limit:', limit, 'locale:', locale);
 
-    // Query with minimal populate for better performance
+    // Query with minimal populate for better performance - include both cover and image fields
     const queryParams = new URLSearchParams({
-      'populate': 'category,cover',
+      'populate': 'category,cover,image',
       'pagination[pageSize]': String(limit),
       'sort': 'publishedAt:desc'
     }).toString();

@@ -32,7 +32,7 @@ export default function FastFeaturedArticles({ locale = 'en' }: FastFeaturedArti
           setLoading(false);
           
           // Check if basic articles already have images
-          const hasImages = fastArticles.some(article => article.image || article.cover);
+          const hasImages = fastArticles.some(article => article.image);
 
           if (!hasImages) {
             // Second: Load images in background with delay to prioritize basic loading
