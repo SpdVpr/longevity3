@@ -220,13 +220,32 @@ export function transformArticleData(article: any): Article {
           console.log('Found direct cover URL string');
           imageUrl = getStrapiMedia(attributes.cover);
         } else if (attributes.cover.url) {
-          // Object with URL
+          // Object with URL - Strapi Cloud format
           console.log('Found cover object with URL property');
           imageUrl = getStrapiMedia(attributes.cover.url);
         } else if (attributes.cover.formats && attributes.cover.formats.large) {
           // New Strapi Cloud structure with formats
           console.log('Found cover with formats property');
           imageUrl = attributes.cover.formats.large.url || attributes.cover.url;
+        } else if (Array.isArray(attributes.cover) && attributes.cover.length > 0) {
+          // Strapi Cloud array format
+          console.log('Found cover as array, using first item');
+          const firstCover = attributes.cover[0];
+          if (firstCover.url) {
+            imageUrl = getStrapiMedia(firstCover.url);
+          } else if (firstCover.formats && firstCover.formats.large) {
+            imageUrl = getStrapiMedia(firstCover.formats.large.url);
+          }
+        } else if (attributes.cover.id && attributes.cover.mime) {
+          // Strapi Cloud direct media object
+          console.log('Found cover as direct media object');
+          if (attributes.cover.formats && attributes.cover.formats.large) {
+            imageUrl = getStrapiMedia(attributes.cover.formats.large.url);
+          } else if (attributes.cover.url) {
+            imageUrl = getStrapiMedia(attributes.cover.url);
+          }
+        } else {
+          console.log('Unknown cover format, available properties:', Object.keys(attributes.cover));
         }
       }
 
@@ -243,13 +262,30 @@ export function transformArticleData(article: any): Article {
           console.log('Found direct image URL string');
           imageUrl = getStrapiMedia(attributes.image);
         } else if (attributes.image.url) {
-          // Object with URL
+          // Object with URL - Strapi Cloud format
           console.log('Found image object with URL property');
           imageUrl = getStrapiMedia(attributes.image.url);
         } else if (attributes.image.formats && attributes.image.formats.large) {
           // New Strapi Cloud structure with formats
           console.log('Found image with formats property');
-          imageUrl = attributes.image.formats.large.url || attributes.image.url;
+          imageUrl = getStrapiMedia(attributes.image.formats.large.url || attributes.image.url);
+        } else if (Array.isArray(attributes.image) && attributes.image.length > 0) {
+          // Strapi Cloud array format
+          console.log('Found image as array, using first item');
+          const firstImage = attributes.image[0];
+          if (firstImage.url) {
+            imageUrl = getStrapiMedia(firstImage.url);
+          } else if (firstImage.formats && firstImage.formats.large) {
+            imageUrl = getStrapiMedia(firstImage.formats.large.url);
+          }
+        } else if (attributes.image.id && attributes.image.mime) {
+          // Strapi Cloud direct media object
+          console.log('Found image as direct media object');
+          if (attributes.image.formats && attributes.image.formats.large) {
+            imageUrl = getStrapiMedia(attributes.image.formats.large.url);
+          } else if (attributes.image.url) {
+            imageUrl = getStrapiMedia(attributes.image.url);
+          }
         } else if (attributes.image.data && typeof attributes.image.data === 'object' && !attributes.image.data.attributes) {
           // Handle case where data exists but doesn't have attributes
           console.log('Found image.data without attributes property');
@@ -264,6 +300,8 @@ export function transformArticleData(article: any): Article {
               imageUrl = getStrapiMedia(firstImage.url);
             }
           }
+        } else {
+          console.log('Unknown image format, available properties:', Object.keys(attributes.image));
         }
       }
 

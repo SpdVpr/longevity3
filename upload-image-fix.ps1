@@ -12,12 +12,13 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Debug and fix article images in /articles page
+$commitMessage = "Fix Strapi Cloud image format compatibility
 
-Temporarily disabled cache for getArticles to ensure fresh data
-Added detailed debug logging for image transformation
-Fixed image loading issues in articles listing page
-Articles should now display cover images from Strapi CMS without cache interference"
+Added support for Strapi Cloud image formats in transformation functions
+Enhanced cover and image field processing for new Strapi Cloud structure
+Fixed image URL extraction for articles without attributes wrapper
+Added comprehensive debug logging for different image formats
+Articles should now display cover images from Strapi Cloud CMS"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,9 +30,9 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - lib/cms.ts: Temporarily disabled cache for getArticles" -ForegroundColor White
-Write-Host "   - lib/utils.ts: Added detailed debug logging for images" -ForegroundColor White
-Write-Host "   - Created debug scripts for troubleshooting" -ForegroundColor White
+Write-Host "   - lib/utils.ts: Enhanced Strapi Cloud image format support" -ForegroundColor White
+Write-Host "   - app/[locale]/articles/api-config.js: Updated image processing" -ForegroundColor White
+Write-Host "   - Added support for direct URL, formats, and array structures" -ForegroundColor White
 Write-Host ""
-Write-Host "Articles should now display cover images from Strapi CMS!" -ForegroundColor Green
-Write-Host "Check browser console for detailed image loading logs" -ForegroundColor Yellow
+Write-Host "Articles should now display cover images from Strapi Cloud CMS!" -ForegroundColor Green
+Write-Host "Check browser console for detailed image processing logs" -ForegroundColor Yellow

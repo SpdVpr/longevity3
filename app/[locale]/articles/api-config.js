@@ -72,19 +72,56 @@ function transformArticleData(article) {
     const hasAttributes = !!article.attributes;
     const attributes = hasAttributes ? article.attributes : article;
     
-    // Get the image URL
+    // Get the image URL - updated for Strapi Cloud compatibility
     let imageUrl = null;
-    if (hasAttributes && attributes.image?.data?.attributes?.url) {
-      imageUrl = attributes.image.data.attributes.url;
-      if (imageUrl.startsWith('/')) {
-        imageUrl = `${API_URL}${imageUrl}`;
+
+    // First try cover field
+    if (attributes.cover) {
+      console.log('Direct API - Processing cover field:', typeof attributes.cover);
+
+      if (attributes.cover.data?.attributes?.url) {
+        // Standard Strapi v4 format
+        imageUrl = attributes.cover.data.attributes.url;
+      } else if (attributes.cover.url) {
+        // Strapi Cloud direct URL
+        imageUrl = attributes.cover.url;
+      } else if (attributes.cover.formats?.large?.url) {
+        // Strapi Cloud with formats
+        imageUrl = attributes.cover.formats.large.url;
+      } else if (Array.isArray(attributes.cover) && attributes.cover[0]?.url) {
+        // Strapi Cloud array format
+        imageUrl = attributes.cover[0].url;
       }
-    } else if (hasAttributes && attributes.cover?.data?.attributes?.url) {
-      imageUrl = attributes.cover.data.attributes.url;
-      if (imageUrl.startsWith('/')) {
+
+      if (imageUrl && imageUrl.startsWith('/')) {
         imageUrl = `${API_URL}${imageUrl}`;
       }
     }
+
+    // If no cover, try image field
+    if (!imageUrl && attributes.image) {
+      console.log('Direct API - Processing image field:', typeof attributes.image);
+
+      if (attributes.image.data?.attributes?.url) {
+        // Standard Strapi v4 format
+        imageUrl = attributes.image.data.attributes.url;
+      } else if (attributes.image.url) {
+        // Strapi Cloud direct URL
+        imageUrl = attributes.image.url;
+      } else if (attributes.image.formats?.large?.url) {
+        // Strapi Cloud with formats
+        imageUrl = attributes.image.formats.large.url;
+      } else if (Array.isArray(attributes.image) && attributes.image[0]?.url) {
+        // Strapi Cloud array format
+        imageUrl = attributes.image[0].url;
+      }
+
+      if (imageUrl && imageUrl.startsWith('/')) {
+        imageUrl = `${API_URL}${imageUrl}`;
+      }
+    }
+
+    console.log('Direct API - Final image URL:', imageUrl);
     
     // Get the category
     let category = null;
