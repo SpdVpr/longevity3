@@ -61,7 +61,7 @@ export default function BiomarkersPage() {
                     <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row">
                       <div className="relative h-64 md:h-auto md:w-1/3">
                         <Image
-                          src={article.image || '/placeholder-image.jpg'}
+                          src={article.image || '/images/placeholder-article.svg'}
                           alt={article.title}
                           fill
                           style={{ objectFit: 'cover' }}

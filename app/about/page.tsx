@@ -91,7 +91,7 @@ export default function AboutPage() {
               <div className="text-center">
                 <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden mb-4">
                   <Image
-                    src="/placeholder-image.jpg"
+                    src="/images/placeholder-article.svg"
                     alt="Team Member"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -108,7 +108,7 @@ export default function AboutPage() {
               <div className="text-center">
                 <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden mb-4">
                   <Image
-                    src="/placeholder-image.jpg"
+                    src="/images/placeholder-article.svg"
                     alt="Team Member"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -125,7 +125,7 @@ export default function AboutPage() {
               <div className="text-center">
                 <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden mb-4">
                   <Image
-                    src="/placeholder-image.jpg"
+                    src="/images/placeholder-article.svg"
                     alt="Team Member"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -142,7 +142,7 @@ export default function AboutPage() {
               <div className="text-center">
                 <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden mb-4">
                   <Image
-                    src="/placeholder-image.jpg"
+                    src="/images/placeholder-article.svg"
                     alt="Team Member"
                     fill
                     style={{ objectFit: 'cover' }}

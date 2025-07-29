@@ -12,13 +12,13 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix Strapi Cloud image format compatibility
+$commitMessage = "Fix remaining placeholder images and enhance Strapi Cloud support
 
-Added support for Strapi Cloud image formats in transformation functions
-Enhanced cover and image field processing for new Strapi Cloud structure
-Fixed image URL extraction for articles without attributes wrapper
-Added comprehensive debug logging for different image formats
-Articles should now display cover images from Strapi Cloud CMS"
+Fixed all remaining /placeholder-image.jpg references to /images/placeholder-article.svg
+Created shared Strapi Cloud transformation utilities in lib/strapi-cloud-transform.ts
+Enhanced biomarkers page with comprehensive Strapi Cloud image format support
+Added detailed debug logging for image processing across all formats
+Articles should now display cover images correctly from Strapi Cloud CMS"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -30,9 +30,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - lib/utils.ts: Enhanced Strapi Cloud image format support" -ForegroundColor White
-Write-Host "   - app/[locale]/articles/api-config.js: Updated image processing" -ForegroundColor White
-Write-Host "   - Added support for direct URL, formats, and array structures" -ForegroundColor White
+Write-Host "   - Fixed all remaining /placeholder-image.jpg references" -ForegroundColor White
+Write-Host "   - Created lib/strapi-cloud-transform.ts for shared utilities" -ForegroundColor White
+Write-Host "   - Enhanced biomarkers page with comprehensive image support" -ForegroundColor White
+Write-Host "   - Added detailed debug logging for all image formats" -ForegroundColor White
 Write-Host ""
 Write-Host "Articles should now display cover images from Strapi Cloud CMS!" -ForegroundColor Green
 Write-Host "Check browser console for detailed image processing logs" -ForegroundColor Yellow

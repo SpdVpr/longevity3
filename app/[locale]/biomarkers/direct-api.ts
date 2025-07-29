@@ -4,6 +4,8 @@
  * and uses hardcoded values to ensure it works correctly
  */
 
+import { transformArticleDataWithImages } from '@/lib/strapi-cloud-transform';
+
 // Base URL for Strapi API - from environment variables
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
 // API token for authentication - from environment variables
@@ -84,7 +86,7 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
     });
 
     // Transform the response to match the expected format
-    const articles = data.data.map(article => transformArticleData(article, categorySlug));
+    const articles = data.data.map(article => transformArticleDataWithImages(article, categorySlug));
     const pagination = transformPaginationData(data.meta.pagination);
 
     return { articles, pagination };
@@ -131,7 +133,8 @@ function transformArticleData(article: any, categorySlug?: string) {
 
     // First try cover field
     if (attributes.cover) {
-      console.log('Direct API - Found cover field');
+      console.log('Direct API - Found cover field, type:', typeof attributes.cover);
+      console.log('Direct API - Cover structure:', JSON.stringify(attributes.cover, null, 2));
 
       if (attributes.cover.data && attributes.cover.data.attributes) {
         // Standard Strapi v4 structure
@@ -139,24 +142,50 @@ function transformArticleData(article: any, categorySlug?: string) {
         const imageData = attributes.cover.data.attributes;
         imageUrl = imageData.url;
       } else if (attributes.cover.url) {
-        // Direct URL in cover object
+        // Direct URL in cover object - Strapi Cloud format
         console.log('Direct API - Found cover with direct URL');
         imageUrl = attributes.cover.url;
+      } else if (attributes.cover.formats && attributes.cover.formats.large) {
+        // Strapi Cloud with formats
+        console.log('Direct API - Found cover with formats property');
+        imageUrl = attributes.cover.formats.large.url;
+      } else if (Array.isArray(attributes.cover) && attributes.cover.length > 0) {
+        // Strapi Cloud array format
+        console.log('Direct API - Found cover as array, using first item');
+        const firstCover = attributes.cover[0];
+        if (firstCover.url) {
+          imageUrl = firstCover.url;
+        } else if (firstCover.formats && firstCover.formats.large) {
+          imageUrl = firstCover.formats.large.url;
+        }
+      } else if (attributes.cover.id && attributes.cover.mime) {
+        // Strapi Cloud direct media object
+        console.log('Direct API - Found cover as direct media object');
+        if (attributes.cover.formats && attributes.cover.formats.large) {
+          imageUrl = attributes.cover.formats.large.url;
+        } else if (attributes.cover.url) {
+          imageUrl = attributes.cover.url;
+        }
       } else if (typeof attributes.cover === 'string') {
         // Direct URL string
         console.log('Direct API - Found cover as string URL');
         imageUrl = attributes.cover;
+      } else {
+        console.log('Direct API - Unknown cover format, available properties:', Object.keys(attributes.cover));
       }
 
       // If the URL is relative, prepend the API URL
       if (imageUrl && imageUrl.startsWith('/')) {
         imageUrl = `${API_URL}${imageUrl}`;
       }
+
+      console.log('Direct API - Final cover image URL:', imageUrl);
     }
 
     // If no cover, try image field
     if (!imageUrl && attributes.image) {
-      console.log('Direct API - Found image field');
+      console.log('Direct API - Found image field, type:', typeof attributes.image);
+      console.log('Direct API - Image structure:', JSON.stringify(attributes.image, null, 2));
 
       if (attributes.image.data && attributes.image.data.attributes) {
         // Standard Strapi v4 structure
@@ -164,19 +193,44 @@ function transformArticleData(article: any, categorySlug?: string) {
         const imageData = attributes.image.data.attributes;
         imageUrl = imageData.url;
       } else if (attributes.image.url) {
-        // Direct URL in image object
+        // Direct URL in image object - Strapi Cloud format
         console.log('Direct API - Found image with direct URL');
         imageUrl = attributes.image.url;
+      } else if (attributes.image.formats && attributes.image.formats.large) {
+        // Strapi Cloud with formats
+        console.log('Direct API - Found image with formats property');
+        imageUrl = attributes.image.formats.large.url;
+      } else if (Array.isArray(attributes.image) && attributes.image.length > 0) {
+        // Strapi Cloud array format
+        console.log('Direct API - Found image as array, using first item');
+        const firstImage = attributes.image[0];
+        if (firstImage.url) {
+          imageUrl = firstImage.url;
+        } else if (firstImage.formats && firstImage.formats.large) {
+          imageUrl = firstImage.formats.large.url;
+        }
+      } else if (attributes.image.id && attributes.image.mime) {
+        // Strapi Cloud direct media object
+        console.log('Direct API - Found image as direct media object');
+        if (attributes.image.formats && attributes.image.formats.large) {
+          imageUrl = attributes.image.formats.large.url;
+        } else if (attributes.image.url) {
+          imageUrl = attributes.image.url;
+        }
       } else if (typeof attributes.image === 'string') {
         // Direct URL string
         console.log('Direct API - Found image as string URL');
         imageUrl = attributes.image;
+      } else {
+        console.log('Direct API - Unknown image format, available properties:', Object.keys(attributes.image));
       }
 
       // If the URL is relative, prepend the API URL
       if (imageUrl && imageUrl.startsWith('/')) {
         imageUrl = `${API_URL}${imageUrl}`;
       }
+
+      console.log('Direct API - Final image URL:', imageUrl);
     }
 
     // Get the category
