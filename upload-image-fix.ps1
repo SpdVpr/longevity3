@@ -12,12 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix missing lib/cms.ts - create re-export wrapper
+$commitMessage = "Fix CategoryCard undefined locale in URLs
 
-CRITICAL BUILD FIX: Created lib/cms.ts as re-export wrapper for app/lib/cms.ts
-Multiple files import from lib/cms but file was missing causing build failures
-Re-exports getArticles and getArticlesByCategory from app/lib/cms.ts
-Build should now succeed with all import paths working correctly"
+Fixed CategoryCard component to handle missing locale parameter
+Homepage CategoryCard links were generating /undefined/nutrition URLs
+Now checks if locale exists before adding it to href
+Category links should now work correctly from homepage"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - CRITICAL: Created lib/cms.ts as re-export wrapper" -ForegroundColor Red
-Write-Host "   - Re-exports getArticles and getArticlesByCategory" -ForegroundColor White
-Write-Host "   - Maintains compatibility with existing import paths" -ForegroundColor White
-Write-Host "   - Uses proper UTF-8 encoding" -ForegroundColor White
+Write-Host "   - Fixed CategoryCard component locale handling" -ForegroundColor White
+Write-Host "   - Added check for undefined locale parameter" -ForegroundColor White
+Write-Host "   - Category links now work correctly from homepage" -ForegroundColor White
+Write-Host "   - No more /undefined/nutrition URLs" -ForegroundColor White
 Write-Host ""
-Write-Host "Missing import errors should be fixed!" -ForegroundColor Green
-Write-Host "Build should succeed and all pages should work" -ForegroundColor Yellow
+Write-Host "Category navigation should now work!" -ForegroundColor Green
+Write-Host "Test clicking on categories from homepage" -ForegroundColor Yellow

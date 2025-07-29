@@ -25,10 +25,10 @@ export default function CategoryCard({
   // Determine the image source based on category or provided imageSrc
   const imageSource = imageSrc || `/images/placeholder-${category || href.replace('/', '')}.svg`;
 
-  // Ensure the href includes the locale
-  const localizedHref = href.startsWith('/')
-    ? `/${locale}${href}`
-    : `/${locale}/${href}`;
+  // Ensure the href includes the locale (only if locale exists)
+  const localizedHref = locale
+    ? (href.startsWith('/') ? `/${locale}${href}` : `/${locale}/${href}`)
+    : href; // If no locale, use href as-is
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
