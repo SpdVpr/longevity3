@@ -91,39 +91,7 @@ export default function MentalHealthPage() {
             {/* Sidebar */}
             <div className="md:col-span-1">
               <div className="bg-gray-50 rounded-lg p-6 sticky top-8">
-                <h3 className="text-xl font-bold mb-4">Topics</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/mental-health/stress-management" className="text-blue-600 hover:text-blue-800">
-                      Stress Management
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/mental-health/sleep" className="text-blue-600 hover:text-blue-800">
-                      Sleep Optimization
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/mental-health/cognitive-training" className="text-blue-600 hover:text-blue-800">
-                      Cognitive Training
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/mental-health/social-connection" className="text-blue-600 hover:text-blue-800">
-                      Social Connection
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/mental-health/purpose" className="text-blue-600 hover:text-blue-800">
-                      Purpose & Meaning
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/mental-health/meditation" className="text-blue-600 hover:text-blue-800">
-                      Meditation & Mindfulness
-                    </Link>
-                  </li>
-                </ul>
+                {/* Removed Topics section with broken links - using Popular Articles instead */}
 
                 <h3 className="text-xl font-bold mt-8 mb-4">Popular Articles</h3>
                 <ul className="space-y-4">

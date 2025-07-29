@@ -12,12 +12,13 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Debug category articles image loading issue
+$commitMessage = "Fix 404 errors from broken category topic links
 
-Added detailed debug logging to getArticlesByCategory function
-Will show full object structure to identify where cover images are stored
-This will help diagnose why articles show null imageUrl in categories
-Temporary debug logs to understand Strapi data structure"
+Removed hardcoded topic links that were causing 404 errors
+- /nutrition/intermittent-fasting → 404 (removed)
+- /mental-health/stress-management → 404 (removed)
+These links were generating failed requests and slowing down page loads
+Using Popular Articles section instead of broken topic links"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +30,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - Added detailed debug logging to getArticlesByCategory" -ForegroundColor White
-Write-Host "   - Will show full object structure in browser console" -ForegroundColor White
-Write-Host "   - This will help identify where cover images are stored" -ForegroundColor White
-Write-Host "   - Temporary debug logs to understand data structure" -ForegroundColor White
+Write-Host "   - Removed broken topic links from nutrition page" -ForegroundColor White
+Write-Host "   - Removed broken topic links from mental-health page" -ForegroundColor White
+Write-Host "   - These links were causing 404 errors and slowing page loads" -ForegroundColor White
+Write-Host "   - Using Popular Articles section instead" -ForegroundColor White
 Write-Host ""
-Write-Host "Check browser console for detailed object logs!" -ForegroundColor Green
-Write-Host "Look for 'Category - Full attributes object' logs" -ForegroundColor Yellow
+Write-Host "404 errors should be reduced!" -ForegroundColor Green
+Write-Host "Pages should load faster without failed requests" -ForegroundColor Yellow

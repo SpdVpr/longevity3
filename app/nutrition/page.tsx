@@ -91,39 +91,7 @@ export default function NutritionPage() {
             {/* Sidebar */}
             <div className="md:col-span-1">
               <div className="bg-gray-50 rounded-lg p-6 sticky top-8">
-                <h3 className="text-xl font-bold mb-4">Topics</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/nutrition/intermittent-fasting" className="text-blue-600 hover:text-blue-800">
-                      Intermittent Fasting
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/nutrition/mediterranean-diet" className="text-blue-600 hover:text-blue-800">
-                      Mediterranean Diet
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/nutrition/caloric-restriction" className="text-blue-600 hover:text-blue-800">
-                      Caloric Restriction
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/nutrition/blue-zones" className="text-blue-600 hover:text-blue-800">
-                      Blue Zones
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/nutrition/superfoods" className="text-blue-600 hover:text-blue-800">
-                      Superfoods
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/nutrition/protein" className="text-blue-600 hover:text-blue-800">
-                      Protein Intake
-                    </Link>
-                  </li>
-                </ul>
+                {/* Removed Topics section with broken links - using Popular Articles instead */}
 
                 <h3 className="text-xl font-bold mt-8 mb-4">Popular Articles</h3>
                 <ul className="space-y-4">
