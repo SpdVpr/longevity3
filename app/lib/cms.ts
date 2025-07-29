@@ -384,6 +384,7 @@ export async function getArticlesByCategory(categorySlug: string, page: number =
           imageUrl = getImageUrl(item.attributes.image.url);
         } else {
           console.log('Category - No image found in attributes, available fields:', Object.keys(item.attributes));
+          console.log('Category - Full attributes object:', JSON.stringify(item.attributes, null, 2));
         }
       } else {
         // Try cover field first for direct structure
@@ -395,6 +396,7 @@ export async function getArticlesByCategory(categorySlug: string, page: number =
           imageUrl = getImageUrl(item.image.url);
         } else {
           console.log('Category - No image found in direct structure, available fields:', Object.keys(item));
+          console.log('Category - Full item object:', JSON.stringify(item, null, 2));
         }
       }
 

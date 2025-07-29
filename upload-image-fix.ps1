@@ -12,12 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix CategoryCard undefined locale in URLs
+$commitMessage = "Debug category articles image loading issue
 
-Fixed CategoryCard component to handle missing locale parameter
-Homepage CategoryCard links were generating /undefined/nutrition URLs
-Now checks if locale exists before adding it to href
-Category links should now work correctly from homepage"
+Added detailed debug logging to getArticlesByCategory function
+Will show full object structure to identify where cover images are stored
+This will help diagnose why articles show null imageUrl in categories
+Temporary debug logs to understand Strapi data structure"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - Fixed CategoryCard component locale handling" -ForegroundColor White
-Write-Host "   - Added check for undefined locale parameter" -ForegroundColor White
-Write-Host "   - Category links now work correctly from homepage" -ForegroundColor White
-Write-Host "   - No more /undefined/nutrition URLs" -ForegroundColor White
+Write-Host "   - Added detailed debug logging to getArticlesByCategory" -ForegroundColor White
+Write-Host "   - Will show full object structure in browser console" -ForegroundColor White
+Write-Host "   - This will help identify where cover images are stored" -ForegroundColor White
+Write-Host "   - Temporary debug logs to understand data structure" -ForegroundColor White
 Write-Host ""
-Write-Host "Category navigation should now work!" -ForegroundColor Green
-Write-Host "Test clicking on categories from homepage" -ForegroundColor Yellow
+Write-Host "Check browser console for detailed object logs!" -ForegroundColor Green
+Write-Host "Look for 'Category - Full attributes object' logs" -ForegroundColor Yellow
