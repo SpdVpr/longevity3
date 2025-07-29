@@ -268,6 +268,20 @@ export function transformArticleData(article: any): Article {
       }
 
       console.log('Final image URL:', imageUrl);
+
+      // Additional debug for articles page
+      if (!imageUrl) {
+        console.warn('⚠️ No image URL found for article:', attributes.title);
+        console.log('Available fields:', Object.keys(attributes));
+        if (attributes.cover) {
+          console.log('Cover field structure:', JSON.stringify(attributes.cover, null, 2));
+        }
+        if (attributes.image) {
+          console.log('Image field structure:', JSON.stringify(attributes.image, null, 2));
+        }
+      } else {
+        console.log('✅ Image URL found for article:', attributes.title, '→', imageUrl);
+      }
     } catch (imageError) {
       console.error('Error extracting image URL:', imageError);
     }

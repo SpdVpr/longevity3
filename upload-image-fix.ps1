@@ -12,12 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix article cover images display in previews
+$commitMessage = "Debug and fix article images in /articles page
 
-Added cover,image populate to getFeaturedArticles API call
-Fixed placeholder image paths from /placeholder-image.jpg to /images/placeholder-article.svg
-Updated image detection logic in FastFeaturedArticles component
-Articles should now display cover images from Strapi CMS in category pages and main page"
+Temporarily disabled cache for getArticles to ensure fresh data
+Added detailed debug logging for image transformation
+Fixed image loading issues in articles listing page
+Articles should now display cover images from Strapi CMS without cache interference"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,8 +29,9 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - lib/api.ts: Added cover,image populate to getFeaturedArticles" -ForegroundColor White
-Write-Host "   - app/components/FastFeaturedArticles.tsx: Updated image detection" -ForegroundColor White
-Write-Host "   - Fixed placeholder paths in category pages" -ForegroundColor White
+Write-Host "   - lib/cms.ts: Temporarily disabled cache for getArticles" -ForegroundColor White
+Write-Host "   - lib/utils.ts: Added detailed debug logging for images" -ForegroundColor White
+Write-Host "   - Created debug scripts for troubleshooting" -ForegroundColor White
 Write-Host ""
 Write-Host "Articles should now display cover images from Strapi CMS!" -ForegroundColor Green
+Write-Host "Check browser console for detailed image loading logs" -ForegroundColor Yellow

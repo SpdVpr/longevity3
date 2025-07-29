@@ -50,14 +50,20 @@ export async function getArticles(page = 1, pageSize = 10, locale = 'en'): Promi
 }> {
   const cacheKey = `articles_${locale}_${page}_${pageSize}`;
 
-  return cacheService.getOrSet(
-    cacheKey,
-    async () => {
-      const response = await getAllArticles(page, pageSize, locale);
-      return transformArticlesResponse(response);
-    },
-    CACHE_TTL.ARTICLES
-  );
+  // Temporarily disable cache to ensure fresh data with images
+  console.log('🔄 Fetching articles without cache to ensure fresh image data');
+  const response = await getAllArticles(page, pageSize, locale);
+  return transformArticlesResponse(response);
+
+  // Original cached version (commented out temporarily)
+  // return cacheService.getOrSet(
+  //   cacheKey,
+  //   async () => {
+  //     const response = await getAllArticles(page, pageSize, locale);
+  //     return transformArticlesResponse(response);
+  //   },
+  //   CACHE_TTL.ARTICLES
+  // );
 }
 
 /**
