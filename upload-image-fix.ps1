@@ -12,13 +12,13 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix remaining placeholder images and enhance Strapi Cloud support
+$commitMessage = "Fix critical image issue in /articles page
 
-Fixed all remaining /placeholder-image.jpg references to /images/placeholder-article.svg
-Created shared Strapi Cloud transformation utilities in lib/strapi-cloud-transform.ts
-Enhanced biomarkers page with comprehensive Strapi Cloud image format support
-Added detailed debug logging for image processing across all formats
-Articles should now display cover images correctly from Strapi Cloud CMS"
+CRITICAL FIX: app/lib/cms.ts was only checking image field, not cover field
+Added cover field processing to getArticles and getArticlesByCategory functions
+Articles now check cover field first, then image field as fallback
+Added detailed debug logging to track image URL extraction process
+This should fix the missing images on /articles page 4 and other pages"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -30,10 +30,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - Fixed all remaining /placeholder-image.jpg references" -ForegroundColor White
-Write-Host "   - Created lib/strapi-cloud-transform.ts for shared utilities" -ForegroundColor White
-Write-Host "   - Enhanced biomarkers page with comprehensive image support" -ForegroundColor White
-Write-Host "   - Added detailed debug logging for all image formats" -ForegroundColor White
+Write-Host "   - CRITICAL: Fixed app/lib/cms.ts to process cover field" -ForegroundColor Red
+Write-Host "   - Added cover field checking to getArticles function" -ForegroundColor White
+Write-Host "   - Added cover field checking to getArticlesByCategory function" -ForegroundColor White
+Write-Host "   - Added detailed debug logging for image extraction" -ForegroundColor White
 Write-Host ""
-Write-Host "Articles should now display cover images from Strapi Cloud CMS!" -ForegroundColor Green
-Write-Host "Check browser console for detailed image processing logs" -ForegroundColor Yellow
+Write-Host "This should fix the missing images on /articles page!" -ForegroundColor Green
+Write-Host "Check browser console for cover field processing logs" -ForegroundColor Yellow

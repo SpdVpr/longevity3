@@ -145,13 +145,40 @@ export async function getArticles(page: number = 1, pageSize: number = 10, local
         content = item.Content || item.content || '';
       }
 
-      // Get the image URL from the appropriate location
+      // Get the image URL from the appropriate location - try cover first, then image
       let imageUrl = null;
-      if (hasAttributes && item.attributes.image?.data?.attributes?.url) {
-        imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
-      } else if (item.image?.url) {
-        imageUrl = getImageUrl(item.image.url);
+
+      if (hasAttributes) {
+        // Try cover field first (this is what articles actually have)
+        if (item.attributes.cover?.data?.attributes?.url) {
+          console.log('Found cover image in attributes.cover.data.attributes.url');
+          imageUrl = getImageUrl(item.attributes.cover.data.attributes.url);
+        } else if (item.attributes.cover?.url) {
+          console.log('Found cover image in attributes.cover.url');
+          imageUrl = getImageUrl(item.attributes.cover.url);
+        } else if (item.attributes.image?.data?.attributes?.url) {
+          console.log('Found image in attributes.image.data.attributes.url');
+          imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
+        } else if (item.attributes.image?.url) {
+          console.log('Found image in attributes.image.url');
+          imageUrl = getImageUrl(item.attributes.image.url);
+        } else {
+          console.log('No image found in attributes, available fields:', Object.keys(item.attributes));
+        }
+      } else {
+        // Try cover field first for direct structure
+        if (item.cover?.url) {
+          console.log('Found cover image in cover.url');
+          imageUrl = getImageUrl(item.cover.url);
+        } else if (item.image?.url) {
+          console.log('Found image in image.url');
+          imageUrl = getImageUrl(item.image.url);
+        } else {
+          console.log('No image found in direct structure, available fields:', Object.keys(item));
+        }
       }
+
+      console.log('Final image URL for article:', hasAttributes ? item.attributes.title : item.title, '→', imageUrl);
 
       // Get the category from the appropriate location
       let category = null;
@@ -338,13 +365,40 @@ export async function getArticlesByCategory(categorySlug: string, page: number =
         content = item.Content || item.content || '';
       }
 
-      // Get the image URL from the appropriate location
+      // Get the image URL from the appropriate location - try cover first, then image
       let imageUrl = null;
-      if (hasAttributes && item.attributes.image?.data?.attributes?.url) {
-        imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
-      } else if (item.image?.url) {
-        imageUrl = getImageUrl(item.image.url);
+
+      if (hasAttributes) {
+        // Try cover field first (this is what articles actually have)
+        if (item.attributes.cover?.data?.attributes?.url) {
+          console.log('Category - Found cover image in attributes.cover.data.attributes.url');
+          imageUrl = getImageUrl(item.attributes.cover.data.attributes.url);
+        } else if (item.attributes.cover?.url) {
+          console.log('Category - Found cover image in attributes.cover.url');
+          imageUrl = getImageUrl(item.attributes.cover.url);
+        } else if (item.attributes.image?.data?.attributes?.url) {
+          console.log('Category - Found image in attributes.image.data.attributes.url');
+          imageUrl = getImageUrl(item.attributes.image.data.attributes.url);
+        } else if (item.attributes.image?.url) {
+          console.log('Category - Found image in attributes.image.url');
+          imageUrl = getImageUrl(item.attributes.image.url);
+        } else {
+          console.log('Category - No image found in attributes, available fields:', Object.keys(item.attributes));
+        }
+      } else {
+        // Try cover field first for direct structure
+        if (item.cover?.url) {
+          console.log('Category - Found cover image in cover.url');
+          imageUrl = getImageUrl(item.cover.url);
+        } else if (item.image?.url) {
+          console.log('Category - Found image in image.url');
+          imageUrl = getImageUrl(item.image.url);
+        } else {
+          console.log('Category - No image found in direct structure, available fields:', Object.keys(item));
+        }
       }
+
+      console.log('Category - Final image URL for article:', hasAttributes ? item.attributes.title : item.title, '→', imageUrl);
 
       // Get the category from the appropriate location
       let category = null;
