@@ -12,13 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix critical image issue in /articles page
+$commitMessage = "Fix Featured Articles section on homepage
 
-CRITICAL FIX: app/lib/cms.ts was only checking image field, not cover field
-Added cover field processing to getArticles and getArticlesByCategory functions
-Articles now check cover field first, then image field as fallback
-Added detailed debug logging to track image URL extraction process
-This should fix the missing images on /articles page 4 and other pages"
+Fixed FastFeaturedArticles component to use working getArticles function
+Replaced broken getFeatured and getFeaturedWithImages with getArticles
+Homepage Featured Articles section should now display articles correctly
+Removed complex image loading logic in favor of simple working approach"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -30,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - CRITICAL: Fixed app/lib/cms.ts to process cover field" -ForegroundColor Red
-Write-Host "   - Added cover field checking to getArticles function" -ForegroundColor White
-Write-Host "   - Added cover field checking to getArticlesByCategory function" -ForegroundColor White
-Write-Host "   - Added detailed debug logging for image extraction" -ForegroundColor White
+Write-Host "   - Fixed FastFeaturedArticles component import" -ForegroundColor White
+Write-Host "   - Replaced getFeatured with working getArticles function" -ForegroundColor White
+Write-Host "   - Simplified image loading logic" -ForegroundColor White
+Write-Host "   - Removed broken getFeaturedWithImages calls" -ForegroundColor White
 Write-Host ""
-Write-Host "This should fix the missing images on /articles page!" -ForegroundColor Green
-Write-Host "Check browser console for cover field processing logs" -ForegroundColor Yellow
+Write-Host "Homepage Featured Articles should now work!" -ForegroundColor Green
+Write-Host "Check homepage for Featured Articles section" -ForegroundColor Yellow

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getFeatured, getFeaturedWithImages } from '../../lib/cms';
+import { getArticles } from '../../lib/cms';
 import { Article } from '../types';
 
 interface FastFeaturedArticlesProps {
@@ -23,9 +23,10 @@ export default function FastFeaturedArticles({ locale = 'en' }: FastFeaturedArti
         setLoading(true);
         setError('');
 
-        // First: Load basic article data FAST
-        const fastArticles = await getFeatured(3, locale);
-        console.log('✅ Fast articles loaded:', fastArticles.length);
+        // Use the working getArticles function instead of broken getFeatured
+        const result = await getArticles(1, 3, locale);
+        const fastArticles = result.articles;
+        console.log('✅ Articles loaded:', fastArticles.length);
         
         if (fastArticles && fastArticles.length > 0) {
           setArticles(fastArticles);
@@ -34,24 +35,10 @@ export default function FastFeaturedArticles({ locale = 'en' }: FastFeaturedArti
           // Check if basic articles already have images
           const hasImages = fastArticles.some(article => article.image);
 
-          if (!hasImages) {
-            // Second: Load images in background with delay to prioritize basic loading
-            setTimeout(async () => {
-              console.log('🖼️ Loading images in background...');
-              try {
-                const articlesWithImgs = await getFeaturedWithImages(3, locale);
-                console.log('✅ Articles with images loaded:', articlesWithImgs.length);
-                setArticlesWithImages(articlesWithImgs);
-              } catch (imageError) {
-                console.warn('⚠️ Failed to load images, using basic articles:', imageError);
-              } finally {
-                setImagesLoading(false);
-              }
-            }, 100); // Small delay to ensure basic articles render first
-          } else {
-            console.log('✅ Basic articles already have images, skipping image loading');
-            setImagesLoading(false);
-          }
+          // Articles from getArticles already have images, so just use them
+          console.log('✅ Articles already have images from getArticles');
+          setArticlesWithImages(fastArticles);
+          setImagesLoading(false);
         } else {
           setError('No articles found. Please create and publish articles in Strapi CMS.');
           setLoading(false);

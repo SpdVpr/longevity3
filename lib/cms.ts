@@ -305,10 +305,9 @@ export async function getFeatured(limit = 6, locale = 'en'): Promise<Article[]> 
 
   console.log(`Getting featured articles (fast) with key: ${cacheKey}`);
 
-  // Enable cache for better performance
-  return cacheService.getOrSet(
-    cacheKey,
-    async () => {
+  // Temporarily disable cache to ensure fresh data
+  console.log('🔄 Fetching featured articles without cache to ensure fresh data');
+  try {
       try {
         console.log(`Fetching featured articles (fast) from API: limit=${limit}, locale=${locale}`);
 
@@ -372,14 +371,12 @@ export async function getFeatured(limit = 6, locale = 'en'): Promise<Article[]> 
       console.error('Error transforming response:', transformError);
       return [];
     }
-      } catch (error) {
-        console.error('Error getting featured articles:', error);
-        // Return empty array instead of throwing error
-        return [];
-      }
-    },
-    CACHE_TTL.ARTICLES
-  );
+
+  } catch (error) {
+    console.error('Error getting featured articles:', error);
+    // Return empty array instead of throwing error
+    return [];
+  }
 }
 
 /**
