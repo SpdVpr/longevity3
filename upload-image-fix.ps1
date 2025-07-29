@@ -12,12 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix UTF-8 encoding issue - use app/lib/cms.ts instead
+$commitMessage = "Fix missing lib/cms.ts - create re-export wrapper
 
-CRITICAL BUILD FIX: Changed FastFeaturedArticles import to use app/lib/cms.ts
-Windows PowerShell was creating lib/cms.ts with wrong UTF-16 encoding
-Using existing app/lib/cms.ts which has proper UTF-8 encoding
-Build should now succeed without UTF-8 encoding errors"
+CRITICAL BUILD FIX: Created lib/cms.ts as re-export wrapper for app/lib/cms.ts
+Multiple files import from lib/cms but file was missing causing build failures
+Re-exports getArticles and getArticlesByCategory from app/lib/cms.ts
+Build should now succeed with all import paths working correctly"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - CRITICAL: Fixed FastFeaturedArticles import path" -ForegroundColor Red
-Write-Host "   - Changed from ../../lib/cms to ../lib/cms" -ForegroundColor White
-Write-Host "   - Uses existing app/lib/cms.ts with proper UTF-8 encoding" -ForegroundColor White
-Write-Host "   - Removed problematic lib/cms.ts file" -ForegroundColor White
+Write-Host "   - CRITICAL: Created lib/cms.ts as re-export wrapper" -ForegroundColor Red
+Write-Host "   - Re-exports getArticles and getArticlesByCategory" -ForegroundColor White
+Write-Host "   - Maintains compatibility with existing import paths" -ForegroundColor White
+Write-Host "   - Uses proper UTF-8 encoding" -ForegroundColor White
 Write-Host ""
-Write-Host "UTF-8 encoding error should be fixed!" -ForegroundColor Green
-Write-Host "Build should succeed and Featured Articles should work" -ForegroundColor Yellow
+Write-Host "Missing import errors should be fixed!" -ForegroundColor Green
+Write-Host "Build should succeed and all pages should work" -ForegroundColor Yellow
