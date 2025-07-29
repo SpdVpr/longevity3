@@ -12,12 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix build error - recreate missing lib/cms.ts
+$commitMessage = "Fix UTF-8 encoding issue - use app/lib/cms.ts instead
 
-CRITICAL BUILD FIX: Recreated missing lib/cms.ts file that was causing build failure
-FastFeaturedArticles component imports from ../../lib/cms but file was missing
-Added all necessary CMS functions with proper TypeScript types
-Build should now succeed and Featured Articles should work on homepage"
+CRITICAL BUILD FIX: Changed FastFeaturedArticles import to use app/lib/cms.ts
+Windows PowerShell was creating lib/cms.ts with wrong UTF-16 encoding
+Using existing app/lib/cms.ts which has proper UTF-8 encoding
+Build should now succeed without UTF-8 encoding errors"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - CRITICAL: Recreated missing lib/cms.ts file" -ForegroundColor Red
-Write-Host "   - Added all necessary CMS functions with proper types" -ForegroundColor White
-Write-Host "   - Fixed import path issue for FastFeaturedArticles" -ForegroundColor White
-Write-Host "   - Build should now succeed without syntax errors" -ForegroundColor White
+Write-Host "   - CRITICAL: Fixed FastFeaturedArticles import path" -ForegroundColor Red
+Write-Host "   - Changed from ../../lib/cms to ../lib/cms" -ForegroundColor White
+Write-Host "   - Uses existing app/lib/cms.ts with proper UTF-8 encoding" -ForegroundColor White
+Write-Host "   - Removed problematic lib/cms.ts file" -ForegroundColor White
 Write-Host ""
-Write-Host "Build error should be fixed!" -ForegroundColor Green
-Write-Host "Featured Articles should work after deployment" -ForegroundColor Yellow
+Write-Host "UTF-8 encoding error should be fixed!" -ForegroundColor Green
+Write-Host "Build should succeed and Featured Articles should work" -ForegroundColor Yellow

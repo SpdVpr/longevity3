@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getArticles } from '../../lib/cms';
+import { getArticles } from '../lib/cms';
 import { Article } from '../types';
 
 interface FastFeaturedArticlesProps {
