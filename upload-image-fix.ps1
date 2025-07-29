@@ -12,12 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix Featured Articles section on homepage
+$commitMessage = "Fix build error - recreate missing lib/cms.ts
 
-Fixed FastFeaturedArticles component to use working getArticles function
-Replaced broken getFeatured and getFeaturedWithImages with getArticles
-Homepage Featured Articles section should now display articles correctly
-Removed complex image loading logic in favor of simple working approach"
+CRITICAL BUILD FIX: Recreated missing lib/cms.ts file that was causing build failure
+FastFeaturedArticles component imports from ../../lib/cms but file was missing
+Added all necessary CMS functions with proper TypeScript types
+Build should now succeed and Featured Articles should work on homepage"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - Fixed FastFeaturedArticles component import" -ForegroundColor White
-Write-Host "   - Replaced getFeatured with working getArticles function" -ForegroundColor White
-Write-Host "   - Simplified image loading logic" -ForegroundColor White
-Write-Host "   - Removed broken getFeaturedWithImages calls" -ForegroundColor White
+Write-Host "   - CRITICAL: Recreated missing lib/cms.ts file" -ForegroundColor Red
+Write-Host "   - Added all necessary CMS functions with proper types" -ForegroundColor White
+Write-Host "   - Fixed import path issue for FastFeaturedArticles" -ForegroundColor White
+Write-Host "   - Build should now succeed without syntax errors" -ForegroundColor White
 Write-Host ""
-Write-Host "Homepage Featured Articles should now work!" -ForegroundColor Green
-Write-Host "Check homepage for Featured Articles section" -ForegroundColor Yellow
+Write-Host "Build error should be fixed!" -ForegroundColor Green
+Write-Host "Featured Articles should work after deployment" -ForegroundColor Yellow
