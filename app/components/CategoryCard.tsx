@@ -25,6 +25,15 @@ export default function CategoryCard({
   // Determine the image source based on category or provided imageSrc
   const imageSource = imageSrc || `/images/placeholder-${category || href.replace('/', '')}.svg`;
 
+  // Debug logging for image source
+  console.log(`CategoryCard - ${title}:`, {
+    imageSrc,
+    category,
+    href,
+    imageSource,
+    locale
+  });
+
   // Ensure the href includes the locale (only if locale exists)
   const localizedHref = locale
     ? (href.startsWith('/') ? `/${locale}${href}` : `/${locale}/${href}`)

@@ -12,12 +12,14 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Improve category images in Explore Categories section
+$commitMessage = "Debug CategoryCard image loading issues
 
-Updated category images to better represent each topic:
-- Nutrition: Changed to mediterranean.webp (better represents healthy eating)
-- Mental Health: Changed to senior-yoga.jpg (represents mindfulness and wellbeing)
-Category images now more accurately reflect their content areas"
+Added debug logging to CategoryCard component to identify image loading problems
+Will show in browser console:
+- imageSrc parameter values
+- imageSource final values
+- category and href values
+This will help diagnose why category images are not displaying"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +31,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - Updated Nutrition category image to mediterranean.webp" -ForegroundColor White
-Write-Host "   - Updated Mental Health category image to senior-yoga.jpg" -ForegroundColor White
-Write-Host "   - Images now better represent their respective categories" -ForegroundColor White
-Write-Host "   - Applied changes to both main and localized homepage" -ForegroundColor White
+Write-Host "   - Added debug logging to CategoryCard component" -ForegroundColor White
+Write-Host "   - Will show image source values in browser console" -ForegroundColor White
+Write-Host "   - Helps identify why category images are not displaying" -ForegroundColor White
+Write-Host "   - Check console for CategoryCard debug messages" -ForegroundColor White
 Write-Host ""
-Write-Host "Category images should now be more relevant!" -ForegroundColor Green
-Write-Host "Check homepage Explore Categories section" -ForegroundColor Yellow
+Write-Host "Debug info should appear in browser console!" -ForegroundColor Green
+Write-Host "Look for 'CategoryCard - [Title]:' messages" -ForegroundColor Yellow
