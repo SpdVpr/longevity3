@@ -12,13 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Fix 404 errors from broken category topic links
+$commitMessage = "Add sorting by newest first for articles
 
-Removed hardcoded topic links that were causing 404 errors
-- /nutrition/intermittent-fasting → 404 (removed)
-- /mental-health/stress-management → 404 (removed)
-These links were generating failed requests and slowing down page loads
-Using Popular Articles section instead of broken topic links"
+Added sort=publishedAt:desc to getArticles and getArticlesByCategory functions
+Categories now show articles from newest to oldest
+Homepage Featured Articles now shows 3 newest articles
+Improves user experience by showing most recent content first"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -30,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - Removed broken topic links from nutrition page" -ForegroundColor White
-Write-Host "   - Removed broken topic links from mental-health page" -ForegroundColor White
-Write-Host "   - These links were causing 404 errors and slowing page loads" -ForegroundColor White
-Write-Host "   - Using Popular Articles section instead" -ForegroundColor White
+Write-Host "   - Added sort=publishedAt:desc to getArticles function" -ForegroundColor White
+Write-Host "   - Added sort=publishedAt:desc to getArticlesByCategory function" -ForegroundColor White
+Write-Host "   - Categories now show newest articles first" -ForegroundColor White
+Write-Host "   - Homepage Featured Articles shows 3 newest articles" -ForegroundColor White
 Write-Host ""
-Write-Host "404 errors should be reduced!" -ForegroundColor Green
-Write-Host "Pages should load faster without failed requests" -ForegroundColor Yellow
+Write-Host "Articles should now be sorted by newest first!" -ForegroundColor Green
+Write-Host "Check category pages and homepage for newest content" -ForegroundColor Yellow

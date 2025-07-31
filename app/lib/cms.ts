@@ -63,7 +63,7 @@ export async function getArticles(page: number = 1, pageSize: number = 10, local
   pagination: Pagination;
 }> {
   try {
-    const url = `${API_URL}/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`;
+    const url = `${API_URL}/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}&sort=publishedAt:desc`;
     console.log(`Fetching articles from ${url}`);
 
     // Add more debugging
@@ -328,7 +328,7 @@ export async function getArticlesByCategory(categorySlug: string, page: number =
     console.log(`Fetching articles for category ${categorySlug} from ${API_URL}/api/articles`);
 
     const response = await fetch(
-      `${API_URL}/api/articles?filters[category][slug][$eq]=${categorySlug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`,
+      `${API_URL}/api/articles?filters[category][slug][$eq]=${categorySlug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}&sort=publishedAt:desc`,
       fetchOptions
     );
 
