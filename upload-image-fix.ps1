@@ -12,12 +12,12 @@ Write-Host "Adding changes..." -ForegroundColor Yellow
 git add .
 
 # Commit changes
-$commitMessage = "Add sorting by newest first for articles
+$commitMessage = "Improve category images in Explore Categories section
 
-Added sort=publishedAt:desc to getArticles and getArticlesByCategory functions
-Categories now show articles from newest to oldest
-Homepage Featured Articles now shows 3 newest articles
-Improves user experience by showing most recent content first"
+Updated category images to better represent each topic:
+- Nutrition: Changed to mediterranean.webp (better represents healthy eating)
+- Mental Health: Changed to senior-yoga.jpg (represents mindfulness and wellbeing)
+Category images now more accurately reflect their content areas"
 
 Write-Host "Committing changes..." -ForegroundColor Yellow
 git commit -m $commitMessage
@@ -29,10 +29,10 @@ git push origin main
 Write-Host "Successfully uploaded image fix to GitHub!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Changes made:" -ForegroundColor Cyan
-Write-Host "   - Added sort=publishedAt:desc to getArticles function" -ForegroundColor White
-Write-Host "   - Added sort=publishedAt:desc to getArticlesByCategory function" -ForegroundColor White
-Write-Host "   - Categories now show newest articles first" -ForegroundColor White
-Write-Host "   - Homepage Featured Articles shows 3 newest articles" -ForegroundColor White
+Write-Host "   - Updated Nutrition category image to mediterranean.webp" -ForegroundColor White
+Write-Host "   - Updated Mental Health category image to senior-yoga.jpg" -ForegroundColor White
+Write-Host "   - Images now better represent their respective categories" -ForegroundColor White
+Write-Host "   - Applied changes to both main and localized homepage" -ForegroundColor White
 Write-Host ""
-Write-Host "Articles should now be sorted by newest first!" -ForegroundColor Green
-Write-Host "Check category pages and homepage for newest content" -ForegroundColor Yellow
+Write-Host "Category images should now be more relevant!" -ForegroundColor Green
+Write-Host "Check homepage Explore Categories section" -ForegroundColor Yellow

@@ -43,7 +43,7 @@ export default function Home() {
             <CategoryCard
               title="Nutrition"
               description="Discover evidence-based nutrition strategies for longevity, including intermittent fasting, caloric restriction, and optimal macronutrient ratios."
-              imageSrc="/images/categories/nutrition.jpg"
+              imageSrc="/images/categories/mediterranean.webp"
               href="/nutrition"
               category="nutrition"
             />
@@ -57,7 +57,7 @@ export default function Home() {
             <CategoryCard
               title="Mental Health"
               description="Explore the connection between mental wellbeing and longevity, including stress management, sleep optimization, and cognitive health."
-              imageSrc="/images/categories/sleep.jpg"
+              imageSrc="/images/hero/senior-yoga.jpg"
               href="/mental-health"
               category="mental-health"
             />

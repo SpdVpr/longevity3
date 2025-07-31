@@ -47,7 +47,7 @@ export default function Home() {
             <CategoryCard
               title={t('categories.nutrition.title')}
               description={t('categories.nutrition.description')}
-              imageSrc="/images/categories/nutrition.jpg"
+              imageSrc="/images/categories/mediterranean.webp"
               href="/nutrition"
               category="nutrition"
             />
@@ -61,7 +61,7 @@ export default function Home() {
             <CategoryCard
               title={t('categories.mental_health.title')}
               description={t('categories.mental_health.description')}
-              imageSrc="/images/categories/sleep.jpg"
+              imageSrc="/images/hero/senior-yoga.jpg"
               href="/mental-health"
               category="mental-health"
             />
