@@ -1,7 +1,34 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+// Metadata for tools page
+export const metadata: Metadata = {
+  title: "Longevity Tools & Calculators | Longevity Grow",
+  description: "Access free tools and calculators for longevity optimization. Calculate biological age, BMI, caloric needs, and track your health metrics.",
+  keywords: "longevity tools, health calculators, biological age calculator, BMI calculator, caloric needs, health tracking",
+  authors: [{ name: "Longevity Grow" }],
+  creator: "Longevity Grow",
+  publisher: "Longevity Grow",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://www.longevitygrow.com/tools",
+  },
+  openGraph: {
+    title: "Longevity Tools & Calculators | Longevity Grow",
+    description: "Access free tools and calculators for longevity optimization.",
+    url: "https://www.longevitygrow.com/tools",
+    siteName: "Longevity Grow",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Longevity Tools & Calculators | Longevity Grow",
+    description: "Access free tools and calculators for longevity optimization.",
+    creator: "@longevitygrow",
+  },
+};
 
 // Tool categories and items
 const toolCategories = [

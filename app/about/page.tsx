@@ -1,6 +1,33 @@
-'use client';
-
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+// Metadata for about page
+export const metadata: Metadata = {
+  title: "About Longevity Grow | Science-backed Longevity Information",
+  description: "Learn about our mission to provide evidence-based information on longevity and healthy aging. Meet our team of scientists and health professionals.",
+  keywords: "about longevity grow, longevity science, healthy aging, evidence-based health, longevity research",
+  authors: [{ name: "Longevity Grow" }],
+  creator: "Longevity Grow",
+  publisher: "Longevity Grow",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://www.longevitygrow.com/about",
+  },
+  openGraph: {
+    title: "About Longevity Grow | Science-backed Longevity Information",
+    description: "Learn about our mission to provide evidence-based information on longevity and healthy aging.",
+    url: "https://www.longevitygrow.com/about",
+    siteName: "Longevity Grow",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Longevity Grow | Science-backed Longevity Information",
+    description: "Learn about our mission to provide evidence-based information on longevity and healthy aging.",
+    creator: "@longevitygrow",
+  },
+};
 
 export default function AboutPage() {
   return (
