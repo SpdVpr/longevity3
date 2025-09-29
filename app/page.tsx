@@ -1,7 +1,6 @@
-'use client';
-
 import Image from "next/image";
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 // Import components
 import Hero from './components/Hero';
@@ -12,7 +11,36 @@ import Newsletter from './components/Newsletter';
 import LongevityPyramid from './components/LongevityPyramid';
 import ToolsSection from './components/ToolsSection';
 
-// No mock data - we'll use only Strapi CMS data
+// Metadata for homepage
+export const metadata: Metadata = {
+  title: "Longevity Grow - Science-backed strategies for longevity and healthy aging",
+  description: "Discover evidence-based approaches to extend your healthspan and lifespan with the latest longevity research, nutrition, fitness, mental health, and supplement guidance.",
+  keywords: "longevity, healthy aging, nutrition, fitness, mental health, supplements, anti-aging, healthspan, lifespan, wellness",
+  authors: [{ name: "Longevity Grow" }],
+  creator: "Longevity Grow",
+  publisher: "Longevity Grow",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://www.longevitygrow.com",
+  },
+  openGraph: {
+    title: "Longevity Grow - Science-backed strategies for longevity",
+    description: "Discover evidence-based approaches to extend your healthspan and lifespan with the latest longevity research and practical tips.",
+    url: "https://www.longevitygrow.com",
+    siteName: "Longevity Grow",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Longevity Grow - Science-backed strategies for longevity",
+    description: "Discover evidence-based approaches to extend your healthspan and lifespan with the latest longevity research and practical tips.",
+    creator: "@longevitygrow",
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
+};
 
 export default function Home() {
 

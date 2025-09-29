@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   creator: "Longevity Grow",
   publisher: "Longevity Grow",
   robots: "index, follow",
+  alternates: {
+    canonical: "https://www.longevitygrow.com",
+  },
   openGraph: {
     title: "Longevity Grow - Science-backed strategies for longevity",
     description: "Discover evidence-based approaches to extend your healthspan and lifespan with the latest longevity research and practical tips.",

@@ -1,31 +1,47 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 import { getArticlesByCategory } from '../lib/cms';
 import { Article } from '../types';
 import { formatDate } from '../lib/utils';
 
-export default function MentalHealthPage() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
+// Metadata for mental-health page
+export const metadata: Metadata = {
+  title: "Mental Health for Longevity | Longevity Grow",
+  description: "Discover evidence-based mental health strategies that promote longevity and cognitive health. Learn about stress management, sleep optimization, and mindfulness.",
+  keywords: "mental health, longevity, stress management, sleep, mindfulness, cognitive health, meditation, wellbeing",
+  authors: [{ name: "Longevity Grow" }],
+  creator: "Longevity Grow",
+  publisher: "Longevity Grow",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://www.longevitygrow.com/mental-health",
+  },
+  openGraph: {
+    title: "Mental Health for Longevity | Longevity Grow",
+    description: "Discover evidence-based mental health strategies that promote longevity and cognitive health.",
+    url: "https://www.longevitygrow.com/mental-health",
+    siteName: "Longevity Grow",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mental Health for Longevity | Longevity Grow",
+    description: "Discover evidence-based mental health strategies that promote longevity and cognitive health.",
+    creator: "@longevitygrow",
+  },
+};
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        setLoading(true);
-        const { articles } = await getArticlesByCategory('mental-health');
-        setArticles(articles);
-      } catch (error) {
-        console.error('Error fetching mental health articles:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+export default async function MentalHealthPage() {
+  let articles: Article[] = [];
 
-    fetchArticles();
-  }, []);
+  try {
+    const { articles: fetchedArticles } = await getArticlesByCategory('mental-health');
+    articles = fetchedArticles;
+  } catch (error) {
+    console.error('Error fetching mental health articles:', error);
+  }
   return (
     <>
       {/* Hero Section */}

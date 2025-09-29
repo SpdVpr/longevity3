@@ -8,13 +8,11 @@
     "NEXT_PUBLIC_STRAPI_API_URL": "https://special-acoustics-b9adb26838.strapiapp.com",
     "NEXT_IGNORE_TYPESCRIPT_ERRORS": "1",
     "NEXT_PUBLIC_SITE_URL": "https://www.longevitygrow.com",
-    "DATABASE_URL": "file:./prisma/dev.db",
     "SKIP_ENV_VALIDATION": "1"
   },
   "build": {
     "env": {
       "NEXT_PUBLIC_STRAPI_API_URL": "https://special-acoustics-b9adb26838.strapiapp.com",
-      "DATABASE_URL": "file:./prisma/dev.db",
       "NEXT_IGNORE_TYPESCRIPT_ERRORS": "1",
       "SKIP_ENV_VALIDATION": "1"
     }

@@ -58,6 +58,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/biomarkers`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/supplements`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
@@ -83,12 +89,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Article pages
+  // Article pages - using correct locale-based URLs
   const articlePages = articles.map((article: any) => ({
-    url: `${baseUrl}/articles/${article.slug}`,
+    url: `${baseUrl}/en/articles/${article.slug}`,
     lastModified: new Date(article.updatedAt || article.publishedAt),
-    changeFrequency: 'monthly' as const,
-    priority: 0.9,
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
   }));
 
   return [...staticPages, ...articlePages];

@@ -1,31 +1,48 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 import { getArticlesByCategory } from '../lib/cms';
 import { Article } from '../types';
 import { formatDate } from '../lib/utils';
 
-export default function NutritionPage() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
+// Metadata for nutrition page
+export const metadata: Metadata = {
+  title: "Nutrition for Longevity | Longevity Grow",
+  description: "Discover evidence-based dietary patterns and foods that promote longevity and healthspan. Learn about intermittent fasting, caloric restriction, and optimal nutrition.",
+  keywords: "nutrition, longevity, healthy eating, intermittent fasting, caloric restriction, Mediterranean diet, anti-aging foods",
+  authors: [{ name: "Longevity Grow" }],
+  creator: "Longevity Grow",
+  publisher: "Longevity Grow",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://www.longevitygrow.com/nutrition",
+  },
+  openGraph: {
+    title: "Nutrition for Longevity | Longevity Grow",
+    description: "Discover evidence-based dietary patterns and foods that promote longevity and healthspan.",
+    url: "https://www.longevitygrow.com/nutrition",
+    siteName: "Longevity Grow",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nutrition for Longevity | Longevity Grow",
+    description: "Discover evidence-based dietary patterns and foods that promote longevity and healthspan.",
+    creator: "@longevitygrow",
+  },
+};
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        setLoading(true);
-        const { articles } = await getArticlesByCategory('nutrition');
-        setArticles(articles);
-      } catch (error) {
-        console.error('Error fetching nutrition articles:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+export default async function NutritionPage() {
+  let articles: Article[] = [];
+  let loading = false;
 
-    fetchArticles();
-  }, []);
+  try {
+    const { articles: fetchedArticles } = await getArticlesByCategory('nutrition');
+    articles = fetchedArticles;
+  } catch (error) {
+    console.error('Error fetching nutrition articles:', error);
+  }
   return (
     <>
       {/* Hero Section */}
@@ -49,14 +66,7 @@ export default function NutritionPage() {
               <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
 
               <div className="space-y-8">
-                {loading ? (
-                  <div className="text-center py-10">
-                    <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
-                      <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
-                    </div>
-                    <p className="mt-2 text-gray-600">Loading articles...</p>
-                  </div>
-                ) : articles.length > 0 ? (
+                {articles.length > 0 ? (
                   articles.map((article, index) => (
                     <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row">
                       <div className="relative h-64 md:h-auto md:w-1/3">
@@ -72,7 +82,7 @@ export default function NutritionPage() {
                         <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                         <p className="text-gray-600 mb-4">{article.excerpt}</p>
                         <Link
-                          href={`/articles/${article.slug}`}
+                          href={`/en/articles/${article.slug}`}
                           className="text-blue-600 font-semibold hover:text-blue-800"
                         >
                           Read More →
