@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createArticle } from '@/lib/cms';
+import { createArticle } from '../../../lib/cms';
 
 // Tajný klíč pro zabezpečení API
 const API_SECRET_KEY = process.env.API_SECRET_KEY || 'your-secret-key';

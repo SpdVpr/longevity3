@@ -4,8 +4,8 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import LongevityQuiz from '@/app/components/LongevityQuiz';
-import Breadcrumbs from '@/app/components/Breadcrumbs';
+import LongevityQuiz from '../../../../app/components/LongevityQuiz';
+import Breadcrumbs from '../../../../app/components/Breadcrumbs';
 
 export default function LongevityQuizPage() {
   const params = useParams();

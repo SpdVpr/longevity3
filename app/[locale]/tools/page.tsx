@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import Breadcrumbs from '@/app/components/Breadcrumbs';
+import Breadcrumbs from '../../../app/components/Breadcrumbs';
 
 // Tool categories and items
 const toolCategories = [

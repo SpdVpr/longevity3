@@ -9,7 +9,7 @@ import { useParams } from 'next/navigation';
 import { getArticlesByCategory } from './direct-api';
 // Import the local formatDate function
 import { formatDate } from './utils';
-import { Article, Pagination } from '@/types';
+import { Article, Pagination } from '../../../types';
 
 export default function BiomarkersPage() {
   const params = useParams();

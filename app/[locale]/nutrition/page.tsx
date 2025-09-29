@@ -5,9 +5,67 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import { getArticlesByCategory } from '@/lib/cms';
-import { formatDate } from '@/lib/utils';
-import { Article, Pagination } from '@/types';
+// Direct imports replaced with local functions
+// import { getArticlesByCategory } from '@/lib/cms';
+// import { formatDate } from '@/lib/utils';
+import { Article, Pagination } from '../../../types';
+
+// Local utility functions
+const formatDate = (dateString: string) => {
+  if (!dateString) return '';
+  try {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  } catch {
+    return '';
+  }
+};
+
+// Local CMS function
+const getArticlesByCategory = async (categorySlug: string, page = 1, pageSize = 10, locale = 'en') => {
+  try {
+    const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
+    const API_TOKEN = process.env.STRAPI_API_TOKEN;
+
+    const response = await fetch(`${API_URL}/api/articles?filters[category][slug][$eq]=${categorySlug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}&locale=${locale}`, {
+      headers: {
+        'Authorization': `Bearer ${API_TOKEN}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch articles: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    const articles = data.data.map((article: any) => ({
+      id: article.id,
+      title: article.title || '',
+      description: article.description || '',
+      slug: article.slug || '',
+      image: null, // Will be handled by the component
+      publishedAt: article.publishedAt || null,
+      category: article.category || null,
+      author: article.author || null
+    }));
+
+    const pagination = {
+      page: data.meta?.pagination?.page || 1,
+      pageSize: data.meta?.pagination?.pageSize || 10,
+      pageCount: data.meta?.pagination?.pageCount || 0,
+      total: data.meta?.pagination?.total || 0
+    };
+
+    return { articles, pagination };
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+    return { articles: [], pagination: { page: 1, pageSize: 10, pageCount: 0, total: 0 } };
+  }
+};
 
 export default function NutritionPage() {
   const params = useParams();

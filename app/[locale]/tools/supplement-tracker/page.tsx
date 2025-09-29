@@ -4,8 +4,8 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import SupplementTracker from '@/app/components/SupplementTracker';
-import Breadcrumbs from '@/app/components/Breadcrumbs';
+import SupplementTracker from '../../../../app/components/SupplementTracker';
+import Breadcrumbs from '../../../../app/components/Breadcrumbs';
 
 export default function SupplementTrackerPage() {
   const params = useParams();

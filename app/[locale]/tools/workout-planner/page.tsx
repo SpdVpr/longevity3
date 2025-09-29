@@ -4,8 +4,8 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import WorkoutNutritionPlanner from '@/app/components/WorkoutNutritionPlanner';
-import Breadcrumbs from '@/app/components/Breadcrumbs';
+import WorkoutNutritionPlanner from '../../../../app/components/WorkoutNutritionPlanner';
+import Breadcrumbs from '../../../../app/components/Breadcrumbs';
 
 export default function WorkoutPlannerPage() {
   const params = useParams();
