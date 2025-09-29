@@ -4,7 +4,7 @@
  * and uses hardcoded values to ensure it works correctly
  */
 
-import { transformArticleDataWithImages } from '@/lib/strapi-cloud-transform';
+// Import removed - using local transformation function instead
 
 // Base URL for Strapi API - from environment variables
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://special-acoustics-b9adb26838.strapiapp.com';
@@ -86,7 +86,7 @@ export async function getArticlesByCategory(categorySlug: string, page = 1, page
     });
 
     // Transform the response to match the expected format
-    const articles = data.data.map(article => transformArticleDataWithImages(article, categorySlug));
+    const articles = data.data.map(article => transformArticleData(article, categorySlug));
     const pagination = transformPaginationData(data.meta.pagination);
 
     return { articles, pagination };
