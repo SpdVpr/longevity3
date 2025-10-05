@@ -32,6 +32,12 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: true,
   },
+  // Ensure trailing slashes are not added (better for SEO)
+  trailingSlash: false,
+  // Remove X-Powered-By header for security
+  poweredByHeader: false,
+  // Enable compression
+  compress: true,
 };
 
 export default withNextIntl(nextConfig);

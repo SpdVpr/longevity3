@@ -27,11 +27,11 @@ async function getAllArticles() {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.longevitygrow.com';
-  
+
   // Get all articles
   const articles = await getAllArticles();
-  
-  // Static pages
+
+  // Static pages - main pages without locale
   const staticPages = [
     {
       url: baseUrl,
@@ -90,12 +90,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Article pages - using correct locale-based URLs
-  const articlePages = articles.map((article: any) => ({
-    url: `${baseUrl}/en/articles/${article.slug}`,
-    lastModified: new Date(article.updatedAt || article.publishedAt),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
+  const articlePages = articles.map((article: any) => {
+    const attributes = article.attributes || article;
+    const slug = attributes.slug || article.slug;
+    const updatedAt = attributes.updatedAt || article.updatedAt;
+    const publishedAt = attributes.publishedAt || article.publishedAt;
 
-  return [...staticPages, ...articlePages];
+    return {
+      url: `${baseUrl}/en/articles/${slug}`,
+      lastModified: new Date(updatedAt || publishedAt || new Date()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    };
+  });
+
+  // Add articles list page
+  const articlesListPage = {
+    url: `${baseUrl}/en/articles`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.9,
+  };
+
+  return [...staticPages, articlesListPage, ...articlePages];
 }

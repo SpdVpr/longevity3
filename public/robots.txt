@@ -1,0 +1,16 @@
+# robots.txt for longevitygrow.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /dashboard/
+Disallow: /auth/
+
+# Sitemap
+Sitemap: https://www.longevitygrow.com/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
